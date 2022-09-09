@@ -8,6 +8,7 @@
 auth
 ├─ Owned — "Simple single owner authorization"
 ├─ Auth — "Flexible and updatable auth pattern"
+├─ OwnedRoles — "Simple single owner and multiroles authorization mixin"
 ├─ authorities
 │  ├─ RolesAuthority — "Role based Authority that supports up to 256 roles"
 │  ├─ MultiRolesAuthority — "Flexible and target agnostic role based Authority"
@@ -19,16 +20,30 @@ tokens
 ├─ ERC721 — "Modern, minimalist, and gas efficient ERC721 implementation"
 ├─ ERC1155 — "Minimalist and gas efficient standard ERC1155 implementation"
 utils
+├─ LibSort — "Optimized intro sort"
+├─ LibClone — "Minimal proxy library"
+├─ ECDSA — "Gas optimized ECDSA wrapper"
+├─ Base64 — "Library to encode strings in Base64"
+├─ LibBit — "Library for bit twiddling operations"
+├─ LibBytemap — "Efficient bytemap library for mapping integers to bytes"
 ├─ SSTORE2 — "Library for cheaper reads and writes to persistent storage"
+├─ Clone — "Class with helper read functions for clone with immutable args"
 ├─ CREATE3 — "Deploy to deterministic addresses without an initcode factor"
 ├─ LibString — "Library for creating string representations of uint values"
 ├─ SafeCastLib — "Safe unsigned integer casting lib that reverts on overflow"
 ├─ SignedWadMath — "Signed integer 18 decimal fixed point arithmetic library"
-├─ MerkleProofLib — "Efficient merkle tree inclusion proof verification library"
 ├─ ReentrancyGuard — "Gas optimized reentrancy protection for smart contracts"
+├─ MerkleProofLib — "Efficient merkle tree inclusion proof verification library"
+├─ SafeCastLib — "Safe unsigned integer casting library that reverts on overflow"
 ├─ FixedPointMathLib — "Arithmetic library with operations for fixed-point numbers"
 ├─ Bytes32AddressLib — "Library for converting between addresses and bytes32 values"
+├─ LibRLP — "Library for computing contract addresses from their deployer and nonce"
+├─ LibBitMap — "Efficient bitmap library for mapping integers to single bit booleans"
 ├─ SafeTransferLib — "Safe ERC20/ETH transfer lib that handles missing return values"
+├─ LibString — "Library for converting numbers into strings and other string operations"
+├─ Multicallable — "Contract that enables a single call to call multiple methods on itself"
+├─ MerkleProofLib — "Gas optimized verification of proof of inclusion for a leaf in a Merkle tree"
+├─ SignatureCheckerLib — "Signature verification helper that supports both ECDSA signatures from EOAs"
 ```
 
 ## Safety
