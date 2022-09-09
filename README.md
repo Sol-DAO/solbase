@@ -1,6 +1,6 @@
-# solmate
+# solbase
 
-**Modern**, **opinionated**, and **gas optimized** building blocks for **smart contract development**.
+**Modern**, **opinionated**, and **gas optimized** base for **smart contract development**.
 
 ## Contracts
 
@@ -48,19 +48,21 @@ We **do not give any warranties** and **will not be liable for any loss** incurr
 To install with [**Foundry**](https://github.com/gakonst/foundry):
 
 ```sh
-forge install transmissions11/solmate
+forge install Sol-DAO/solbase
 ```
 
 To install with [**Hardhat**](https://github.com/nomiclabs/hardhat) or [**Truffle**](https://github.com/trufflesuite/truffle):
 
 ```sh
-npm install solmate
+npm install solbase
 ```
 
 ## Acknowledgements
 
 These contracts were inspired by or directly modified from many sources, primarily:
 
+- [Solmate](https://github.com/transmissions11/solmate)
+- [Solady](https://github.com/Vectorized/solady)
 - [Gnosis](https://github.com/gnosis/gp-v2-contracts)
 - [Uniswap](https://github.com/Uniswap/uniswap-lib)
 - [Dappsys](https://github.com/dapphub/dappsys)
