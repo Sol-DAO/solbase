@@ -368,6 +368,30 @@ library FixedPointMathLib {
             z := sub(z, lt(div(x, z), z))
         }
     }
+    
+    function unsafeMod(uint256 x, uint256 y) internal pure returns (uint256 z) {
+        assembly {
+            // Mod x by y. Note this will return
+            // 0 instead of reverting if y is zero.
+            z := mod(x, y)
+        }
+    }
+
+    function unsafeDiv(uint256 x, uint256 y) internal pure returns (uint256 r) {
+        assembly {
+            // Divide x by y. Note this will return
+            // 0 instead of reverting if y is zero.
+            r := div(x, y)
+        }
+    }
+
+    function unsafeDivUp(uint256 x, uint256 y) internal pure returns (uint256 z) {
+        assembly {
+            // Add 1 to x * y if x % y > 0. Note this will
+            // return 0 instead of reverting if y is zero.
+            z := add(gt(mod(x, y), 0), div(x, y))
+        }
+    }
 
     /// @dev Returns the factorial of `x`.
     function factorial(uint256 x) public pure returns (uint256 result) {
