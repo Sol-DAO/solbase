@@ -368,7 +368,7 @@ library FixedPointMathLib {
             z := sub(z, lt(div(x, z), z))
         }
     }
-    
+
     /// @dev Returns raw remainder of `x / y`.
     function unsafeMod(uint256 x, uint256 y) internal pure returns (uint256 z) {
         assembly {
