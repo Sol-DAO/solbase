@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import {MerkleProofLib} from "../src/utils/MerkleProofLib.sol";
+import {MerkleProofLib} from "../utils/MerkleProofLib.sol";
 
 contract MerkleProofLibTest is Test {
     function testVerifyProofForHeightOneTree(

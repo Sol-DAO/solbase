@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import "src/utils/LibSort.sol";
+import {LibSort} from "../utils/LibSort.sol";
 
 contract LibSortTest is Test {
     function testSortChecksumed(uint256[] memory a) public {

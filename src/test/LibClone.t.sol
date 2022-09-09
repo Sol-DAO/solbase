@@ -2,8 +2,8 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import {LibClone} from "../src/utils/LibClone.sol";
-import {Clone} from "../src/utils/Clone.sol";
+import {LibClone} from "../utils/LibClone.sol";
+import {Clone} from "../utils/Clone.sol";
 
 contract LibCloneTest is Test, Clone {
     error CustomError(uint256 currentValue);

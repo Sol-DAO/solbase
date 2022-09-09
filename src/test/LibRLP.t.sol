@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "forge-std/Test.sol";
-import {LibRLP} from "../src/utils/LibRLP.sol";
+import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {LibRLP} from "../utils/LibRLP.sol";
 
-contract LibRLPTest is Test {
+contract LibRLPTest is DSTestPlus {
     function testComputeAddressDifferential(address deployer, uint256 nonce) public {
         assertEq(LibRLP.computeAddress(deployer, nonce), computeAddressOriginal(deployer, nonce));
     }

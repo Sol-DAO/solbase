@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "./utils/TestPlus.sol";
-import {SSTORE2} from "../src/utils/SSTORE2.sol";
+import {SSTORE2} from "../utils/SSTORE2.sol";
 
 contract SSTORE2Test is TestPlus {
     function testWriteRead() public {

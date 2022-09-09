@@ -12,8 +12,8 @@ import {ReturnsTooLittleToken} from "./utils/weird-tokens/ReturnsTooLittleToken.
 
 import "./utils/TestPlus.sol";
 
-import {ERC20} from "solmate/tokens/ERC20.sol";
-import {SafeTransferLib} from "../src/utils/SafeTransferLib.sol";
+import {ERC20} from "../tokens/ERC20.sol";
+import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 
 contract SafeTransferLibTest is TestPlus {
     RevertingToken reverting;

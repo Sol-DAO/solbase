@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import {LibBitmap} from "../src/utils/LibBitmap.sol";
+import {LibBitmap} from "../utils/LibBitmap.sol";
 
 contract LibBitmapTest is Test {
     using LibBitmap for LibBitmap.Bitmap;

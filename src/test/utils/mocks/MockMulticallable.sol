@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "../../../src/utils/Multicallable.sol";
+import "../../../utils/Multicallable.sol";
 
 contract MockMulticallable is Multicallable {
     error CustomError();

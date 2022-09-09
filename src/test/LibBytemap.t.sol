@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "forge-std/Test.sol";
-import {LibBytemap} from "../src/utils/LibBytemap.sol";
+import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {LibBytemap} from "../utils/LibBytemap.sol";
 
-contract LibBytemapTest is Test {
+contract LibBytemapTest is DSTestPlus {
     using LibBytemap for LibBytemap.Bytemap;
 
     LibBytemap.Bytemap bytemap;

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import {FixedPointMathLib} from "../src/utils/FixedPointMathLib.sol";
+import {FixedPointMathLib} from "../utils/FixedPointMathLib.sol";
 
 contract FixedPointMathLibTest is Test {
     function testExpWad() public {
@@ -441,6 +441,24 @@ contract FixedPointMathLibTest is Test {
         }
 
         assertTrue(root * root <= x && next * next > x);
+    }
+
+    function testFuzzSqrtBack(uint256 x) public {
+        unchecked {
+            x >>= 128;
+            while (x != 0) {
+                assertEq(FixedPointMathLib.sqrt(x * x), x);
+                x >>= 1;
+            }
+        }
+    }
+
+    function testFuzzSqrtHashed(uint256 x) public {
+        testFuzzSqrtBack(uint256(keccak256(abi.encode(x))));
+    }
+
+    function testFuzzSqrtHashedSingle() public {
+        testFuzzSqrtHashed(123);
     }
 
     function testFuzzLog2() public {

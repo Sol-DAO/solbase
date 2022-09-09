@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "forge-std/Test.sol";
-import {Base64} from "../src/utils/Base64.sol";
+import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {Base64} from "../utils/Base64.sol";
 
-contract Base64Test is Test {
+contract Base64Test is DSTestPlus {
     function testBase64EncodeEmptyString() public {
         testBase64("", "");
     }

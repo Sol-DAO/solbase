@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "forge-std/Test.sol";
-import {SignatureCheckerLib} from "../src/utils/SignatureCheckerLib.sol";
+import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {SignatureCheckerLib} from "../utils/SignatureCheckerLib.sol";
 import {MockERC1271Wallet} from "./utils/mocks/MockERC1271Wallet.sol";
 import {MockERC1271Malicious} from "./utils/mocks/MockERC1271Malicious.sol";
 
-contract SignatureCheckerLibTest is Test {
+contract SignatureCheckerLibTest is DSTestPlus {
     bytes32 constant TEST_MESSAGE = 0x7dbaf558b0a1a5dc7a67202117ab143c1d8605a983e4a743bc06fcc03162dc0d;
 
     bytes32 constant WRONG_MESSAGE = 0x2d0828dd7c97cff316356da3c16c68ba2316886a0e05ebafb8291939310d51a3;

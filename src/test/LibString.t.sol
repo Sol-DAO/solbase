@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 import "forge-std/Test.sol";
-import {LibString} from "../src/utils/LibString.sol";
+import {LibString} from "../utils/LibString.sol";
 
 contract LibStringTest is Test {
     function testToStringZero() public {

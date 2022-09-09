@@ -6,7 +6,7 @@ pragma solidity ^0.8.4;
 /// @author Modified from OpenZeppelin (https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeCast.sol)
 library SafeCastLib {
     error OverFlow();
-    
+
     function safeCastTo248(uint256 x) internal pure returns (uint248 y) {
         if (x >= (1 << 248)) revert OverFlow();
 
