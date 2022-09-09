@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Minimal proxy library.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/LibClone.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibClone.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibClone.sol)
 /// @dev Although the sw0nt pattern saves 5 gas over the erc-1167 pattern during runtime,
 /// it is not supported out-of-the-box on Etherscan. Hence, we choose to use the 0age pattern,

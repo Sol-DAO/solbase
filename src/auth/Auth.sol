@@ -1,9 +1,9 @@
-// SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity >=0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 /// @notice Provides a flexible and updatable auth pattern which is completely separate from application logic.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Auth.sol)
-/// @author Modified from Dappsys (https://github.com/dapphub/ds-auth/blob/master/src/auth.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/auth/Auth.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Auth.sol)
 abstract contract Auth {
     event OwnerUpdated(address indexed user, address indexed newOwner);
 

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.4;
 
 /// @notice Safe unsigned integer casting library that reverts on overflow.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/utils/SafeCastLib.sol)
-/// @author Modified from OpenZeppelin (https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeCast.sol)
+/// @author Solmate (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SafeCastLib.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/utils/SafeCastLib.sol)
 library SafeCastLib {
     error OverFlow();
 

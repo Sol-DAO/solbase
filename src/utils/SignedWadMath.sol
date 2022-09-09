@@ -2,7 +2,8 @@
 pragma solidity >=0.8.0;
 
 /// @notice Signed 18 decimal fixed point (wad) arithmetic library.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/utils/SignedWadMath.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SignedWadMath.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/utils/SignedWadMath.sol)
 
 /// @dev Will not revert on overflow, only use where overflow is not possible.
 function toWadUnsafe(uint256 x) pure returns (int256 r) {

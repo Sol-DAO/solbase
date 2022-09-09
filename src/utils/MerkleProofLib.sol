@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Gas optimized verification of proof of inclusion for a leaf in a Merkle tree.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/MerkleProofLib.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/MerkleProofLib.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/MerkleProofLib.sol)
 library MerkleProofLib {
     function verify(

@@ -308,8 +308,8 @@
       }
     },
     "src/auth/Auth.sol": {
-      "lastModificationDate": 1662721630441,
-      "contentHash": "c7cf05d7567c9d1caa223dd51270f1bd",
+      "lastModificationDate": 1662732327690,
+      "contentHash": "f1af8649bb6cd4edfbd7e529340d51ac",
       "sourceName": "src/auth/Auth.sol",
       "solcConfig": {
         "settings": {
@@ -339,7 +339,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "Auth": {
           "0.8.15+commit.e14f2714.Windows.msvc": "Auth.sol\\Auth.json"
@@ -350,8 +350,8 @@
       }
     },
     "src/auth/Owned.sol": {
-      "lastModificationDate": 1662721630442,
-      "contentHash": "2b70f1e59e91eb853020e3db775d2efb",
+      "lastModificationDate": 1662732331764,
+      "contentHash": "379e727fdc3751d6b28a0d0e96fcd8ac",
       "sourceName": "src/auth/Owned.sol",
       "solcConfig": {
         "settings": {
@@ -381,7 +381,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "Owned": {
           "0.8.15+commit.e14f2714.Windows.msvc": "Owned.sol\\Owned.json"
@@ -428,8 +428,8 @@
       }
     },
     "src/auth/authorities/MultiRolesAuthority.sol": {
-      "lastModificationDate": 1662721630443,
-      "contentHash": "52cf59458bf70150ee206884777f5527",
+      "lastModificationDate": 1662732322035,
+      "contentHash": "ac1acc114943ce092db5542526da96e1",
       "sourceName": "src/auth/authorities/MultiRolesAuthority.sol",
       "solcConfig": {
         "settings": {
@@ -461,7 +461,7 @@
       "imports": [
         "src\\auth\\Auth.sol"
       ],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "MultiRolesAuthority": {
           "0.8.15+commit.e14f2714.Windows.msvc": "MultiRolesAuthority.sol\\MultiRolesAuthority.json"
@@ -469,8 +469,8 @@
       }
     },
     "src/auth/authorities/RolesAuthority.sol": {
-      "lastModificationDate": 1662721630444,
-      "contentHash": "c796c8f8dc70b33c1b07dce0e1c9eaea",
+      "lastModificationDate": 1662732325019,
+      "contentHash": "c1569d78900524198a5d76fd0e585010",
       "sourceName": "src/auth/authorities/RolesAuthority.sol",
       "solcConfig": {
         "settings": {
@@ -502,7 +502,7 @@
       "imports": [
         "src\\auth\\Auth.sol"
       ],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "RolesAuthority": {
           "0.8.15+commit.e14f2714.Windows.msvc": "RolesAuthority.sol\\RolesAuthority.json"
@@ -510,8 +510,8 @@
       }
     },
     "src/mixins/ERC4626.sol": {
-      "lastModificationDate": 1662725201798,
-      "contentHash": "45ce97377ca9c898e694b9992d363104",
+      "lastModificationDate": 1662732310407,
+      "contentHash": "d626f66a03fc22b8f2e8caaa3e97bf4c",
       "sourceName": "src/mixins/ERC4626.sol",
       "solcConfig": {
         "settings": {
@@ -545,7 +545,7 @@
         "src\\utils\\FixedPointMathLib.sol",
         "src\\utils\\SafeTransferLib.sol"
       ],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ERC4626": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ERC4626.sol\\ERC4626.json"
@@ -553,7 +553,7 @@
       }
     },
     "src/test/Auth.t.sol": {
-      "lastModificationDate": 1662721652516,
+      "lastModificationDate": 1662729934912,
       "contentHash": "c0f18063bdf4def1f3fbb31b24fefa3a",
       "sourceName": "src/test/Auth.t.sol",
       "solcConfig": {
@@ -602,7 +602,7 @@
       }
     },
     "src/test/Base64.t.sol": {
-      "lastModificationDate": 1662723644490,
+      "lastModificationDate": 1662729934913,
       "contentHash": "3f1bc63be17d9772ace0390bba5c5376",
       "sourceName": "src/test/Base64.t.sol",
       "solcConfig": {
@@ -646,7 +646,7 @@
       }
     },
     "src/test/Bytes32AddressLib.t.sol": {
-      "lastModificationDate": 1662721652520,
+      "lastModificationDate": 1662729934914,
       "contentHash": "6c185455ac61c9eca538d89a88fa83bb",
       "sourceName": "src/test/Bytes32AddressLib.t.sol",
       "solcConfig": {
@@ -690,7 +690,7 @@
       }
     },
     "src/test/CREATE3.t.sol": {
-      "lastModificationDate": 1662721652522,
+      "lastModificationDate": 1662729934916,
       "contentHash": "bf908fbd4ffc878317e3959074900259",
       "sourceName": "src/test/CREATE3.t.sol",
       "solcConfig": {
@@ -740,7 +740,7 @@
       }
     },
     "src/test/DSTestPlus.t.sol": {
-      "lastModificationDate": 1662721652523,
+      "lastModificationDate": 1662729934918,
       "contentHash": "32ca4181a9aca773788363dd5e639eee",
       "sourceName": "src/test/DSTestPlus.t.sol",
       "solcConfig": {
@@ -783,7 +783,7 @@
       }
     },
     "src/test/ECDSA.t.sol": {
-      "lastModificationDate": 1662723644493,
+      "lastModificationDate": 1662729934920,
       "contentHash": "a3e2477352e8b8a921c7b62a725e2ae4",
       "sourceName": "src/test/ECDSA.t.sol",
       "solcConfig": {
@@ -827,7 +827,7 @@
       }
     },
     "src/test/ERC1155.t.sol": {
-      "lastModificationDate": 1662721652528,
+      "lastModificationDate": 1662729934921,
       "contentHash": "53a0ce9125840094ebc162c5712b3969",
       "sourceName": "src/test/ERC1155.t.sol",
       "solcConfig": {
@@ -885,7 +885,7 @@
       }
     },
     "src/test/ERC20.t.sol": {
-      "lastModificationDate": 1662721652530,
+      "lastModificationDate": 1662729934923,
       "contentHash": "e7cb7b3608d86f480a0440f0127f5861",
       "sourceName": "src/test/ERC20.t.sol",
       "solcConfig": {
@@ -937,7 +937,7 @@
       }
     },
     "src/test/ERC4626.t.sol": {
-      "lastModificationDate": 1662721652532,
+      "lastModificationDate": 1662729934924,
       "contentHash": "73ddb9458a250262231b2af8609c09aa",
       "sourceName": "src/test/ERC4626.t.sol",
       "solcConfig": {
@@ -986,7 +986,7 @@
       }
     },
     "src/test/ERC721.t.sol": {
-      "lastModificationDate": 1662721652534,
+      "lastModificationDate": 1662729934924,
       "contentHash": "c2507b23c980a66710c42e6e3c55b1f8",
       "sourceName": "src/test/ERC721.t.sol",
       "solcConfig": {
@@ -1044,7 +1044,7 @@
       }
     },
     "src/test/FixedPointMathLib.t.sol": {
-      "lastModificationDate": 1662725792488,
+      "lastModificationDate": 1662729934927,
       "contentHash": "72dff413c8e7f848412101de9efcc55e",
       "sourceName": "src/test/FixedPointMathLib.t.sol",
       "solcConfig": {
@@ -1092,7 +1092,7 @@
       }
     },
     "src/test/LibBit.t.sol": {
-      "lastModificationDate": 1662723644498,
+      "lastModificationDate": 1662729934928,
       "contentHash": "f2f2a5a3b63fc675e6bda21fe50adc1d",
       "sourceName": "src/test/LibBit.t.sol",
       "solcConfig": {
@@ -1136,7 +1136,7 @@
       }
     },
     "src/test/LibBitmap.t.sol": {
-      "lastModificationDate": 1662724028710,
+      "lastModificationDate": 1662729934929,
       "contentHash": "722f82aab17eb29bc133afa125708f52",
       "sourceName": "src/test/LibBitmap.t.sol",
       "solcConfig": {
@@ -1184,7 +1184,7 @@
       }
     },
     "src/test/LibBytemap.t.sol": {
-      "lastModificationDate": 1662723644502,
+      "lastModificationDate": 1662729934929,
       "contentHash": "7238f86e02d365fcdb7e55d1e2a22a3f",
       "sourceName": "src/test/LibBytemap.t.sol",
       "solcConfig": {
@@ -1228,7 +1228,7 @@
       }
     },
     "src/test/LibClone.t.sol": {
-      "lastModificationDate": 1662724048652,
+      "lastModificationDate": 1662729934930,
       "contentHash": "496174d2844a08af09a59ebbfa553c9c",
       "sourceName": "src/test/LibClone.t.sol",
       "solcConfig": {
@@ -1277,7 +1277,7 @@
       }
     },
     "src/test/LibRLP.t.sol": {
-      "lastModificationDate": 1662723644506,
+      "lastModificationDate": 1662729934932,
       "contentHash": "9316a1d610f0b41b2a9f3f4aa6794db5",
       "sourceName": "src/test/LibRLP.t.sol",
       "solcConfig": {
@@ -1321,7 +1321,7 @@
       }
     },
     "src/test/LibSort.t.sol": {
-      "lastModificationDate": 1662724112450,
+      "lastModificationDate": 1662729934934,
       "contentHash": "96999986309af30141388a2dd320a121",
       "sourceName": "src/test/LibSort.t.sol",
       "solcConfig": {
@@ -1369,8 +1369,8 @@
       }
     },
     "src/test/LibString.t.sol": {
-      "lastModificationDate": 1662724120708,
-      "contentHash": "f0bbf12860bf233c3c3160ae8ec8c7d5",
+      "lastModificationDate": 1662729934935,
+      "contentHash": "86e2b6390f7d161d9f7d67100aca5efc",
       "sourceName": "src/test/LibString.t.sol",
       "solcConfig": {
         "settings": {
@@ -1417,8 +1417,8 @@
       }
     },
     "src/test/MerkleProofLib.t.sol": {
-      "lastModificationDate": 1662725322520,
-      "contentHash": "5e1f8b809a702967d4402301f25fbf97",
+      "lastModificationDate": 1662729934935,
+      "contentHash": "d1bf7ab7e2397a9ea36912729d0128d9",
       "sourceName": "src/test/MerkleProofLib.t.sol",
       "solcConfig": {
         "settings": {
@@ -1465,7 +1465,7 @@
       }
     },
     "src/test/MultiRolesAuthority.t.sol": {
-      "lastModificationDate": 1662721652549,
+      "lastModificationDate": 1662729934937,
       "contentHash": "ca470c3418f16cee3e7672186904b36f",
       "sourceName": "src/test/MultiRolesAuthority.t.sol",
       "solcConfig": {
@@ -1511,7 +1511,7 @@
       }
     },
     "src/test/Multicallable.t.sol": {
-      "lastModificationDate": 1662724141930,
+      "lastModificationDate": 1662729934937,
       "contentHash": "7ec5c0f3f31c4ef95fa8f689887081e2",
       "sourceName": "src/test/Multicallable.t.sol",
       "solcConfig": {
@@ -1560,7 +1560,7 @@
       }
     },
     "src/test/Owned.t.sol": {
-      "lastModificationDate": 1662721652555,
+      "lastModificationDate": 1662729934937,
       "contentHash": "de443ad63f9da4b4847e926aec1fe53e",
       "sourceName": "src/test/Owned.t.sol",
       "solcConfig": {
@@ -1654,7 +1654,7 @@
       }
     },
     "src/test/ReentrancyGuard.t.sol": {
-      "lastModificationDate": 1662721652556,
+      "lastModificationDate": 1662729934939,
       "contentHash": "5268a2579791cd6632b45d087bcff09a",
       "sourceName": "src/test/ReentrancyGuard.t.sol",
       "solcConfig": {
@@ -1701,7 +1701,7 @@
       }
     },
     "src/test/RolesAuthority.t.sol": {
-      "lastModificationDate": 1662721652558,
+      "lastModificationDate": 1662729934939,
       "contentHash": "692de7a891320735608099914f01a2e3",
       "sourceName": "src/test/RolesAuthority.t.sol",
       "solcConfig": {
@@ -1747,7 +1747,7 @@
       }
     },
     "src/test/SSTORE2.t.sol": {
-      "lastModificationDate": 1662724836392,
+      "lastModificationDate": 1662729934940,
       "contentHash": "ed8d7072622cfa8259dcfac5d4b59af9",
       "sourceName": "src/test/SSTORE2.t.sol",
       "solcConfig": {
@@ -1796,7 +1796,7 @@
       }
     },
     "src/test/SafeCastLib.t.sol": {
-      "lastModificationDate": 1662721652562,
+      "lastModificationDate": 1662729934941,
       "contentHash": "b3193a024942ea9046a14417e6a515cc",
       "sourceName": "src/test/SafeCastLib.t.sol",
       "solcConfig": {
@@ -1840,7 +1840,7 @@
       }
     },
     "src/test/SafeTransferLib.t.sol": {
-      "lastModificationDate": 1662724907444,
+      "lastModificationDate": 1662729934941,
       "contentHash": "696fe2a1739937fa42b935e22e46e07f",
       "sourceName": "src/test/SafeTransferLib.t.sol",
       "solcConfig": {
@@ -1898,7 +1898,7 @@
       }
     },
     "src/test/SignatureCheckerLib.t.sol": {
-      "lastModificationDate": 1662723644520,
+      "lastModificationDate": 1662729934942,
       "contentHash": "b4d672d53b87dcdd89c9b7d66e9b2c2b",
       "sourceName": "src/test/SignatureCheckerLib.t.sol",
       "solcConfig": {
@@ -1944,8 +1944,52 @@
         }
       }
     },
+    "src/test/SignedWadMath.t.sol": {
+      "lastModificationDate": 1662729934943,
+      "contentHash": "af5337927dcbfbf68ab3dfee46971c60",
+      "sourceName": "src/test/SignedWadMath.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/ds-test/src\\test.sol",
+        "src\\test\\utils\\DSTestPlus.sol",
+        "src\\test\\utils\\Hevm.sol",
+        "src\\utils\\SignedWadMath.sol"
+      ],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {
+        "SignedWadMathTest": {
+          "0.8.15+commit.e14f2714.Windows.msvc": "SignedWadMath.t.sol\\SignedWadMathTest.json"
+        }
+      }
+    },
     "src/test/WETH.t.sol": {
-      "lastModificationDate": 1662722264664,
+      "lastModificationDate": 1662729934945,
       "contentHash": "d91cdc5305cadafcff6bbf0f031aa920",
       "sourceName": "src/test/WETH.t.sol",
       "solcConfig": {
@@ -1998,8 +2042,8 @@
       }
     },
     "src/test/utils/DSInvariantTest.sol": {
-      "lastModificationDate": 1662721630471,
-      "contentHash": "53bb546f8ebf4a65d46a4532be99b3bb",
+      "lastModificationDate": 1662732286431,
+      "contentHash": "c458cda8cecc81fb7a464a57d8365020",
       "sourceName": "src/test/utils/DSInvariantTest.sol",
       "solcConfig": {
         "settings": {
@@ -2029,7 +2073,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "DSInvariantTest": {
           "0.8.15+commit.e14f2714.Windows.msvc": "DSInvariantTest.sol\\DSInvariantTest.json"
@@ -2037,8 +2081,8 @@
       }
     },
     "src/test/utils/DSTestPlus.sol": {
-      "lastModificationDate": 1662721630472,
-      "contentHash": "a09f85873b7ab4f691461484e0a1ec5b",
+      "lastModificationDate": 1662732290695,
+      "contentHash": "a60395e58df9c009b5f2c3451ae24b8d",
       "sourceName": "src/test/utils/DSTestPlus.sol",
       "solcConfig": {
         "settings": {
@@ -2071,7 +2115,7 @@
         "lib/ds-test/src\\test.sol",
         "src\\test\\utils\\Hevm.sol"
       ],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "DSTestPlus": {
           "0.8.15+commit.e14f2714.Windows.msvc": "DSTestPlus.sol\\DSTestPlus.json"
@@ -2079,8 +2123,8 @@
       }
     },
     "src/test/utils/Hevm.sol": {
-      "lastModificationDate": 1662721630473,
-      "contentHash": "2f7270e636c4cf852302e46ddd4a7480",
+      "lastModificationDate": 1662732298051,
+      "contentHash": "56558a96f5889284d7d2cd7b807e0236",
       "sourceName": "src/test/utils/Hevm.sol",
       "solcConfig": {
         "settings": {
@@ -2110,7 +2154,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "Hevm": {
           "0.8.15+commit.e14f2714.Windows.msvc": "Hevm.sol\\Hevm.json"
@@ -2118,8 +2162,8 @@
       }
     },
     "src/test/utils/TestPlus.sol": {
-      "lastModificationDate": 1662724799631,
-      "contentHash": "02bd213c8017ae70aeb3d8449d0230c4",
+      "lastModificationDate": 1662729934948,
+      "contentHash": "1b370a5ccba28504e63a17180c8e248a",
       "sourceName": "src/test/utils/TestPlus.sol",
       "solcConfig": {
         "settings": {
@@ -2165,7 +2209,7 @@
       }
     },
     "src/test/utils/mocks/MockAuthChild.sol": {
-      "lastModificationDate": 1662721630475,
+      "lastModificationDate": 1662729934949,
       "contentHash": "5365f4216aa61d85b1f68d95ff089f70",
       "sourceName": "src/test/utils/mocks/MockAuthChild.sol",
       "solcConfig": {
@@ -2206,7 +2250,7 @@
       }
     },
     "src/test/utils/mocks/MockAuthority.sol": {
-      "lastModificationDate": 1662721630476,
+      "lastModificationDate": 1662729934950,
       "contentHash": "87f0cffb0896aff293c535bfdcf6cd6f",
       "sourceName": "src/test/utils/mocks/MockAuthority.sol",
       "solcConfig": {
@@ -2247,7 +2291,7 @@
       }
     },
     "src/test/utils/mocks/MockERC1155.sol": {
-      "lastModificationDate": 1662721630478,
+      "lastModificationDate": 1662729934951,
       "contentHash": "b4ae299337dd4c78dfe6b28f0fdf0a28",
       "sourceName": "src/test/utils/mocks/MockERC1155.sol",
       "solcConfig": {
@@ -2327,7 +2371,7 @@
       }
     },
     "src/test/utils/mocks/MockERC1271Wallet.sol": {
-      "lastModificationDate": 1662725232548,
+      "lastModificationDate": 1662729934952,
       "contentHash": "07adda2f3c101739e1a98eb13bed8c05",
       "sourceName": "src/test/utils/mocks/MockERC1271Wallet.sol",
       "solcConfig": {
@@ -2368,7 +2412,7 @@
       }
     },
     "src/test/utils/mocks/MockERC20.sol": {
-      "lastModificationDate": 1662721630478,
+      "lastModificationDate": 1662729934953,
       "contentHash": "a43ff973f6fc1afad3fb92e761b233fc",
       "sourceName": "src/test/utils/mocks/MockERC20.sol",
       "solcConfig": {
@@ -2409,7 +2453,7 @@
       }
     },
     "src/test/utils/mocks/MockERC4626.sol": {
-      "lastModificationDate": 1662725275558,
+      "lastModificationDate": 1662729934954,
       "contentHash": "21e289f5c336cd98c5133a7396055827",
       "sourceName": "src/test/utils/mocks/MockERC4626.sol",
       "solcConfig": {
@@ -2494,7 +2538,7 @@
       }
     },
     "src/test/utils/mocks/MockMulticallable.sol": {
-      "lastModificationDate": 1662723644522,
+      "lastModificationDate": 1662729934955,
       "contentHash": "75e16a77a08d51792a37f48a45476bb0",
       "sourceName": "src/test/utils/mocks/MockMulticallable.sol",
       "solcConfig": {
@@ -2535,7 +2579,7 @@
       }
     },
     "src/test/utils/mocks/MockOwned.sol": {
-      "lastModificationDate": 1662721630482,
+      "lastModificationDate": 1662729934956,
       "contentHash": "e75fc7aebf3389b724e29232f7246bbf",
       "sourceName": "src/test/utils/mocks/MockOwned.sol",
       "solcConfig": {
@@ -2617,8 +2661,8 @@
       }
     },
     "src/test/utils/weird-tokens/MissingReturnToken.sol": {
-      "lastModificationDate": 1662721630483,
-      "contentHash": "50c03f5936afa6482f86b54b83b8ec49",
+      "lastModificationDate": 1662732262280,
+      "contentHash": "252ec6ad5171a4ae8062ce684437f22c",
       "sourceName": "src/test/utils/weird-tokens/MissingReturnToken.sol",
       "solcConfig": {
         "settings": {
@@ -2648,7 +2692,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "MissingReturnToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "MissingReturnToken.sol\\MissingReturnToken.json"
@@ -2656,8 +2700,8 @@
       }
     },
     "src/test/utils/weird-tokens/ReturnsFalseToken.sol": {
-      "lastModificationDate": 1662721630484,
-      "contentHash": "fdd61fbfd6e549153889b6ca21214b64",
+      "lastModificationDate": 1662732265715,
+      "contentHash": "09372dddf59f19465c7cd05c4a40249a",
       "sourceName": "src/test/utils/weird-tokens/ReturnsFalseToken.sol",
       "solcConfig": {
         "settings": {
@@ -2687,7 +2731,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ReturnsFalseToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ReturnsFalseToken.sol\\ReturnsFalseToken.json"
@@ -2695,8 +2739,8 @@
       }
     },
     "src/test/utils/weird-tokens/ReturnsGarbageToken.sol": {
-      "lastModificationDate": 1662721630486,
-      "contentHash": "b13e6f1b382ce954328cfe28450488f0",
+      "lastModificationDate": 1662732269620,
+      "contentHash": "693fec248a54aa98e4ef6fe8af1806d4",
       "sourceName": "src/test/utils/weird-tokens/ReturnsGarbageToken.sol",
       "solcConfig": {
         "settings": {
@@ -2726,7 +2770,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ReturnsGarbageToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ReturnsGarbageToken.sol\\ReturnsGarbageToken.json"
@@ -2734,8 +2778,8 @@
       }
     },
     "src/test/utils/weird-tokens/ReturnsTooLittleToken.sol": {
-      "lastModificationDate": 1662721630487,
-      "contentHash": "1717150c260c42b5b09eaccedecf1f2f",
+      "lastModificationDate": 1662732272864,
+      "contentHash": "06908d93a9a1785299d10b0b5d8fea0b",
       "sourceName": "src/test/utils/weird-tokens/ReturnsTooLittleToken.sol",
       "solcConfig": {
         "settings": {
@@ -2765,7 +2809,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ReturnsTooLittleToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ReturnsTooLittleToken.sol\\ReturnsTooLittleToken.json"
@@ -2773,8 +2817,8 @@
       }
     },
     "src/test/utils/weird-tokens/ReturnsTooMuchToken.sol": {
-      "lastModificationDate": 1662721630488,
-      "contentHash": "f4e74d0862dc1b371c370341fad628be",
+      "lastModificationDate": 1662732276301,
+      "contentHash": "2fd828aacfbdc7d61976e01d966c5e89",
       "sourceName": "src/test/utils/weird-tokens/ReturnsTooMuchToken.sol",
       "solcConfig": {
         "settings": {
@@ -2804,7 +2848,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ReturnsTooMuchToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ReturnsTooMuchToken.sol\\ReturnsTooMuchToken.json"
@@ -2812,8 +2856,8 @@
       }
     },
     "src/test/utils/weird-tokens/ReturnsTwoToken.sol": {
-      "lastModificationDate": 1662721630491,
-      "contentHash": "f7d24660bc84ed4264c27b07345eec2f",
+      "lastModificationDate": 1662732279221,
+      "contentHash": "a14717fb0923ed6bf0396f03c8817c95",
       "sourceName": "src/test/utils/weird-tokens/ReturnsTwoToken.sol",
       "solcConfig": {
         "settings": {
@@ -2843,7 +2887,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ReturnsTwoToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ReturnsTwoToken.sol\\ReturnsTwoToken.json"
@@ -2851,8 +2895,8 @@
       }
     },
     "src/test/utils/weird-tokens/RevertingToken.sol": {
-      "lastModificationDate": 1662721630492,
-      "contentHash": "7a72bb731cd36176cc52864e83d698c6",
+      "lastModificationDate": 1662732283275,
+      "contentHash": "05153c532f60887212a4d29c6a05204e",
       "sourceName": "src/test/utils/weird-tokens/RevertingToken.sol",
       "solcConfig": {
         "settings": {
@@ -2882,7 +2926,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "RevertingToken": {
           "0.8.15+commit.e14f2714.Windows.msvc": "RevertingToken.sol\\RevertingToken.json"
@@ -2890,8 +2934,8 @@
       }
     },
     "src/tokens/ERC1155.sol": {
-      "lastModificationDate": 1662721630494,
-      "contentHash": "8b254ebdc3cfc14c62f155e6fdc40fa3",
+      "lastModificationDate": 1662732249708,
+      "contentHash": "3cf38ec111bd57e901201b78f50a79bb",
       "sourceName": "src/tokens/ERC1155.sol",
       "solcConfig": {
         "settings": {
@@ -2921,7 +2965,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ERC1155": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ERC1155.sol\\ERC1155.json"
@@ -2932,8 +2976,8 @@
       }
     },
     "src/tokens/ERC20.sol": {
-      "lastModificationDate": 1662721630495,
-      "contentHash": "0214f143584e3f454e7dab570204e785",
+      "lastModificationDate": 1662732243150,
+      "contentHash": "3ea19cab10e1ce51e077b50c32c5035b",
       "sourceName": "src/tokens/ERC20.sol",
       "solcConfig": {
         "settings": {
@@ -2963,7 +3007,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "ERC20": {
           "0.8.15+commit.e14f2714.Windows.msvc": "ERC20.sol\\ERC20.json"
@@ -3013,8 +3057,8 @@
       }
     },
     "src/tokens/WETH.sol": {
-      "lastModificationDate": 1662721630498,
-      "contentHash": "16b80183733b3d223f770bbb4f5b9329",
+      "lastModificationDate": 1662732252903,
+      "contentHash": "38d521120f52838f840176a43449145a",
       "sourceName": "src/tokens/WETH.sol",
       "solcConfig": {
         "settings": {
@@ -3047,7 +3091,7 @@
         "src\\tokens\\ERC20.sol",
         "src\\utils\\SafeTransferLib.sol"
       ],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.4",
       "artifacts": {
         "WETH": {
           "0.8.15+commit.e14f2714.Windows.msvc": "WETH.sol\\WETH.json"
@@ -3055,8 +3099,8 @@
       }
     },
     "src/utils/Base64.sol": {
-      "lastModificationDate": 1662721652573,
-      "contentHash": "e7c32075aa7511b5f8b6637f576ab851",
+      "lastModificationDate": 1662730060942,
+      "contentHash": "a5826a8082c2b0cc1656e18d3ece2620",
       "sourceName": "src/utils/Base64.sol",
       "solcConfig": {
         "settings": {
@@ -3094,8 +3138,8 @@
       }
     },
     "src/utils/Bytes32AddressLib.sol": {
-      "lastModificationDate": 1662721652575,
-      "contentHash": "2957836ee81b993bb35a43a1ff842c7d",
+      "lastModificationDate": 1662730103123,
+      "contentHash": "4c8b0553aa703cbbaaddfb4f8a3e6863",
       "sourceName": "src/utils/Bytes32AddressLib.sol",
       "solcConfig": {
         "settings": {
@@ -3133,8 +3177,8 @@
       }
     },
     "src/utils/CREATE3.sol": {
-      "lastModificationDate": 1662721652576,
-      "contentHash": "25f074fa8e605f0b15d3f374fa2c9439",
+      "lastModificationDate": 1662730116500,
+      "contentHash": "3038d04c26d8575286eead0ca9e954ba",
       "sourceName": "src/utils/CREATE3.sol",
       "solcConfig": {
         "settings": {
@@ -3172,8 +3216,8 @@
       }
     },
     "src/utils/Clone.sol": {
-      "lastModificationDate": 1662721652577,
-      "contentHash": "5ac2ab2dab2da1c3374088437232bbd0",
+      "lastModificationDate": 1662730110609,
+      "contentHash": "db1cc7def49f045941e6d0ee29b9c504",
       "sourceName": "src/utils/Clone.sol",
       "solcConfig": {
         "settings": {
@@ -3211,8 +3255,8 @@
       }
     },
     "src/utils/ECDSA.sol": {
-      "lastModificationDate": 1662721652579,
-      "contentHash": "79e76ee0cc34ba6b48631e4e98436407",
+      "lastModificationDate": 1662730122822,
+      "contentHash": "1887c00b4773db88e5ceecce7c0cc2ca",
       "sourceName": "src/utils/ECDSA.sol",
       "solcConfig": {
         "settings": {
@@ -3250,8 +3294,8 @@
       }
     },
     "src/utils/FixedPointMathLib.sol": {
-      "lastModificationDate": 1662721652581,
-      "contentHash": "6c15925994aad122116ea7cd244bf247",
+      "lastModificationDate": 1662730538739,
+      "contentHash": "d0038b9325e7c435235ff3c17d1a9a91",
       "sourceName": "src/utils/FixedPointMathLib.sol",
       "solcConfig": {
         "settings": {
@@ -3289,8 +3333,8 @@
       }
     },
     "src/utils/LibBit.sol": {
-      "lastModificationDate": 1662721652583,
-      "contentHash": "a142e48280c998dbe670bf2834e79e9e",
+      "lastModificationDate": 1662730544888,
+      "contentHash": "5ec84d3fd1cc179c88411d9530853cdc",
       "sourceName": "src/utils/LibBit.sol",
       "solcConfig": {
         "settings": {
@@ -3328,8 +3372,8 @@
       }
     },
     "src/utils/LibBitmap.sol": {
-      "lastModificationDate": 1662721652584,
-      "contentHash": "04363839341b88dd640993a1b8239bb3",
+      "lastModificationDate": 1662730550744,
+      "contentHash": "5306a4fc12a2094bd745b5a48c8070db",
       "sourceName": "src/utils/LibBitmap.sol",
       "solcConfig": {
         "settings": {
@@ -3367,8 +3411,8 @@
       }
     },
     "src/utils/LibBytemap.sol": {
-      "lastModificationDate": 1662721652585,
-      "contentHash": "0a7c9b98c8424a158a7e7e8cd47beba2",
+      "lastModificationDate": 1662730557350,
+      "contentHash": "0e7c26be482de9faa4703094edf717f1",
       "sourceName": "src/utils/LibBytemap.sol",
       "solcConfig": {
         "settings": {
@@ -3406,8 +3450,8 @@
       }
     },
     "src/utils/LibClone.sol": {
-      "lastModificationDate": 1662721652587,
-      "contentHash": "022edd381d57150dabb892779265570f",
+      "lastModificationDate": 1662730566575,
+      "contentHash": "4566fe6a8acc42d31c135760c57b6ab0",
       "sourceName": "src/utils/LibClone.sol",
       "solcConfig": {
         "settings": {
@@ -3445,8 +3489,8 @@
       }
     },
     "src/utils/LibRLP.sol": {
-      "lastModificationDate": 1662721652589,
-      "contentHash": "191f67378661836ccde62c83992c7f72",
+      "lastModificationDate": 1662730585039,
+      "contentHash": "35b3fa496de90f20dd7fa7985506ea40",
       "sourceName": "src/utils/LibRLP.sol",
       "solcConfig": {
         "settings": {
@@ -3484,8 +3528,8 @@
       }
     },
     "src/utils/LibSort.sol": {
-      "lastModificationDate": 1662721652590,
-      "contentHash": "3c89239ccd1603af67472201104db348",
+      "lastModificationDate": 1662730590519,
+      "contentHash": "1d9d3e52e7fd0975615fcbc5bd8295b3",
       "sourceName": "src/utils/LibSort.sol",
       "solcConfig": {
         "settings": {
@@ -3523,8 +3567,8 @@
       }
     },
     "src/utils/LibString.sol": {
-      "lastModificationDate": 1662721652592,
-      "contentHash": "576800b42e038714950c7b80d4b043ad",
+      "lastModificationDate": 1662729934978,
+      "contentHash": "8fc88411f8988d5b112c7da9cb2789e9",
       "sourceName": "src/utils/LibString.sol",
       "solcConfig": {
         "settings": {
@@ -3562,8 +3606,8 @@
       }
     },
     "src/utils/MerkleProofLib.sol": {
-      "lastModificationDate": 1662721652593,
-      "contentHash": "97ba4838da9c886faf6d052122ca0b90",
+      "lastModificationDate": 1662731397759,
+      "contentHash": "dadf30ac21a7a392ef6b835c7b5b5318",
       "sourceName": "src/utils/MerkleProofLib.sol",
       "solcConfig": {
         "settings": {
@@ -3601,8 +3645,8 @@
       }
     },
     "src/utils/Multicallable.sol": {
-      "lastModificationDate": 1662721652594,
-      "contentHash": "f8fc5f649df8745db967b384331a7c2c",
+      "lastModificationDate": 1662731433181,
+      "contentHash": "333afa77ee374f0f7b3cc09400cb54aa",
       "sourceName": "src/utils/Multicallable.sol",
       "solcConfig": {
         "settings": {
@@ -3640,8 +3684,8 @@
       }
     },
     "src/utils/ReentrancyGuard.sol": {
-      "lastModificationDate": 1662721652596,
-      "contentHash": "44123dd914d3072fa93fd5cc95fcdd5f",
+      "lastModificationDate": 1662731441005,
+      "contentHash": "1324844210bf0856c2560ed59ce549ea",
       "sourceName": "src/utils/ReentrancyGuard.sol",
       "solcConfig": {
         "settings": {
@@ -3679,8 +3723,8 @@
       }
     },
     "src/utils/SSTORE2.sol": {
-      "lastModificationDate": 1662721652598,
-      "contentHash": "5693a01be96e0293b2dc200b133df557",
+      "lastModificationDate": 1662731923317,
+      "contentHash": "eacd0a6599c43c21c0093277b62ed036",
       "sourceName": "src/utils/SSTORE2.sol",
       "solcConfig": {
         "settings": {
@@ -3718,8 +3762,8 @@
       }
     },
     "src/utils/SafeCastLib.sol": {
-      "lastModificationDate": 1662721652600,
-      "contentHash": "c0e24bc43133710f3c7d61d5c544a82e",
+      "lastModificationDate": 1662731482277,
+      "contentHash": "dd7fc0fca4514703dfc7a9bfd0031cd7",
       "sourceName": "src/utils/SafeCastLib.sol",
       "solcConfig": {
         "settings": {
@@ -3757,8 +3801,8 @@
       }
     },
     "src/utils/SafeTransferLib.sol": {
-      "lastModificationDate": 1662721652601,
-      "contentHash": "af91f6d8c45087f8cf8f61a309dbb0bf",
+      "lastModificationDate": 1662731489627,
+      "contentHash": "956fb3b1276d21ae005644589448343b",
       "sourceName": "src/utils/SafeTransferLib.sol",
       "solcConfig": {
         "settings": {
@@ -3796,8 +3840,8 @@
       }
     },
     "src/utils/SignatureCheckerLib.sol": {
-      "lastModificationDate": 1662721652603,
-      "contentHash": "387ffcce052eecaf48a9688e5954820e",
+      "lastModificationDate": 1662731493927,
+      "contentHash": "8a55044fb0aa30b91f13971303b27704",
       "sourceName": "src/utils/SignatureCheckerLib.sol",
       "solcConfig": {
         "settings": {
@@ -3833,6 +3877,45 @@
       "artifacts": {
         "SignatureCheckerLib": {
           "0.8.15+commit.e14f2714.Windows.msvc": "SignatureCheckerLib.sol\\SignatureCheckerLib.json"
+        }
+      }
+    },
+    "src/utils/SignedWadMath.sol": {
+      "lastModificationDate": 1662731520159,
+      "contentHash": "9984ff53928a09c82cd7d9d2e151a6aa",
+      "sourceName": "src/utils/SignedWadMath.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {
+        "SignedWadMath": {
+          "0.8.15+commit.e14f2714.Windows.msvc": "SignedWadMath.sol\\SignedWadMath.json"
         }
       }
     }

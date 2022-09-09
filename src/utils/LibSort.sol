@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Optimized intro sort.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/Sort.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/Sort.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/Sort.sol)
 library LibSort {
     // @dev Sorts the array in-place.

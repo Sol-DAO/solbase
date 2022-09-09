@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Read and write to persistent storage at a fraction of the cost.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/SSTORE2.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SSTORE2.sol)
 /// @author Solady (https://github.com/vectorized/solmady/blob/main/src/utils/SSTORE2.sol)
 library SSTORE2 {
     /*//////////////////////////////////////////////////////////////

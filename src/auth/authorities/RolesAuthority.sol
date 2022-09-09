@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity >=0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 import {Auth, Authority} from "../Auth.sol";
 
 /// @notice Role based Authority that supports up to 256 roles.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/authorities/RolesAuthority.sol)
-/// @author Modified from Dappsys (https://github.com/dapphub/ds-roles/blob/master/src/roles.sol)
+/// @author SolBase (https://github.com/Sol-DAO/solbase/blob/main/src/auth/authorities/RolesAuthority.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/authorities/RolesAuthority.sol)
 contract RolesAuthority is Auth, Authority {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Efficient bytemap library for mapping integers to bytes.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/LibBytemap.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibBytemap.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibBytemap.sol)
 library LibBytemap {
     struct Bytemap {

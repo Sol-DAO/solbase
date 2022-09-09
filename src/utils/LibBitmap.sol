@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Efficient bitmap library for mapping integers to single bit booleans.
-/// @author SolDAO (https://github.com/Sol-AO/solmate/blob/main/src/utils/LibBitmap.sol)
+/// @author SolDAO (https://github.com/Sol-AO/solbase/blob/main/src/utils/LibBitmap.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibBitmap.sol)
 library LibBitmap {
     struct Bitmap {

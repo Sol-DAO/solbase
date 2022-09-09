@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Arithmetic library with operations for fixed-point numbers.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/FixedPointMathLib.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/FixedPointMathLib.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/FixedPointMathLib.sol)
 library FixedPointMathLib {
     /*//////////////////////////////////////////////////////////////
@@ -369,6 +369,7 @@ library FixedPointMathLib {
         }
     }
     
+    /// @dev Returns raw remainder of `x / y`.
     function unsafeMod(uint256 x, uint256 y) internal pure returns (uint256 z) {
         assembly {
             // Mod x by y. Note this will return
@@ -377,6 +378,7 @@ library FixedPointMathLib {
         }
     }
 
+    /// @dev Returns raw `x / y`.
     function unsafeDiv(uint256 x, uint256 y) internal pure returns (uint256 r) {
         assembly {
             // Divide x by y. Note this will return
@@ -385,6 +387,7 @@ library FixedPointMathLib {
         }
     }
 
+    /// @dev Returns rounded up output of `x * y` if non-zero modulo.
     function unsafeDivUp(uint256 x, uint256 y) internal pure returns (uint256 z) {
         assembly {
             // Add 1 to x * y if x % y > 0. Note this will

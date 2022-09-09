@@ -1,7 +1,8 @@
-// SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity >=0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 /// @notice Minimalist and gas efficient standard ERC1155 implementation.
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
 /// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
 abstract contract ERC1155 {
     /*//////////////////////////////////////////////////////////////

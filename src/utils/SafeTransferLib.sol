@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Safe ETH and ERC20 transfer library that gracefully handles missing return values.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/SafeTransferLib.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SafeTransferLib.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/SafeTransferLib.sol)
 /// @dev Caution! This library won't check that a token has code, responsibility is delegated to the caller.
 library SafeTransferLib {

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Gas optimized ECDSA wrapper.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/ECDSA.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/ECDSA.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/ECDSA.sol)
 library ECDSA {
     function recover(bytes32 hash, bytes calldata signature) internal view returns (address result) {

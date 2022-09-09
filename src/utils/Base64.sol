@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Library to encode strings in Base64.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/Base64.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/Base64.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/Base64.sol)
 library Base64 {
     function encode(bytes memory data) internal pure returns (string memory result) {

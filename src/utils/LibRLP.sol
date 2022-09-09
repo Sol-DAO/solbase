@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Library for computing contract addresses from their deployer and nonce.
-/// @author SolDAO (https://github.com/Sol-DAO/solady/blob/main/src/utils/LibRLP.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibRLP.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibRLP.sol)
 library LibRLP {
     // prettier-ignore

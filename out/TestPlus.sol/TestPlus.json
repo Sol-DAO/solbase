@@ -419,12 +419,12 @@
   ],
   "bytecode": {
     "object": "0x60806040526000805462ff00ff19166201000117905534801561002157600080fd5b506102e7806100316000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633a76846314610051578063ba414fa614610096578063f8ccbf47146100ae578063fa7626d4146100c1575b600080fd5b61006c737109709ecfa91a80626ff3989d68f67f5b1dd12d81565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020015b60405180910390f35b61009e6100ce565b604051901515815260200161008d565b60005461009e9062010000900460ff1681565b60005461009e9060ff1681565b60008054610100900460ff16156100ee5750600054610100900460ff1690565b6000737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156102295760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c6564000000000000000000000000000000000000000000000000000082840152825180830384018152606083019093526000929091610193917f667f9d70ca411d70ead50d8d5c22070dafc36ad75f3dcf5e7237b22ade9aecc491608001610269565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526101cb916102a5565b6000604051808303816000865af19150503d8060008114610208576040519150601f19603f3d011682016040523d82523d6000602084013e61020d565b606091505b509150508080602001905181019061022591906102b8565b9150505b919050565b6000815160005b8181101561024f5760208185018101518683015201610235565b8181111561025e576000828601525b509290920192915050565b7fffffffff0000000000000000000000000000000000000000000000000000000083168152600061029d600483018461022e565b949350505050565b60006102b1828461022e565b9392505050565b6000602082840312156102ca57600080fd5b815180151581146102b157600080fdfea164736f6c634300080f000a",
-    "sourceMap": "92:1492:46:-:0;;;1609:26:0;;;-1:-1:-1;;178:28:1;;;;;92:1492:46;;;;;;;;;;;;;;;;",
+    "sourceMap": "92:1492:21:-:0;;;1609:26:0;;;-1:-1:-1;;178:28:1;;;;;92:1492:21;;;;;;;;;;;;;;;;",
     "linkReferences": {}
   },
   "deployedBytecode": {
     "object": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633a76846314610051578063ba414fa614610096578063f8ccbf47146100ae578063fa7626d4146100c1575b600080fd5b61006c737109709ecfa91a80626ff3989d68f67f5b1dd12d81565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020015b60405180910390f35b61009e6100ce565b604051901515815260200161008d565b60005461009e9062010000900460ff1681565b60005461009e9060ff1681565b60008054610100900460ff16156100ee5750600054610100900460ff1690565b6000737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156102295760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c6564000000000000000000000000000000000000000000000000000082840152825180830384018152606083019093526000929091610193917f667f9d70ca411d70ead50d8d5c22070dafc36ad75f3dcf5e7237b22ade9aecc491608001610269565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526101cb916102a5565b6000604051808303816000865af19150503d8060008114610208576040519150601f19603f3d011682016040523d82523d6000602084013e61020d565b606091505b509150508080602001905181019061022591906102b8565b9150505b919050565b6000815160005b8181101561024f5760208185018101518683015201610235565b8181111561025e576000828601525b509290920192915050565b7fffffffff0000000000000000000000000000000000000000000000000000000083168152600061029d600483018461022e565b949350505050565b60006102b1828461022e565b9392505050565b6000602082840312156102ca57600080fd5b815180151581146102b157600080fdfea164736f6c634300080f000a",
-    "sourceMap": "92:1492:46:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;333:38:1;;260:64;333:38;;;;;201:42:89;189:55;;;171:74;;159:2;144:18;333:38:1;;;;;;;;1865:600:0;;;:::i;:::-;;;421:14:89;;414:22;396:41;;384:2;369:18;1865:600:0;256:187:89;178:28:1;;;;;;;;;;;;1609:26:0;;;;;;;;;1865:600;1899:4;1920:7;;;;;;;1916:542;;;-1:-1:-1;1951:7:0;;;;;;;;1865:600::o;1916:542::-;1991:17;3070:42;3058:55;3141:16;2031:382;;2251:43;;;1712:64;2251:43;;;622:74:89;;;2276:17:0;712:18:89;;;705:34;2251:43:0;;;;;;;;;595:18:89;;;2251:43:0;;;-1:-1:-1;;1712:64:0;;2139:178;;2189:34;;2139:178;;;:::i;:::-;;;;;;;;;;;;;;;2099:237;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2072:264;;;2381:7;2370:27;;;;;;;;;;;;:::i;:::-;2355:42;;2053:360;2031:382;2434:12;1865:600;-1:-1:-1;1865:600:0:o;750:336:89:-;791:3;829:5;823:12;853:1;863:128;877:6;874:1;871:13;863:128;;;974:4;959:13;;;955:24;;949:31;936:11;;;929:52;892:12;863:128;;;1009:6;1006:1;1003:13;1000:48;;;1044:1;1035:6;1030:3;1026:16;1019:27;1000:48;-1:-1:-1;1064:16:89;;;;;750:336;-1:-1:-1;;750:336:89:o;1091:324::-;1288:66;1280:6;1276:79;1271:3;1264:92;1246:3;1372:37;1406:1;1401:3;1397:11;1389:6;1372:37;:::i;:::-;1365:44;1091:324;-1:-1:-1;;;;1091:324:89:o;1420:189::-;1549:3;1574:29;1599:3;1591:6;1574:29;:::i;:::-;1567:36;1420:189;-1:-1:-1;;;1420:189:89:o;1614:277::-;1681:6;1734:2;1722:9;1713:7;1709:23;1705:32;1702:52;;;1750:1;1747;1740:12;1702:52;1782:9;1776:16;1835:5;1828:13;1821:21;1814:5;1811:32;1801:60;;1857:1;1854;1847:12",
+    "sourceMap": "92:1492:21:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;333:38:1;;260:64;333:38;;;;;201:42:43;189:55;;;171:74;;159:2;144:18;333:38:1;;;;;;;;1865:600:0;;;:::i;:::-;;;421:14:43;;414:22;396:41;;384:2;369:18;1865:600:0;256:187:43;178:28:1;;;;;;;;;;;;1609:26:0;;;;;;;;;1865:600;1899:4;1920:7;;;;;;;1916:542;;;-1:-1:-1;1951:7:0;;;;;;;;1865:600::o;1916:542::-;1991:17;3070:42;3058:55;3141:16;2031:382;;2251:43;;;1712:64;2251:43;;;622:74:43;;;2276:17:0;712:18:43;;;705:34;2251:43:0;;;;;;;;;595:18:43;;;2251:43:0;;;-1:-1:-1;;1712:64:0;;2139:178;;2189:34;;2139:178;;;:::i;:::-;;;;;;;;;;;;;;;2099:237;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2072:264;;;2381:7;2370:27;;;;;;;;;;;;:::i;:::-;2355:42;;2053:360;2031:382;2434:12;1865:600;-1:-1:-1;1865:600:0:o;750:336:43:-;791:3;829:5;823:12;853:1;863:128;877:6;874:1;871:13;863:128;;;974:4;959:13;;;955:24;;949:31;936:11;;;929:52;892:12;863:128;;;1009:6;1006:1;1003:13;1000:48;;;1044:1;1035:6;1030:3;1026:16;1019:27;1000:48;-1:-1:-1;1064:16:43;;;;;750:336;-1:-1:-1;;750:336:43:o;1091:324::-;1288:66;1280:6;1276:79;1271:3;1264:92;1246:3;1372:37;1406:1;1401:3;1397:11;1389:6;1372:37;:::i;:::-;1365:44;1091:324;-1:-1:-1;;;;1091:324:43:o;1420:189::-;1549:3;1574:29;1599:3;1591:6;1574:29;:::i;:::-;1567:36;1420:189;-1:-1:-1;;;1420:189:43:o;1614:277::-;1681:6;1734:2;1722:9;1713:7;1709:23;1705:32;1702:52;;;1750:1;1747;1740:12;1702:52;1782:9;1776:16;1835:5;1828:13;1821:21;1814:5;1811:32;1801:60;;1857:1;1854;1847:12",
     "linkReferences": {}
   },
   "methodIdentifiers": {
@@ -433,7 +433,7 @@
     "failed()": "ba414fa6",
     "vm()": "3a768463"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"log_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"val\",\"type\":\"uint256[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"int256[]\",\"name\":\"val\",\"type\":\"int256[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"val\",\"type\":\"address[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"log_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"log_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"log_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"val\",\"type\":\"address\"}],\"name\":\"log_named_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"val\",\"type\":\"uint256[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256[]\",\"name\":\"val\",\"type\":\"int256[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"val\",\"type\":\"address[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"val\",\"type\":\"bytes\"}],\"name\":\"log_named_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"val\",\"type\":\"bytes32\"}],\"name\":\"log_named_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"}],\"name\":\"log_named_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"val\",\"type\":\"string\"}],\"name\":\"log_named_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"}],\"name\":\"log_named_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"log_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"logs\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"IS_SCRIPT\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"IS_TEST\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"failed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"vm\",\"outputs\":[{\"internalType\":\"contract Vm\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/test/utils/TestPlus.sol\":\"TestPlus\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":ds-test/=lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"lib/ds-test/src/test.sol\":{\"keccak256\":\"0xd4cc3f57e7af003954200ec4ee92e8f189885cba55ae9cf87e7a59985d8e963e\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://64df22826aa96e9c9eaebb698f5940ecafe95d72782b60b8f6fd68f6cd023bda\",\"dweb:/ipfs/QmSJGqC4GyyHdMUc2ViatN6wKZNBiaxRzntKH7JwM2UQ8R\"]},\"lib/forge-std/src/Script.sol\":{\"keccak256\":\"0x36e655afeff9117452dd2012c976f928216dc9385f596cd3ae2e546cdd5bec0e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d53ed033b764b6d653bc068264bbb7ab7dfcb6f9bc784c4c5ab5dfcdad8f9626\",\"dweb:/ipfs/QmbXVHknGZJwaPpBq4quYUMpKwvYMqizFWuoPVR89JxFDE\"]},\"lib/forge-std/src/StdJson.sol\":{\"keccak256\":\"0xa2c33f48c77c46b7cbfcff0ce3f9c95b7d1c3a110f09a25e6783bcd7456b7f17\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://78aaf9af3aba60ccbb485fea9b38cd1067aad457fc272afa2b7654ae6c8570f2\",\"dweb:/ipfs/QmZbUVqbKMWYk6Dqx6TGgpELvoGUixTYPrFQtW1vfp4oDt\"]},\"lib/forge-std/src/Test.sol\":{\"keccak256\":\"0x95f4158675325efdf9cfd210cca4144be336ffaa5d090ed28006df977f0494e5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://703933d87e1a471a59c14328741da4043fceb960548a17d82d0e8340e4689758\",\"dweb:/ipfs/Qme3S9nTybF5Qr3QVHQBqmRv2MrqoqHKRFtinydejdyR1A\"]},\"lib/forge-std/src/Vm.sol\":{\"keccak256\":\"0xa4a98748556aa76770fa9739843a7f566f1faca260e0b77f7f5814f95819b3a5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://54ced2b3fe383ca64b9d53a64dddae0a9c3993d29e4cd9e4442e8db93eccb01e\",\"dweb:/ipfs/QmXUqc4k1kLajo1WqWzWpmN6ZgZ61sJHgvALa1FxhNaESh\"]},\"lib/forge-std/src/console.sol\":{\"keccak256\":\"0xbbdc11ec3a00e6b8c6c76e7f0ea46581239faee116324de4184dd0af011dd837\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://10581f46c044a7561d25d8ea203f4e89e13a807b40bf9d87520f69407447de42\",\"dweb:/ipfs/QmSFVUzcDB9QtNyjJ5fLzi3kqKhtEbDD7TZMgbzJ9wiC63\"]},\"lib/forge-std/src/console2.sol\":{\"keccak256\":\"0x01bde27c667a925905685599b65e6daf424beba80860b68187cc266350f3d704\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://18e6ba16127930324e9c4d4a42f077e1bfe38257726724859f6441e22bef35d4\",\"dweb:/ipfs/QmbyMUzdSHWQEQcZ3Yz4j5iRhEj472cvcwHNb9Eq3esGJA\"]},\"src/test/utils/TestPlus.sol\":{\"keccak256\":\"0xed428f30b3cdb4f9abd0ffa94bba4c3904cb591749b0e8f35849725a5fb670a9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f8da13f80994f3dca0e433c6126974ef2a91f3b392fcba5848104ea23b68c1f1\",\"dweb:/ipfs/QmaDYBkoba9BrU7Vt6Df9be76VccS4i2LVSbXepd8MaqFu\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"log_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"val\",\"type\":\"uint256[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"int256[]\",\"name\":\"val\",\"type\":\"int256[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"val\",\"type\":\"address[]\"}],\"name\":\"log_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"log_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"log_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"log_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"val\",\"type\":\"address\"}],\"name\":\"log_named_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"val\",\"type\":\"uint256[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256[]\",\"name\":\"val\",\"type\":\"int256[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"val\",\"type\":\"address[]\"}],\"name\":\"log_named_array\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"val\",\"type\":\"bytes\"}],\"name\":\"log_named_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"val\",\"type\":\"bytes32\"}],\"name\":\"log_named_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"}],\"name\":\"log_named_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"val\",\"type\":\"string\"}],\"name\":\"log_named_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"}],\"name\":\"log_named_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"log_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"logs\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"IS_SCRIPT\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"IS_TEST\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"failed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"vm\",\"outputs\":[{\"internalType\":\"contract Vm\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/test/utils/TestPlus.sol\":\"TestPlus\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":ds-test/=lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"lib/ds-test/src/test.sol\":{\"keccak256\":\"0xd4cc3f57e7af003954200ec4ee92e8f189885cba55ae9cf87e7a59985d8e963e\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://64df22826aa96e9c9eaebb698f5940ecafe95d72782b60b8f6fd68f6cd023bda\",\"dweb:/ipfs/QmSJGqC4GyyHdMUc2ViatN6wKZNBiaxRzntKH7JwM2UQ8R\"]},\"lib/forge-std/src/Script.sol\":{\"keccak256\":\"0x36e655afeff9117452dd2012c976f928216dc9385f596cd3ae2e546cdd5bec0e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d53ed033b764b6d653bc068264bbb7ab7dfcb6f9bc784c4c5ab5dfcdad8f9626\",\"dweb:/ipfs/QmbXVHknGZJwaPpBq4quYUMpKwvYMqizFWuoPVR89JxFDE\"]},\"lib/forge-std/src/StdJson.sol\":{\"keccak256\":\"0xa2c33f48c77c46b7cbfcff0ce3f9c95b7d1c3a110f09a25e6783bcd7456b7f17\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://78aaf9af3aba60ccbb485fea9b38cd1067aad457fc272afa2b7654ae6c8570f2\",\"dweb:/ipfs/QmZbUVqbKMWYk6Dqx6TGgpELvoGUixTYPrFQtW1vfp4oDt\"]},\"lib/forge-std/src/Test.sol\":{\"keccak256\":\"0x95f4158675325efdf9cfd210cca4144be336ffaa5d090ed28006df977f0494e5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://703933d87e1a471a59c14328741da4043fceb960548a17d82d0e8340e4689758\",\"dweb:/ipfs/Qme3S9nTybF5Qr3QVHQBqmRv2MrqoqHKRFtinydejdyR1A\"]},\"lib/forge-std/src/Vm.sol\":{\"keccak256\":\"0xa4a98748556aa76770fa9739843a7f566f1faca260e0b77f7f5814f95819b3a5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://54ced2b3fe383ca64b9d53a64dddae0a9c3993d29e4cd9e4442e8db93eccb01e\",\"dweb:/ipfs/QmXUqc4k1kLajo1WqWzWpmN6ZgZ61sJHgvALa1FxhNaESh\"]},\"lib/forge-std/src/console.sol\":{\"keccak256\":\"0xbbdc11ec3a00e6b8c6c76e7f0ea46581239faee116324de4184dd0af011dd837\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://10581f46c044a7561d25d8ea203f4e89e13a807b40bf9d87520f69407447de42\",\"dweb:/ipfs/QmSFVUzcDB9QtNyjJ5fLzi3kqKhtEbDD7TZMgbzJ9wiC63\"]},\"lib/forge-std/src/console2.sol\":{\"keccak256\":\"0x01bde27c667a925905685599b65e6daf424beba80860b68187cc266350f3d704\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://18e6ba16127930324e9c4d4a42f077e1bfe38257726724859f6441e22bef35d4\",\"dweb:/ipfs/QmbyMUzdSHWQEQcZ3Yz4j5iRhEj472cvcwHNb9Eq3esGJA\"]},\"src/test/utils/TestPlus.sol\":{\"keccak256\":\"0x97201a4715d00cefcb53cbb520bdcb91fe07b919e04e3409eaa5bc0bb90ccfdb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c58ff376e937acf6c2abcf26f6d1ad70be2de23841b51157bfab8db6eb8d03e0\",\"dweb:/ipfs/QmQGr6Wd4uJnL1cc5mYnDnxbypyQxbJLsBMrBQaU7z92cn\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.8.15+commit.e14f2714"
@@ -944,10 +944,10 @@
         "license": "MIT"
       },
       "src/test/utils/TestPlus.sol": {
-        "keccak256": "0xed428f30b3cdb4f9abd0ffa94bba4c3904cb591749b0e8f35849725a5fb670a9",
+        "keccak256": "0x97201a4715d00cefcb53cbb520bdcb91fe07b919e04e3409eaa5bc0bb90ccfdb",
         "urls": [
-          "bzz-raw://f8da13f80994f3dca0e433c6126974ef2a91f3b392fcba5848104ea23b68c1f1",
-          "dweb:/ipfs/QmaDYBkoba9BrU7Vt6Df9be76VccS4i2LVSbXepd8MaqFu"
+          "bzz-raw://c58ff376e937acf6c2abcf26f6d1ad70be2de23841b51157bfab8db6eb8d03e0",
+          "dweb:/ipfs/QmQGr6Wd4uJnL1cc5mYnDnxbypyQxbJLsBMrBQaU7z92cn"
         ],
         "license": "MIT"
       }
@@ -956,7 +956,7 @@
   },
   "ast": {
     "absolutePath": "src/test/utils/TestPlus.sol",
-    "id": 63710,
+    "id": 34645,
     "exportedSymbols": {
       "DSTest": [
         1786
@@ -971,7 +971,7 @@
         4979
       ],
       "TestPlus": [
-        63709
+        34644
       ],
       "Vm": [
         7030
@@ -996,12 +996,12 @@
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "33:1551:46",
+    "src": "33:1553:21",
     "nodes": [
       {
-        "id": 63698,
+        "id": 34633,
         "nodeType": "PragmaDirective",
-        "src": "33:23:46",
+        "src": "33:23:21",
         "literals": [
           "solidity",
           "^",
@@ -1010,35 +1010,35 @@
         ]
       },
       {
-        "id": 63699,
+        "id": 34634,
         "nodeType": "ImportDirective",
-        "src": "60:28:46",
+        "src": "60:28:21",
         "absolutePath": "lib/forge-std/src/Test.sol",
         "file": "forge-std/Test.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 63710,
+        "scope": 34645,
         "sourceUnit": 6319,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 63709,
+        "id": 34644,
         "nodeType": "ContractDefinition",
-        "src": "92:1492:46",
+        "src": "92:1492:21",
         "nodes": [
           {
-            "id": 63708,
+            "id": 34643,
             "nodeType": "ModifierDefinition",
-            "src": "125:1456:46",
+            "src": "125:1456:21",
             "body": {
-              "id": 63707,
+              "id": 34642,
               "nodeType": "Block",
-              "src": "178:1403:46",
+              "src": "178:1403:21",
               "statements": [
                 {
                   "AST": {
                     "nodeType": "YulBlock",
-                    "src": "242:1318:46",
+                    "src": "242:1318:21",
                     "statements": [
                       {
                         "expression": {
@@ -1050,41 +1050,41 @@
                                   "functionName": {
                                     "name": "gas",
                                     "nodeType": "YulIdentifier",
-                                    "src": "378:3:46"
+                                    "src": "378:3:21"
                                   },
                                   "nodeType": "YulFunctionCall",
-                                  "src": "378:5:46"
+                                  "src": "378:5:21"
                                 },
                                 {
                                   "kind": "number",
                                   "nodeType": "YulLiteral",
-                                  "src": "445:4:46",
+                                  "src": "445:4:21",
                                   "type": "",
                                   "value": "0x04"
                                 },
                                 {
                                   "name": "brutalizeWith",
                                   "nodeType": "YulIdentifier",
-                                  "src": "513:13:46"
+                                  "src": "513:13:21"
                                 },
                                 {
                                   "kind": "number",
                                   "nodeType": "YulLiteral",
-                                  "src": "582:2:46",
+                                  "src": "582:2:21",
                                   "type": "",
                                   "value": "64"
                                 },
                                 {
                                   "kind": "number",
                                   "nodeType": "YulLiteral",
-                                  "src": "654:1:46",
+                                  "src": "654:1:21",
                                   "type": "",
                                   "value": "0"
                                 },
                                 {
                                   "kind": "number",
                                   "nodeType": "YulLiteral",
-                                  "src": "726:2:46",
+                                  "src": "726:2:21",
                                   "type": "",
                                   "value": "64"
                                 }
@@ -1092,26 +1092,26 @@
                               "functionName": {
                                 "name": "staticcall",
                                 "nodeType": "YulIdentifier",
-                                "src": "345:10:46"
+                                "src": "345:10:21"
                               },
                               "nodeType": "YulFunctionCall",
-                              "src": "345:477:46"
+                              "src": "345:477:21"
                             }
                           ],
                           "functionName": {
                             "name": "pop",
                             "nodeType": "YulIdentifier",
-                            "src": "323:3:46"
+                            "src": "323:3:21"
                           },
                           "nodeType": "YulFunctionCall",
-                          "src": "323:514:46"
+                          "src": "323:514:21"
                         },
                         "nodeType": "YulExpressionStatement",
-                        "src": "323:514:46"
+                        "src": "323:514:21"
                       },
                       {
                         "nodeType": "YulVariableDeclaration",
-                        "src": "853:41:46",
+                        "src": "853:41:21",
                         "value": {
                           "arguments": [
                             {
@@ -1119,21 +1119,21 @@
                                 {
                                   "name": "brutalizeWith",
                                   "nodeType": "YulIdentifier",
-                                  "src": "875:13:46"
+                                  "src": "875:13:21"
                                 }
                               ],
                               "functionName": {
                                 "name": "mload",
                                 "nodeType": "YulIdentifier",
-                                "src": "869:5:46"
+                                "src": "869:5:21"
                               },
                               "nodeType": "YulFunctionCall",
-                              "src": "869:20:46"
+                              "src": "869:20:21"
                             },
                             {
                               "kind": "number",
                               "nodeType": "YulLiteral",
-                              "src": "891:2:46",
+                              "src": "891:2:21",
                               "type": "",
                               "value": "32"
                             }
@@ -1141,16 +1141,16 @@
                           "functionName": {
                             "name": "add",
                             "nodeType": "YulIdentifier",
-                            "src": "865:3:46"
+                            "src": "865:3:21"
                           },
                           "nodeType": "YulFunctionCall",
-                          "src": "865:29:46"
+                          "src": "865:29:21"
                         },
                         "variables": [
                           {
                             "name": "size",
                             "nodeType": "YulTypedName",
-                            "src": "857:4:46",
+                            "src": "857:4:21",
                             "type": ""
                           }
                         ]
@@ -1165,34 +1165,34 @@
                                   "functionName": {
                                     "name": "gas",
                                     "nodeType": "YulIdentifier",
-                                    "src": "1085:3:46"
+                                    "src": "1085:3:21"
                                   },
                                   "nodeType": "YulFunctionCall",
-                                  "src": "1085:5:46"
+                                  "src": "1085:5:21"
                                 },
                                 {
                                   "kind": "number",
                                   "nodeType": "YulLiteral",
-                                  "src": "1152:4:46",
+                                  "src": "1152:4:21",
                                   "type": "",
                                   "value": "0x04"
                                 },
                                 {
                                   "name": "brutalizeWith",
                                   "nodeType": "YulIdentifier",
-                                  "src": "1220:13:46"
+                                  "src": "1220:13:21"
                                 },
                                 {
                                   "name": "size",
                                   "nodeType": "YulIdentifier",
-                                  "src": "1289:4:46"
+                                  "src": "1289:4:21"
                                 },
                                 {
                                   "arguments": [
                                     {
                                       "kind": "number",
                                       "nodeType": "YulLiteral",
-                                      "src": "1366:4:46",
+                                      "src": "1366:4:21",
                                       "type": "",
                                       "value": "0x40"
                                     }
@@ -1200,36 +1200,36 @@
                                   "functionName": {
                                     "name": "mload",
                                     "nodeType": "YulIdentifier",
-                                    "src": "1360:5:46"
+                                    "src": "1360:5:21"
                                   },
                                   "nodeType": "YulFunctionCall",
-                                  "src": "1360:11:46"
+                                  "src": "1360:11:21"
                                 },
                                 {
                                   "name": "size",
                                   "nodeType": "YulIdentifier",
-                                  "src": "1448:4:46"
+                                  "src": "1448:4:21"
                                 }
                               ],
                               "functionName": {
                                 "name": "staticcall",
                                 "nodeType": "YulIdentifier",
-                                "src": "1052:10:46"
+                                "src": "1052:10:21"
                               },
                               "nodeType": "YulFunctionCall",
-                              "src": "1052:482:46"
+                              "src": "1052:482:21"
                             }
                           ],
                           "functionName": {
                             "name": "pop",
                             "nodeType": "YulIdentifier",
-                            "src": "1030:3:46"
+                            "src": "1030:3:21"
                           },
                           "nodeType": "YulFunctionCall",
-                          "src": "1030:519:46"
+                          "src": "1030:519:21"
                         },
                         "nodeType": "YulExpressionStatement",
-                        "src": "1030:519:46"
+                        "src": "1030:519:21"
                       }
                     ]
                   },
@@ -1237,53 +1237,53 @@
                   "evmVersion": "london",
                   "externalReferences": [
                     {
-                      "declaration": 63703,
+                      "declaration": 34638,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "1220:13:46",
+                      "src": "1220:13:21",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 63703,
+                      "declaration": 34638,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "513:13:46",
+                      "src": "513:13:21",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 63703,
+                      "declaration": 34638,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "875:13:46",
+                      "src": "875:13:21",
                       "valueSize": 1
                     }
                   ],
-                  "id": 63705,
+                  "id": 34640,
                   "nodeType": "InlineAssembly",
-                  "src": "233:1327:46"
+                  "src": "233:1327:21"
                 },
                 {
-                  "id": 63706,
+                  "id": 34641,
                   "nodeType": "PlaceholderStatement",
-                  "src": "1572:1:46"
+                  "src": "1572:1:21"
                 }
               ]
             },
             "name": "brutalizeMemory",
-            "nameLocation": "134:15:46",
+            "nameLocation": "134:15:21",
             "parameters": {
-              "id": 63704,
+              "id": 34639,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 63703,
+                  "id": 34638,
                   "mutability": "mutable",
                   "name": "brutalizeWith",
-                  "nameLocation": "163:13:46",
+                  "nameLocation": "163:13:21",
                   "nodeType": "VariableDeclaration",
-                  "scope": 63708,
-                  "src": "150:26:46",
+                  "scope": 34643,
+                  "src": "150:26:21",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1291,10 +1291,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 63702,
+                    "id": 34637,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "150:5:46",
+                    "src": "150:5:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -1303,7 +1303,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "149:28:46"
+              "src": "149:28:21"
             },
             "virtual": false,
             "visibility": "internal"
@@ -1313,15 +1313,15 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 63700,
+              "id": 34635,
               "name": "Test",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 4979,
-              "src": "113:4:46"
+              "src": "113:4:21"
             },
-            "id": 63701,
+            "id": 34636,
             "nodeType": "InheritanceSpecifier",
-            "src": "113:4:46"
+            "src": "113:4:21"
           }
         ],
         "canonicalName": "TestPlus",
@@ -1329,18 +1329,18 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          63709,
+          34644,
           4979,
           2049,
           1786
         ],
         "name": "TestPlus",
-        "nameLocation": "101:8:46",
-        "scope": 63710,
+        "nameLocation": "101:8:21",
+        "scope": 34645,
         "usedErrors": []
       }
     ],
     "license": "MIT"
   },
-  "id": 46
+  "id": 21
 }

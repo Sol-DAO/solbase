@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Class with helper read functions for clone with immutable args.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/Clone.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/Clone.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/Clone.sol)
 abstract contract Clone {
     /// @dev Reads an immutable arg with type address.
