@@ -1,40 +1,236 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Gas optimized verification of proof of inclusion for a leaf in a Merkle tree.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/MerkleProofLib.sol)
-/// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/MerkleProofLib.sol)
-library MerkleProofLib {
+import "forge-std/Test.sol";
+import {MerkleProofLib} from "../utils/MerkleProofLib.sol";
+
+contract MerkleProofLibTest is Test {
+    function testVerifyProofForHeightOneTree(
+        bool hasProof,
+        bool nonEmptyProof,
+        bool nonEmptyRoot,
+        bool nonEmptyLeaf
+    ) public {
+        bytes32 root;
+        if (nonEmptyRoot) {
+            root = bytes32("a");
+        }
+        bytes32 leaf;
+        if (nonEmptyLeaf) {
+            leaf = bytes32("a");
+        }
+        bytes32[] memory proof;
+        if (hasProof) {
+            proof = new bytes32[](1);
+            proof[0] = nonEmptyProof ? bytes32("a") : bytes32(0);
+        }
+        bool isValid = leaf == root && proof.length == 0;
+        assertEq(this.verify(proof, root, leaf), isValid);
+    }
+
+    function testVerifyProofIsValid() public {
+        testVerifyProof(false, false, false, 0x00);
+    }
+
+    function testVerifyProofIsInvalid() public {
+        testVerifyProof(false, false, true, 0x00);
+    }
+
+    function testVerifyProof(
+        bool damageProof,
+        bool damageRoot,
+        bool damageLeaf,
+        bytes32 randomness
+    ) public {
+        bool noDamage = true;
+        uint256 ri; // Randomness index.
+
+        // Merkle tree created from leaves ['a', 'b', 'c'].
+        // Leaf is 'a'.
+        bytes32[] memory proof = new bytes32[](2);
+        proof[0] = 0xb5553de315e0edf504d9150af82dafa5c4667fa618ed0a6f19c69b41166c5510;
+        proof[1] = 0x0b42b6393c1f53060fe3ddbfcd7aadcca894465a5a438f69c87d790b2299b9b2;
+        if (damageProof) {
+            noDamage = false;
+            uint256 i = uint256(uint8(randomness[ri++])) % proof.length;
+            proof[i] = bytes32(uint256(proof[i]) ^ 1); // Flip a bit.
+        }
+
+        bytes32 root = 0x5842148bc6ebeb52af882a317c765fccd3ae80589b21a9b8cbf21abb630e46a7;
+        if (damageRoot) {
+            noDamage = false;
+            root = bytes32(uint256(root) ^ 1); // Flip a bit.
+        }
+
+        bytes32 leaf = 0x3ac225168df54212a25c1c01fd35bebfea408fdac2e31ddd6f80a4bbf9a5f1cb;
+        if (damageLeaf) {
+            noDamage = false;
+            leaf = bytes32(uint256(leaf) ^ 1); // Flip a bit.
+        }
+
+        assertEq(this.verify(proof, root, leaf), noDamage);
+    }
+
+    function testVerifyMultiProofForHeightOneTree(
+        bool hasProof,
+        bool nonEmptyProof,
+        bool nonEmptyRoot,
+        bool hasLeaf,
+        bool nonEmptyLeaf,
+        bool[] memory flags
+    ) public {
+        bytes32 root;
+        if (nonEmptyRoot) {
+            root = bytes32("a");
+        }
+        bytes32[] memory proof;
+        if (hasProof) {
+            proof = new bytes32[](1);
+            proof[0] = nonEmptyProof ? bytes32("a") : bytes32(0);
+        }
+        bytes32[] memory leafs;
+        if (hasLeaf) {
+            leafs = new bytes32[](1);
+            leafs[0] = nonEmptyLeaf ? bytes32("a") : bytes32(0);
+        }
+        bool leafSameAsRoot = leafs.length == 1 && leafs[0] == root;
+        bool proofSameAsRoot = proof.length == 1 && proof[0] == root;
+        bool isValid = flags.length == 0 && (leafSameAsRoot || proofSameAsRoot) && (leafs.length + proof.length == 1);
+        assertEq(this.verifyMultiProof(proof, root, leafs, flags), isValid);
+    }
+
+    function testVerifyMultiProofForHeightTwoTree(
+        bool allLeafs,
+        bool damageRoot,
+        bool damageLeafs,
+        bool damageProof,
+        bool damageFlags,
+        bytes32 randomness
+    ) public {
+        bool noDamage = true;
+        uint256 ri; // Randomness index.
+
+        bytes32 leafA = 0x3ac225168df54212a25c1c01fd35bebfea408fdac2e31ddd6f80a4bbf9a5f1cb;
+        bytes32 leafB = 0xb5553de315e0edf504d9150af82dafa5c4667fa618ed0a6f19c69b41166c5510;
+
+        // Merkle tree created from leaves ['a', 'b'].
+        bytes32 root = 0x805b21d846b189efaeb0377d6bb0d201b3872a363e607c25088f025b0c6ae1f8;
+
+        bytes32[] memory proof;
+        bytes32[] memory leafs;
+        bool[] memory flags = new bool[](1);
+        flags[0] = allLeafs;
+
+        if (allLeafs) {
+            leafs = new bytes32[](2);
+            leafs[0] = leafA;
+            leafs[1] = leafB;
+        } else {
+            leafs = new bytes32[](1);
+            leafs[0] = leafA;
+            proof = new bytes32[](1);
+            proof[0] = leafB;
+        }
+
+        if (damageRoot) {
+            noDamage = false;
+            root = bytes32(uint256(root) ^ 1); // Flip a bit.
+        }
+
+        if (damageFlags) {
+            noDamage = false;
+            flags[0] = !flags[0]; // Flip a bool.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete flags;
+        }
+
+        if (damageLeafs) {
+            noDamage = false;
+            uint256 i = uint256(uint8(randomness[ri++])) % leafs.length;
+            leafs[i] = bytes32(uint256(leafs[i]) ^ 1); // Flip a bit.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete leafs;
+        }
+
+        if (damageProof && proof.length != 0) {
+            noDamage = false;
+            proof[0] = bytes32(uint256(proof[0]) ^ 1); // Flip a bit.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete proof;
+        }
+
+        assertEq(this.verifyMultiProof(proof, root, leafs, flags), noDamage);
+    }
+
+    function testVerifyMultiProofIsValid() public {
+        testVerifyMultiProof(false, false, false, false, 0x00);
+    }
+
+    function testVerifyMultiProofIsInvalid() public {
+        testVerifyMultiProof(false, false, true, false, 0x00);
+    }
+
+    function testVerifyMultiProof(
+        bool damageRoot,
+        bool damageLeafs,
+        bool damageProof,
+        bool damageFlags,
+        bytes32 randomness
+    ) public {
+        bool noDamage = true;
+        uint256 ri; // Randomness index.
+
+        // Merkle tree created from ['a', 'b', 'c', 'd', 'e', 'f'].
+        // Leafs are ['b', 'f', 'd'].
+        bytes32 root = 0x1b404f199ea828ec5771fb30139c222d8417a82175fefad5cd42bc3a189bd8d5;
+
+        bytes32[] memory leafs = new bytes32[](3);
+        leafs[0] = 0xb5553de315e0edf504d9150af82dafa5c4667fa618ed0a6f19c69b41166c5510;
+        leafs[1] = 0xd1e8aeb79500496ef3dc2e57ba746a8315d048b7a664a2bf948db4fa91960483;
+        leafs[2] = 0xf1918e8562236eb17adc8502332f4c9c82bc14e19bfc0aa10ab674ff75b3d2f3;
+
+        bytes32[] memory proof = new bytes32[](2);
+        proof[0] = 0xa8982c89d80987fb9a510e25981ee9170206be21af3c8e0eb312ef1d3382e761;
+        proof[1] = 0x7dea550f679f3caab547cbbc5ee1a4c978c8c039b572ba00af1baa6481b88360;
+
+        bool[] memory flags = new bool[](4);
+        flags[0] = false;
+        flags[1] = true;
+        flags[2] = false;
+        flags[3] = true;
+
+        if (damageRoot) {
+            noDamage = false;
+            root = bytes32(uint256(root) ^ 1); // Flip a bit.
+        }
+
+        if (damageLeafs) {
+            noDamage = false;
+            uint256 i = uint256(uint8(randomness[ri++])) % leafs.length;
+            leafs[i] = bytes32(uint256(leafs[i]) ^ 1); // Flip a bit.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete leafs;
+        }
+
+        if (damageProof) {
+            noDamage = false;
+            uint256 i = uint256(uint8(randomness[ri++])) % proof.length;
+            proof[i] = bytes32(uint256(proof[i]) ^ 1); // Flip a bit.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete proof;
+        }
+
+        if (damageFlags) {
+            noDamage = false;
+            uint256 i = uint256(uint8(randomness[ri++])) % flags.length;
+            flags[i] = !flags[i]; // Flip a bool.
+            if (uint256(uint8(randomness[ri++])) & 1 == 0) delete flags;
+        }
+
+        assertEq(this.verifyMultiProof(proof, root, leafs, flags), noDamage);
+    }
+
     function verify(
         bytes32[] calldata proof,
         bytes32 root,
         bytes32 leaf
-    ) internal pure returns (bool isValid) {
-        assembly {
-            if proof.length {
-                // Left shift by 5 is equivalent to multiplying by 0x20.
-                let end := add(proof.offset, shl(5, proof.length))
-                // Initialize `offset` to the offset of `proof` in the calldata.
-                let offset := proof.offset
-                // Iterate over proof elements to compute root hash.
-                // prettier-ignore
-                for {} 1 {} {
-                    // Slot of `leaf` in scratch space.
-                    // If the condition is true: 0x20, otherwise: 0x00.
-                    let scratch := shl(5, gt(leaf, calldataload(offset)))
-                    // Store elements to hash contiguously in scratch space.
-                    // Scratch space is 64 bytes (0x00 - 0x3f) and both elements are 32 bytes.
-                    mstore(scratch, leaf)
-                    mstore(xor(scratch, 0x20), calldataload(offset))
-                    // Reuse `leaf` to store the hash to reduce stack operations.
-                    leaf := keccak256(0x00, 0x40)
-                    offset := add(offset, 0x20)
-                    // prettier-ignore
-                    if iszero(lt(offset, end)) { break }
-                }
-            }
-            isValid := eq(leaf, root)
-        }
+    ) external pure returns (bool) {
+        return MerkleProofLib.verify(proof, root, leaf);
     }
 
     function verifyMultiProof(
@@ -42,84 +238,7 @@ library MerkleProofLib {
         bytes32 root,
         bytes32[] calldata leafs,
         bool[] calldata flags
-    ) internal pure returns (bool isValid) {
-        // Rebuilds the root by consuming and producing values on a queue.
-        // The queue starts with the `leafs` array, and goes into a `hashes` array.
-        // After the process, the last element on the queue is verified
-        // to be equal to the `root`.
-        //
-        // The `flags` array denotes whether the sibling
-        // should be popped from the queue (`flag == true`), or
-        // should be popped from the `proof` (`flag == false`).
-        assembly {
-            // If the number of flags is correct.
-            // prettier-ignore
-            for {} eq(add(leafs.length, proof.length), add(flags.length, 1)) {} {
-
-                // For the case where `proof.length + leafs.length == 1`.
-                if iszero(flags.length) {
-                    // `isValid = (proof.length == 1 ? proof[0] : leafs[0]) == root`.
-                    isValid := eq(
-                        calldataload(
-                            xor(leafs.offset, mul(xor(proof.offset, leafs.offset), proof.length))
-                        ),
-                        root
-                    )
-                    break
-                }
-
-                // We can use the free memory space for the queue.
-                // We don't need to allocate, since the queue is temporary.
-                let hashesFront := mload(0x40)
-                // Copy the leafs into the hashes.
-                // Sometimes, a little memory expansion costs less than branching.
-                // Should cost less, even with a high free memory offset of 0x7d00.
-                // Left shift by 5 is equivalent to multiplying by 0x20.
-                calldatacopy(hashesFront, leafs.offset, shl(5, leafs.length))
-                // Compute the back of the hashes.
-                let hashesBack := add(hashesFront, shl(5, leafs.length))
-                // This is the end of the memory for the queue.
-                let end := add(hashesBack, shl(5, flags.length))
-
-                let flagsOffset := flags.offset
-                let proofOffset := proof.offset
-
-                // prettier-ignore
-                for {} 1 {} {
-                    // Pop from `hashes`.
-                    let a := mload(hashesFront)
-                    // Pop from `hashes`.
-                    let b := mload(add(hashesFront, 0x20))
-                    hashesFront := add(hashesFront, 0x40)
-
-                    // If the flag is false, load the next proof,
-                    // else, pops from the queue.
-                    if iszero(calldataload(flagsOffset)) {
-                        // Loads the next proof.
-                        b := calldataload(proofOffset)
-                        proofOffset := add(proofOffset, 0x20)
-                        // Unpop from `hashes`.
-                        hashesFront := sub(hashesFront, 0x20)
-                    }
-                    
-                    // Advance to the next flag offset.
-                    flagsOffset := add(flagsOffset, 0x20)
-
-                    // Slot of `a` in scratch space.
-                    // If the condition is true: 0x20, otherwise: 0x00.
-                    let scratch := shl(5, gt(a, b))
-                    // Hash the scratch space and push the result onto the queue.
-                    mstore(scratch, a)
-                    mstore(xor(scratch, 0x20), b)
-                    mstore(hashesBack, keccak256(0x00, 0x40))
-                    hashesBack := add(hashesBack, 0x20)
-                    // prettier-ignore
-                    if iszero(lt(hashesBack, end)) { break }
-                }
-                // Checks if the last value in the queue is same as the root.
-                isValid := eq(mload(sub(hashesBack, 0x20)), root)
-                break
-            }
-        }
+    ) external pure returns (bool) {
+        return MerkleProofLib.verifyMultiProof(proof, root, leafs, flags);
     }
 }

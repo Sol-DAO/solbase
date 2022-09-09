@@ -1,279 +1,158 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Library for converting numbers into strings and other string operations.
-/// @author SolDAO (https://github.com/Sol-DAO/solmate/blob/main/src/utils/LibString.sol)
-/// @author Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibString.sol)
-library LibString {
-    /*//////////////////////////////////////////////////////////////
-                              CUSTOM ERRORS
-    //////////////////////////////////////////////////////////////*/
+import "forge-std/Test.sol";
+import {LibString} from "../utils/LibString.sol";
 
-    error HexLengthInsufficient();
-
-    /*//////////////////////////////////////////////////////////////
-                           DECIMAL OPERATIONS                     
-    //////////////////////////////////////////////////////////////*/
-
-    function toString(uint256 value) internal pure returns (string memory str) {
-        assembly {
-            // The maximum value of a uint256 contains 78 digits (1 byte per digit), but
-            // we allocate 0xa0 bytes to keep the free memory pointer 32-byte word aligned.
-            // We will need 1 word for the trailing zeros padding, 1 word for the length,
-            // and 3 words for a maximum of 78 digits. Total: 5 * 0x20 = 0xa0.
-            let m := add(mload(0x40), 0xa0)
-            // Update the free memory pointer to allocate.
-            mstore(0x40, m)
-            // Assign the `str` to the end.
-            str := sub(m, 0x20)
-            // Zeroize the slot after the string.
-            mstore(str, 0)
-
-            // Cache the end of the memory to calculate the length later.
-            let end := str
-
-            // We write the string from rightmost digit to leftmost digit.
-            // The following is essentially a do-while loop that also handles the zero case.
-            // prettier-ignore
-            for { let temp := value } 1 {} {
-                str := sub(str, 1)
-                // Write the character to the pointer.
-                // The ASCII index of the '0' character is 48.
-                mstore8(str, add(48, mod(temp, 10)))
-                // Keep dividing `temp` until zero.
-                temp := div(temp, 10)
-                // prettier-ignore
-                if iszero(temp) { break }
-            }
-
-            let length := sub(end, str)
-            // Move the pointer 32 bytes leftwards to make room for the length.
-            str := sub(str, 0x20)
-            // Store the length.
-            mstore(str, length)
-        }
+contract LibStringTest is Test {
+    function testToStringZero() public {
+        assertEq(keccak256(bytes(LibString.toString(0))), keccak256(bytes("0")));
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         HEXADECIMAL OPERATIONS                   
-    //////////////////////////////////////////////////////////////*/
-
-    function toHexString(uint256 value, uint256 length) internal pure returns (string memory str) {
-        assembly {
-            let start := mload(0x40)
-            // We need 0x20 bytes for the trailing zeros padding, `length * 2` bytes
-            // for the digits, 0x02 bytes for the prefix, and 0x20 bytes for the length.
-            // We add 0x20 to the total and round down to a multiple of 0x20.
-            // (0x20 + 0x20 + 0x02 + 0x20) = 0x62.
-            let m := add(start, and(add(shl(1, length), 0x62), not(0x1f)))
-            // Allocate the memory.
-            mstore(0x40, m)
-            // Assign the `str` to the end.
-            str := sub(m, 0x20)
-            // Zeroize the slot after the string.
-            mstore(str, 0)
-
-            // Cache the end to calculate the length later.
-            let end := str
-            // Store "0123456789abcdef" in scratch space.
-            mstore(0x0f, 0x30313233343536373839616263646566)
-
-            let temp := value
-            // We write the string from rightmost digit to leftmost digit.
-            // The following is essentially a do-while loop that also handles the zero case.
-            // prettier-ignore
-            for {} 1 {} {
-                str := sub(str, 2)
-                mstore8(add(str, 1), mload(and(temp, 15)))
-                mstore8(str, mload(and(shr(4, temp), 15)))
-                temp := shr(8, temp)
-                length := sub(length, 1)
-                // prettier-ignore
-                if iszero(length) { break }
-            }
-
-            if temp {
-                // Store the function selector of `HexLengthInsufficient()`.
-                mstore(0x00, 0x2194895a)
-                // Revert with (offset, size).
-                revert(0x1c, 0x04)
-            }
-
-            // Compute the string's length.
-            let strLength := add(sub(end, str), 2)
-            // Move the pointer and write the "0x" prefix.
-            str := sub(str, 0x20)
-            mstore(str, 0x3078)
-            // Move the pointer and write the length.
-            str := sub(str, 2)
-            mstore(str, strLength)
-        }
+    function testToStringPositiveNumber() public {
+        assertEq(keccak256(bytes(LibString.toString(4132))), keccak256(bytes("4132")));
     }
 
-    function toHexString(uint256 value) internal pure returns (string memory str) {
-        assembly {
-            let start := mload(0x40)
-            // We need 0x20 bytes for the trailing zeros padding, 0x20 bytes for the length,
-            // 0x02 bytes for the prefix, and 0x40 bytes for the digits.
-            // The next multiple of 0x20 above (0x20 + 0x20 + 0x02 + 0x40) is 0xa0.
-            let m := add(start, 0xa0)
-            // Allocate the memory.
-            mstore(0x40, m)
-            // Assign the `str` to the end.
-            str := sub(m, 0x20)
-            // Zeroize the slot after the string.
-            mstore(str, 0)
-
-            // Cache the end to calculate the length later.
-            let end := str
-            // Store "0123456789abcdef" in scratch space.
-            mstore(0x0f, 0x30313233343536373839616263646566)
-
-            // We write the string from rightmost digit to leftmost digit.
-            // The following is essentially a do-while loop that also handles the zero case.
-            // prettier-ignore
-            for { let temp := value } 1 {} {
-                str := sub(str, 2)
-                mstore8(add(str, 1), mload(and(temp, 15)))
-                mstore8(str, mload(and(shr(4, temp), 15)))
-                temp := shr(8, temp)
-                // prettier-ignore
-                if iszero(temp) { break }
-            }
-
-            // Compute the string's length.
-            let strLength := add(sub(end, str), 2)
-            // Move the pointer and write the "0x" prefix.
-            str := sub(str, 0x20)
-            mstore(str, 0x3078)
-            // Move the pointer and write the length.
-            str := sub(str, 2)
-            mstore(str, strLength)
-        }
+    function testToStringUint256Max() public {
+        assertEq(
+            keccak256(bytes(LibString.toString(type(uint256).max))),
+            keccak256(bytes("115792089237316195423570985008687907853269984665640564039457584007913129639935"))
+        );
     }
 
-    function toHexString(address value) internal pure returns (string memory str) {
+    function testToStringZeroBrutalized() public {
+        string memory s0 = LibString.toString(0);
         assembly {
-            let start := mload(0x40)
-            // We need 0x20 bytes for the length, 0x02 bytes for the prefix,
-            // and 0x28 bytes for the digits.
-            // The next multiple of 0x20 above (0x20 + 0x02 + 0x28) is 0x60.
-            str := add(start, 0x60)
-
-            // Allocate the memory.
-            mstore(0x40, str)
-            // Store "0123456789abcdef" in scratch space.
-            mstore(0x0f, 0x30313233343536373839616263646566)
-
-            let length := 20
-            // We write the string from rightmost digit to leftmost digit.
-            // The following is essentially a do-while loop that also handles the zero case.
-            // prettier-ignore
-            for { let temp := value } 1 {} {
-                str := sub(str, 2)
-                mstore8(add(str, 1), mload(and(temp, 15)))
-                mstore8(str, mload(and(shr(4, temp), 15)))
-                temp := shr(8, temp)
-                length := sub(length, 1)
-                // prettier-ignore
-                if iszero(length) { break }
-            }
-
-            // Move the pointer and write the "0x" prefix.
-            str := sub(str, 32)
-            mstore(str, 0x3078)
-            // Move the pointer and write the length.
-            str := sub(str, 2)
-            mstore(str, 42)
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
         }
+        string memory s1 = LibString.toString(0);
+        assembly {
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
+        }
+        assertEq(keccak256(bytes(s0)), keccak256(bytes("0")));
+        assertEq(keccak256(bytes(s1)), keccak256(bytes("0")));
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         OTHER STRING OPERATIONS                  
-    //////////////////////////////////////////////////////////////*/
-
-    function replace(
-        string memory subject,
-        string memory search,
-        string memory replacement
-    ) internal pure returns (string memory result) {
+    function testToStringPositiveNumberBrutalized() public {
+        string memory s0 = LibString.toString(4132);
         assembly {
-            let subjectLength := mload(subject)
-            let searchLength := mload(search)
-            let replacementLength := mload(replacement)
-
-            subject := add(subject, 0x20)
-            search := add(search, 0x20)
-            replacement := add(replacement, 0x20)
-            result := add(mload(0x40), 0x20)
-
-            let subjectEnd := add(subject, subjectLength)
-            if iszero(gt(searchLength, subjectLength)) {
-                let subjectSearchEnd := add(sub(subjectEnd, searchLength), 1)
-                let h := 0
-                if iszero(lt(searchLength, 32)) {
-                    h := keccak256(search, searchLength)
-                }
-                let m := shl(3, sub(32, and(searchLength, 31)))
-                let s := mload(search)
-                // prettier-ignore
-                for {} 1 {} {
-                    let t := mload(subject)
-                    // Whether the first `searchLength % 32` bytes of 
-                    // `subject` and `search` matches.
-                    if iszero(shr(m, xor(t, s))) {
-                        if h {
-                            if iszero(eq(keccak256(subject, searchLength), h)) {
-                                mstore(result, t)
-                                result := add(result, 1)
-                                subject := add(subject, 1)
-                                // prettier-ignore
-                                if iszero(lt(subject, subjectSearchEnd)) { break }
-                                continue
-                            }
-                        }
-                        // Copy the `replacement` one word at a time.
-                        // prettier-ignore
-                        for { let o := 0 } 1 {} {
-                            mstore(add(result, o), mload(add(replacement, o)))
-                            o := add(o, 0x20)
-                            // prettier-ignore
-                            if iszero(lt(o, replacementLength)) { break }
-                        }
-                        result := add(result, replacementLength)
-                        subject := add(subject, searchLength)    
-                        if iszero(searchLength) {
-                            mstore(result, t)
-                            result := add(result, 1)
-                            subject := add(subject, 1)
-                        }
-                        // prettier-ignore
-                        if iszero(lt(subject, subjectSearchEnd)) { break }
-                        continue
-                    }
-                    mstore(result, t)
-                    result := add(result, 1)
-                    subject := add(subject, 1)
-                    // prettier-ignore
-                    if iszero(lt(subject, subjectSearchEnd)) { break }
-                }
-            }
-
-            let resultRemainder := result
-            result := add(mload(0x40), 0x20)
-            let k := add(sub(resultRemainder, result), sub(subjectEnd, subject))
-            // Copy the rest of the string one word at a time.
-            // prettier-ignore
-            for {} lt(subject, subjectEnd) {} {
-                mstore(resultRemainder, mload(subject))
-                resultRemainder := add(resultRemainder, 0x20)
-                subject := add(subject, 0x20)
-            }
-            // Allocate memory for the length and the bytes,
-            // rounded up to a multiple of 32.
-            mstore(0x40, add(result, and(add(k, 0x40), not(0x1f))))
-            result := sub(result, 0x20)
-            mstore(result, k)
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
         }
+        string memory s1 = LibString.toString(4132);
+        assembly {
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
+        }
+        assertEq(keccak256(bytes(s0)), keccak256(bytes("4132")));
+        assertEq(keccak256(bytes(s1)), keccak256(bytes("4132")));
+    }
+
+    function testToStringUint256MaxBrutalized() public {
+        string memory s0 = LibString.toString(type(uint256).max);
+        assembly {
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
+        }
+        string memory s1 = LibString.toString(type(uint256).max);
+        assembly {
+            mstore(mload(0x40), not(0))
+            mstore(0x40, add(mload(0x40), 0x20))
+        }
+        assertEq(
+            keccak256(bytes(s0)),
+            keccak256(bytes("115792089237316195423570985008687907853269984665640564039457584007913129639935"))
+        );
+        assertEq(
+            keccak256(bytes(s1)),
+            keccak256(bytes("115792089237316195423570985008687907853269984665640564039457584007913129639935"))
+        );
+    }
+
+    function testToHexStringZero() public {
+        assertEq(keccak256(bytes(LibString.toHexString(0))), keccak256(bytes("0x00")));
+    }
+
+    function testToHexStringPositiveNumber() public {
+        assertEq(keccak256(bytes(LibString.toHexString(0x4132))), keccak256(bytes("0x4132")));
+    }
+
+    function testToHexStringUint256Max() public {
+        assertEq(
+            keccak256(bytes(LibString.toHexString(type(uint256).max))),
+            keccak256(bytes("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"))
+        );
+    }
+
+    function testToHexStringFixedLengthPositiveNumberLong() public {
+        assertEq(
+            keccak256(bytes(LibString.toHexString(0x4132, 32))),
+            keccak256(bytes("0x0000000000000000000000000000000000000000000000000000000000004132"))
+        );
+    }
+
+    function testToHexStringFixedLengthPositiveNumberShort() public {
+        assertEq(keccak256(bytes(LibString.toHexString(0x4132, 2))), keccak256(bytes("0x4132")));
+    }
+
+    function testToHexStringFixedLengthInsufficientLength() public {
+        vm.expectRevert(LibString.HexLengthInsufficient.selector);
+        LibString.toHexString(0x4132, 1);
+    }
+
+    function testToHexStringFixedLengthUint256Max() public {
+        assertEq(
+            keccak256(bytes(LibString.toHexString(type(uint256).max, 32))),
+            keccak256(bytes("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"))
+        );
+    }
+
+    function testFromAddressToHexString() public {
+        assertEq(
+            keccak256(bytes(LibString.toHexString(address(0xA9036907dCcae6a1E0033479B12E837e5cF5a02f)))),
+            keccak256(bytes("0xa9036907dccae6a1e0033479b12e837e5cf5a02f"))
+        );
+    }
+
+    function testFromAddressToHexStringWithLeadingZeros() public {
+        assertEq(
+            keccak256(bytes(LibString.toHexString(address(0x0000E0Ca771e21bD00057F54A68C30D400000000)))),
+            keccak256(bytes("0x0000e0ca771e21bd00057f54a68c30d400000000"))
+        );
+    }
+
+    function testStringReplaceShort() public {
+        assertEq(LibString.replace("abc", "", "_@"), "_@a_@b_@c_@");
+        assertEq(LibString.replace("abc", "a", "_"), "_bc");
+        assertEq(LibString.replace("abc", "b", "_"), "a_c");
+        assertEq(LibString.replace("abc", "c", "_"), "ab_");
+        assertEq(LibString.replace("abc", "ab", "_"), "_c");
+        assertEq(LibString.replace("abc", "bc", "_"), "a_");
+        assertEq(LibString.replace("abc", "ac", "_"), "abc");
+        assertEq(LibString.replace("abc", "a", ""), "bc");
+        assertEq(LibString.replace("abc", "", ""), "abc");
+        assertEq(LibString.replace("abc", "d", "x"), "abc");
+    }
+
+    function testStringReplaceMedium() public {
+        // prettier-ignore
+        string memory source = "70708741044725766535585242414884609539555049888764130733849700923779599488691391677696419266840";
+        string memory search = "46095395550498887641307338497009";
+        string memory replacement = "320807383223517906783031356692334377159141";
+        // prettier-ignore
+        string memory expectedResult = "707087410447257665355852424148832080738322351790678303135669233437715914123779599488691391677696419266840";
+        assertEq(LibString.replace(source, search, replacement), expectedResult);
+    }
+
+    function testStringReplaceLong() public {
+        // prettier-ignore
+        string memory source = "01234567890123456789012345678901_search_search_search_search_search_search_23456789012345678901234567890123456789_search_search_search_search_search_search";
+        string memory search = "search_search_search_search_search_search";
+        string memory replacement = "REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT";
+        // prettier-ignore
+        string memory expectedResult = "01234567890123456789012345678901_REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT_23456789012345678901234567890123456789_REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT_REPLACEMENT";
+        assertEq(LibString.replace(source, search, replacement), expectedResult);
     }
 }
