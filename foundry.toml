@@ -1,7 +1,7 @@
 [profile.default]
-solc = "0.8.16"
+solc = "0.8.17"
 bytecode_hash = "none"
 optimizer_runs = 1000000
 
-[profile.intense]
-fuzz_runs = 10000
+[profile.intense.fuzz]
+runs = 10000
