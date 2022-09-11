@@ -435,6 +435,11 @@ contract FixedPointMathLibTest is Test {
         vm.expectRevert(FixedPointMathLib.MulDivFailed.selector);
         FixedPointMathLib.mulDivUp(x, y, 0);
     }
+    
+    function testDifferentiallyFuzzSqrt(uint256 x) public {
+        assertEq(FixedPointMathLib.sqrt(x), uniswapSqrt(x));
+        assertEq(FixedPointMathLib.sqrt(x), abdkSqrt(x));
+    }
 
     function testFuzzSqrt(uint256 x) public {
         uint256 root = FixedPointMathLib.sqrt(x);
