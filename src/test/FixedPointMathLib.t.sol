@@ -215,6 +215,11 @@ contract FixedPointMathLibTest is Test {
         assertEq(FixedPointMathLib.sqrt(2704), 52);
         assertEq(FixedPointMathLib.sqrt(110889), 333);
         assertEq(FixedPointMathLib.sqrt(32239684), 5678);
+        assertEq(FixedPointMathLib.sqrt(type(uint256).max), 340282366920938463463374607431768211455);
+    }
+    
+    function testSqrtBackHashedSingle() public {
+        testSqrtBackHashed(123);
     }
 
     function testLog2() public {
