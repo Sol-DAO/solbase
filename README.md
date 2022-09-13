@@ -8,8 +8,8 @@
 auth
 ├─ Owned — "Simple single owner authorization"
 ├─ Auth — "Flexible and updatable auth pattern"
-├─ OwnedRoles — "Simple single owner and multiroles authorization mixin"
 ├─ ThreeStepOwned — "Three-step single owner authorization mixin"
+├─ OwnedRoles — "Simple single owner and multiroles authorization mixin"
 ├─ authorities
 │  ├─ RolesAuthority — "Role based Authority that supports up to 256 roles"
 │  ├─ MultiRolesAuthority — "Flexible and target agnostic role based Authority"
