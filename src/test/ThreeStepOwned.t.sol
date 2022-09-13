@@ -11,8 +11,8 @@ contract ThreeStepOwnedTest is DSTestPlus {
         mockThreeStepOwned = new MockThreeStepOwned();
     }
 
-    function testUpdateOwner() public {
-        testUpdateOwner(address(0xBEEF));
+    function testSetOwner() public {
+        testSetOwner(address(0xBEEF));
     }
 
     function testCallFunctionAsNonOwner() public {
@@ -33,7 +33,7 @@ contract ThreeStepOwnedTest is DSTestPlus {
 
     function testCallFunctionAsOwnerAfterUpdatingIt() public {
         address newOwner = address(0xCAFE);
-        testUpdateOwner(newOwner);
+        testSetOwner(newOwner);
 
         hevm.prank(newOwner);
         mockThreeStepOwned.updateFlag();
