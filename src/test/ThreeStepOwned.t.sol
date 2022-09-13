@@ -39,7 +39,7 @@ contract ThreeStepOwnedTest is DSTestPlus {
         mockThreeStepOwned.updateFlag();
     }
 
-    function testRenounceOwnership() public {
+    function testRenounceOwner() public {
         mockThreeStepOwned.renounceOwner();
 
         assertEq(mockThreeStepOwned.owner(), address(0));
@@ -48,7 +48,7 @@ contract ThreeStepOwnedTest is DSTestPlus {
         mockThreeStepOwned.updateFlag();
     }
 
-    function testRenounceOwnershipAsNonOwner() public {
+    function testRenounceOwnerAsNonOwner() public {
         address nonOwner = address(0xBAD);
         assertFalse(mockThreeStepOwned.owner() == nonOwner);
 
@@ -57,33 +57,33 @@ contract ThreeStepOwnedTest is DSTestPlus {
         mockThreeStepOwned.renounceOwner();
     }
 
-    function testConfirmOwnershipUpdateAfterRenouncing() public {
-        address ownerCandidate = address(0xC0FFEE);
-        mockThreeStepOwned.setOwner(ownerCandidate);
+    function testConfirmOwnerAfterRenounceOwner() public {
+        address newOwner = address(0xC0FFEE);
+        mockThreeStepOwned.setOwner(newOwner);
 
-        mockThreeStepOwned.renounceOwnership();
+        mockThreeStepOwned.renounceOwner();
         assertEq(mockThreeStepOwned.owner(), address(0));
 
-        hevm.prank(ownerCandidate);
+        hevm.prank(newOwner);
         mockThreeStepOwned.confirmOwner();
 
         hevm.expectRevert("UNAUTHORIZED");
         mockThreeStepOwned.confirmOwner();
     }
 
-    function testConfirmOwnershipInWrongOrder() public {
+    function testConfirmOwnerInWrongOrder() public {
         mockThreeStepOwned.setOwner(address(0xC0FFEE));
 
         hevm.expectRevert("UNAUTHORIZED");
         mockThreeStepOwned.confirmOwner();
     }
 
-    function testUpdateOwner(address ownerCandidate) public {
-        mockThreeStepOwned.setOwner(ownerCandidate);
+    function testSetOwner(address newOwner) public {
+        mockThreeStepOwned.setOwner(newOwner);
 
         assertEq(mockThreeStepOwned.owner(), address(this));
 
-        hevm.prank(ownerCandidate);
+        hevm.prank(newOwner);
         mockThreeStepOwned.confirmOwner();
 
         assertEq(mockThreeStepOwned.owner(), address(this));
