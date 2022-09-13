@@ -57,8 +57,6 @@ abstract contract ThreeStepOwned {
             
             address newOwner = _ownerCandidate;
             
-            delete _ownerCandidate;
-            
             owner = newOwner;
 
             emit OwnerUpdated(msg.sender, newOwner);
@@ -71,8 +69,6 @@ abstract contract ThreeStepOwned {
     
     function renounceOwner() public virtual onlyOwner {
         delete owner;
-        
-        delete _ownerCandidate;
 
         emit OwnerUpdated(msg.sender, address(0));
     }
