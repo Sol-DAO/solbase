@@ -217,7 +217,7 @@ contract FixedPointMathLibTest is Test {
         assertEq(FixedPointMathLib.sqrt(32239684), 5678);
         assertEq(FixedPointMathLib.sqrt(type(uint256).max), 340282366920938463463374607431768211455);
     }
-    
+
     function testSqrtBackHashedSingle() public {
         testFuzzSqrtHashed(123);
     }
@@ -435,7 +435,7 @@ contract FixedPointMathLibTest is Test {
         vm.expectRevert(FixedPointMathLib.MulDivFailed.selector);
         FixedPointMathLib.mulDivUp(x, y, 0);
     }
-    
+
     function testDifferentiallyFuzzSqrt(uint256 x) public {
         assertEq(FixedPointMathLib.sqrt(x), uniswapSqrt(x));
         assertEq(FixedPointMathLib.sqrt(x), abdkSqrt(x));
@@ -466,7 +466,7 @@ contract FixedPointMathLibTest is Test {
     function testFuzzSqrtHashed(uint256 x) public {
         testFuzzSqrtBack(uint256(keccak256(abi.encode(x))));
     }
-    
+
     function uniswapSqrt(uint256 y) internal pure returns (uint256 z) {
         if (y > 3) {
             z = y;
