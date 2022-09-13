@@ -32,7 +32,9 @@ abstract contract ThreeStepOwned {
     /*//////////////////////////////////////////////////////////////
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
-
+    
+    /// @notice Create contract and set `owner`.
+    /// @param _owner The `owner` of contract.
     constructor(address _owner) {
         owner = _owner;
 
@@ -42,13 +44,16 @@ abstract contract ThreeStepOwned {
     /*//////////////////////////////////////////////////////////////
                              OWNERSHIP LOGIC
     //////////////////////////////////////////////////////////////*/
-
+    
+    /// @notice Initiate ownership transfer.
+    /// @param newOwner The `_ownerCandidate` that will `confirmOwner()`.
     function setOwner(address newOwner) public virtual onlyOwner {
         _ownerCandidate = newOwner;
 
         emit OwnerUpdateInitiated(msg.sender, newOwner);
     }
-
+    
+    /// @notice Confirm ownership between `owner` and `_ownerCandidate`.
     function confirmOwner() public virtual {
         if (_ownerCandidateConfirmed) {
             require(msg.sender == owner, "UNAUTHORIZED");
@@ -67,6 +72,7 @@ abstract contract ThreeStepOwned {
         }
     }
     
+    /// @notice Terminate ownership by `owner`.
     function renounceOwner() public virtual onlyOwner {
         delete owner;
 
