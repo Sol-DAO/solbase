@@ -90,6 +90,6 @@ contract ThreeStepOwnedTest is DSTestPlus {
 
         mockThreeStepOwned.confirmOwner();
 
-        assertEq(mockThreeStepOwned.owner(), ownerCandidate);
+        assertEq(mockThreeStepOwned.owner(), newOwner);
     }
 }
