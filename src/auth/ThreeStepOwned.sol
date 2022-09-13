@@ -17,10 +17,11 @@ abstract contract ThreeStepOwned {
                             OWNERSHIP STORAGE
     //////////////////////////////////////////////////////////////*/
 
-    bool internal _updateConfirmedByCandidate;
-    address internal _ownerCandidate;
-
     address public owner;
+    
+    address internal _ownerCandidate;
+    
+    bool internal _ownerCandidateConfirmed;
 
     modifier onlyOwner() virtual {
         require(msg.sender == owner, "UNAUTHORIZED");
@@ -42,30 +43,37 @@ abstract contract ThreeStepOwned {
                              OWNERSHIP LOGIC
     //////////////////////////////////////////////////////////////*/
 
-    function renounceOwnership() public virtual onlyOwner {
-        owner = address(0);
+    function setOwner(address newOwner) public virtual onlyOwner {
+        _ownerCandidate = newOwner;
 
-        emit OwnerUpdated(msg.sender, address(0));
+        emit OwnerUpdateInitiated(msg.sender, newOwner);
     }
 
-    function initOwnershipUpdate(address _newOwnerCandidate) public virtual onlyOwner {
-        _ownerCandidate = _newOwnerCandidate;
-
-        emit OwnerUpdateInitiated(msg.sender, _newOwnerCandidate);
-    }
-
-    function confirmOwnershipUpdate() public virtual {
-        if (_updateConfirmedByCandidate) {
+    function confirmOwner() public virtual {
+        if (_ownerCandidateConfirmed) {
             require(msg.sender == owner, "UNAUTHORIZED");
+            
+            delete _ownerCandidateConfirmed;
+            
+            address newOwner = _ownerCandidate;
+            
+            delete _ownerCandidate;
+            
+            owner = newOwner;
 
-            _updateConfirmedByCandidate = false;
-            owner = _ownerCandidate;
-
-            emit OwnerUpdated(msg.sender, owner);
+            emit OwnerUpdated(msg.sender, newOwner);
         } else {
             require(msg.sender == _ownerCandidate, "UNAUTHORIZED");
 
-            _updateConfirmedByCandidate = true;
+            _ownerCandidateConfirmed = true;
         }
+    }
+    
+    function renounceOwner() public virtual onlyOwner {
+        delete owner;
+        
+        delete _ownerCandidate;
+
+        emit OwnerUpdated(msg.sender, address(0));
     }
 }
