@@ -1,14 +1,14 @@
 {
-  "name": "solmate",
-  "license": "AGPL-3.0-only",
-  "version": "6.6.2",
-  "description": "Modern, opinionated and gas optimized building blocks for smart contract development.",
+  "name": "solbase",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "Modern, opinionated and gas optimized base for smart contract development.",
   "files": [
     "src/**/*.sol"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/transmissions11/solmate.git"
+    "url": "git+https://github.com/Sol-DAO/solbase.git"
   },
   "devDependencies": {
     "prettier": "^2.3.1",
