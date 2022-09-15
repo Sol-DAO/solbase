@@ -18,11 +18,17 @@ abstract contract OwnedRoles {
     /// @dev The `newOwner` cannot be the zero address.
     error NewOwnerIsZeroAddress();
 
+    /// @dev The `pendingOwner` does not have a valid handover request.
+    error NoHandoverRequest();
+
     /// @dev `bytes4(keccak256(bytes("Unauthorized()")))`.
     uint256 private constant _UNAUTHORIZED_ERROR_SELECTOR = 0x82b42900;
 
     /// @dev `bytes4(keccak256(bytes("NewOwnerIsZeroAddress()")))`.
     uint256 private constant _NEW_OWNER_IS_ZERO_ADDRESS_ERROR_SELECTOR = 0x7448fbae;
+
+    /// @dev `bytes4(keccak256(bytes("NoHandoverRequest()")))`.
+    uint256 private constant _NO_HANDOVER_REQUEST_ERROR_SELECTOR = 0x6f5e8818;
 
     /*//////////////////////////////////////////////////////////////
                                  EVENTS                           
@@ -34,11 +40,11 @@ abstract contract OwnedRoles {
     /// despite it not being as lightweight as a single argument event.
     event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
 
-    /// @dev An ownership handover to `newOwner` is proposed.
-    event OwnershipHandoverProposed(address indexed newOwner);
+    /// @dev An ownership handover to `pendingOwner` has been requested.
+    event OwnershipHandoverRequested(address indexed pendingOwner);
 
-    /// @dev The ownership handover is cancelled.
-    event OwnershipHandoverCanceled();
+    /// @dev The ownership handover to `pendingOwner` has been cancelled.
+    event OwnershipHandoverCanceled(address indexed pendingOwner);
 
     /// @dev The `user`'s roles is updated to `roles`.
     /// Each bit of `roles` represents whether the role is set.
@@ -48,13 +54,13 @@ abstract contract OwnedRoles {
     uint256 private constant _OWNERSHIP_TRANSFERRED_EVENT_SIGNATURE =
         0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0;
 
-    /// @dev `keccak256(bytes("OwnershipHandoverProposed(address)"))`.
-    uint256 private constant _OWNERSHIP_HANDOVER_PROPOSED_EVENT_SIGNATURE =
-        0xbddead5759d93d1c80803f9e8dcce528b941a7cdbf365abc5ad97e8743460d17;
+    /// @dev `keccak256(bytes("OwnershipHandoverRequested(address)"))`.
+    uint256 private constant _OWNERSHIP_HANDOVER_REQUESTED_EVENT_SIGNATURE =
+        0xdbf36a107da19e49527a7176a1babf963b4b0ff8cde35ee35d6cd8f1f9ac7e1d;
 
-    /// @dev `keccak256(bytes("OwnershipHandoverCanceled()"))`.
+    /// @dev `keccak256(bytes("OwnershipHandoverCanceled(address)"))`.
     uint256 private constant _OWNERSHIP_HANDOVER_CANCELED_EVENT_SIGNATURE =
-        0x8422bba0a447c9e0309f7f8ab02fe9cc65654c78bb03841856db33a0536c524c;
+        0xfa7b8eab7da67f412cc9575ed43464468f9bfbae89d1675917346ca6d8fe3c92;
 
     /// @dev `keccak256(bytes("RolesUpdated(address,uint256)"))`.
     uint256 private constant _ROLES_UPDATED_EVENT_SIGNATURE =
@@ -70,8 +76,6 @@ abstract contract OwnedRoles {
     /// The choice of manual storage layout is to enable compatibility
     /// with both regular and upgradeable contracts.
     ///
-    /// The handover receiver slot is given by: `add(not(_OWNER_SLOT_NOT), 1)`.
-    ///
     /// The role slot of `user` is given by:
     /// ```
     ///     mstore(0x00, or(shl(96, user), _OWNER_SLOT_NOT))
@@ -80,6 +84,14 @@ abstract contract OwnedRoles {
     /// This automatically ignores the upper bits of the `user` in case
     /// they are not clean, as well as keep the `keccak256` under 32-bytes.
     uint256 private constant _OWNER_SLOT_NOT = 0x8b78c6d8;
+
+    /// The ownership handover slot of `newOwner` is given by:
+    /// ```
+    ///     mstore(0x00, or(shl(96, user), _HANDOVER_SLOT_SEED))
+    ///     let handoverSlot := keccak256(0x00, 0x20)
+    /// ```
+    /// It stores the expiry timestamp of the two-step ownership handover.
+    uint256 private constant _HANDOVER_SLOT_SEED = 0x389a75e1;
 
     /*//////////////////////////////////////////////////////////////
                            INTERNAL FUNCTIONS                     
@@ -182,54 +194,52 @@ abstract contract OwnedRoles {
         }
     }
 
-    /// @dev Initiates a two step ownership transfer.
-    /// The caller must be the owner.
-    /// Only one proposal can be active at once.
-    /// If there is an existing active ownership handover, it will be overwritten.
-    function proposeOwnershipHandover(address newOwner) public virtual onlyOwner {
+    /// @dev Request a two-step ownership handover to the caller.
+    /// The request will be automatically expire in 48 hours (172800 seconds) by default.
+    function requestOwnershipHandover() public virtual {
+        unchecked {
+            uint256 expires = block.timestamp + ownershipHandoverValidFor();
+            assembly {
+                // Compute and set the handover slot to 1.
+                mstore(0x00, or(shl(96, caller()), _HANDOVER_SLOT_SEED))
+                sstore(keccak256(0x00, 0x20), expires)
+                // Emit the {OwnershipHandoverRequested} event.
+                log2(0, 0, _OWNERSHIP_HANDOVER_REQUESTED_EVENT_SIGNATURE, caller())
+            }
+        }
+    }
+
+    /// @dev Cancels the two-step ownership handover to the caller, if any.
+    function cancelOwnershipHandover() public virtual {
+        assembly {
+            // Compute and set the handover slot to 0.
+            mstore(0x00, or(shl(96, caller()), _HANDOVER_SLOT_SEED))
+            sstore(keccak256(0x00, 0x20), 0)
+            // Emit the {OwnershipHandoverCanceled} event.
+            log2(0, 0, _OWNERSHIP_HANDOVER_CANCELED_EVENT_SIGNATURE, caller())
+        }
+    }
+
+    /// @dev Allows the owner to complete the two-step ownership handover to `pendingOwner`.
+    /// Reverts if there is no existing ownership handover requested by `pendingOwner`.
+    function completeOwnershipHandover(address pendingOwner) public virtual onlyOwner {
         assembly {
             // Clean the upper 96 bits.
-            newOwner := shr(96, shl(96, newOwner))
-            // Reverts if the `newOwner` is the zero address.
-            if iszero(newOwner) {
-                mstore(0x00, _NEW_OWNER_IS_ZERO_ADDRESS_ERROR_SELECTOR)
+            pendingOwner := shr(96, shl(96, pendingOwner))
+            // Compute and set the handover slot to 0.
+            mstore(0x00, or(shl(96, pendingOwner), _HANDOVER_SLOT_SEED))
+            let handoverSlot := keccak256(0x00, 0x20)
+            // If the handover does not exist, or has expired.
+            if gt(timestamp(), sload(handoverSlot)) {
+                mstore(0x00, _NO_HANDOVER_REQUEST_ERROR_SELECTOR)
                 revert(0x1c, 0x04)
             }
-            // Store the `newOwner` in the proposal slot.
-            sstore(add(not(_OWNER_SLOT_NOT), 1), newOwner)
-            // Emit the {OwnershipHandoverProposed} event.
-            log2(0, 0, _OWNERSHIP_HANDOVER_PROPOSED_EVENT_SIGNATURE, newOwner)
-        }
-    }
-
-    /// @dev Cancels a two step ownership transfer.
-    /// The caller must be the owner.
-    /// Cancels the pending ownership handover, if any.
-    function cancelOwnershipHandover() public virtual onlyOwner {
-        assembly {
-            sstore(add(not(_OWNER_SLOT_NOT), 1), 0)
-            // Emit the {OwnershipHandoverCanceled} event.
-            log1(0, 0, _OWNERSHIP_HANDOVER_CANCELED_EVENT_SIGNATURE)
-        }
-    }
-
-    /// @dev Accepts a two step ownership transfer.
-    /// The caller must be the receiver.
-    /// Upon acceptance, the ownership will be transferred to the caller.
-    /// and the ownership handover will be closed.
-    function acceptOwnershipHandover() public virtual {
-        assembly {
-            let ownerSlot := not(_OWNER_SLOT_NOT)
-            // If the caller is not the handover receiver.
-            if iszero(eq(caller(), sload(add(ownerSlot, 1)))) {
-                mstore(0x00, _UNAUTHORIZED_ERROR_SELECTOR)
-                revert(0x1c, 0x04)
-            }
-            sstore(add(ownerSlot, 1), 0)
+            // Set the handover slot to 0.
+            sstore(handoverSlot, 0)
             // Emit the {OwnershipTransferred} event.
-            log3(0, 0, _OWNERSHIP_TRANSFERRED_EVENT_SIGNATURE, sload(ownerSlot), caller())
-            // Store the caller as the new owner.
-            sstore(ownerSlot, caller())
+            log3(0, 0, _OWNERSHIP_TRANSFERRED_EVENT_SIGNATURE, caller(), pendingOwner)
+            // Store the new value.
+            sstore(not(_OWNER_SLOT_NOT), pendingOwner)
         }
     }
 
@@ -262,11 +272,19 @@ abstract contract OwnedRoles {
         }
     }
 
-    /// @dev Returns the receiver of the current ownership handover, if any.
-    function ownershipHandoverReceiver() public view virtual returns (address result) {
+    /// @dev Returns the expiry timestamp for the two-step ownership handover to `pendingOwner`.
+    function ownershipHandoverExpiresAt(address pendingOwner) public view virtual returns (uint256 result) {
         assembly {
-            result := sload(add(not(_OWNER_SLOT_NOT), 1))
+            // Compute the handover slot.
+            mstore(0x00, or(shl(96, pendingOwner), _HANDOVER_SLOT_SEED))
+            // Load the handover slot.
+            result := sload(keccak256(0x00, 0x20))
         }
+    }
+
+    /// @dev Returns how long a two-step ownership handover is valid for in seconds.
+    function ownershipHandoverValidFor() public view virtual returns (uint64) {
+        return 48 * 3600;
     }
 
     /// @dev Returns whether `user` has any of `roles`.
@@ -416,8 +434,6 @@ abstract contract OwnedRoles {
     /*//////////////////////////////////////////////////////////////
                              ROLE CONSTANTS                       
     //////////////////////////////////////////////////////////////*/
-
-    // IYKYK
 
     uint256 internal constant _ROLE_0 = 1 << 0;
     uint256 internal constant _ROLE_1 = 1 << 1;

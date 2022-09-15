@@ -1,37 +1,38 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {TestPlus} from "./utils/TestPlus.sol";
 import {Base64} from "../utils/Base64.sol";
+import {LibString} from "../utils/LibString.sol";
 
-contract Base64Test is DSTestPlus {
+contract Base64Test is TestPlus {
     function testBase64EncodeEmptyString() public {
-        testBase64("", "");
+        _testBase64Encode("", "");
     }
 
     function testBase64EncodeShortStrings() public {
-        testBase64("M", "TQ==");
-        testBase64("Mi", "TWk=");
-        testBase64("Mil", "TWls");
-        testBase64("Mila", "TWlsYQ==");
-        testBase64("Milad", "TWlsYWQ=");
-        testBase64("Milady", "TWlsYWR5");
+        _testBase64Encode("M", "TQ==");
+        _testBase64Encode("Mi", "TWk=");
+        _testBase64Encode("Mil", "TWls");
+        _testBase64Encode("Mila", "TWlsYQ==");
+        _testBase64Encode("Milad", "TWlsYWQ=");
+        _testBase64Encode("Milady", "TWlsYWR5");
     }
 
     function testBase64EncodeToStringWithDoublePadding() public {
-        testBase64("test", "dGVzdA==");
+        _testBase64Encode("test", "dGVzdA==");
     }
 
     function testBase64EncodeToStringWithSinglePadding() public {
-        testBase64("test1", "dGVzdDE=");
+        _testBase64Encode("test1", "dGVzdDE=");
     }
 
     function testBase64EncodeToStringWithNoPadding() public {
-        testBase64("test12", "dGVzdDEy");
+        _testBase64Encode("test12", "dGVzdDEy");
     }
 
     function testBase64EncodeSentence() public {
-        testBase64(
+        _testBase64Encode(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4="
         );
@@ -40,26 +41,115 @@ contract Base64Test is DSTestPlus {
     function testBase64WordBoundary() public {
         // Base64.encode allocates memory in multiples of 32 bytes.
         // This checks if the amount of memory allocated is enough.
-        testBase64("012345678901234567890", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkw");
-        testBase64("0123456789012345678901", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMQ==");
-        testBase64("01234567890123456789012", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=");
-        testBase64("012345678901234567890123", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIz");
-        testBase64("0123456789012345678901234", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNA==");
+        _testBase64Encode("012345678901234567890", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkw");
+        _testBase64Encode("0123456789012345678901", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMQ==");
+        _testBase64Encode("01234567890123456789012", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=");
+        _testBase64Encode("012345678901234567890123", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIz");
+        _testBase64Encode("0123456789012345678901234", "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNA==");
     }
 
-    function testBase64(string memory input, string memory output) private {
+    function _testBase64Encode(string memory input, string memory output) private {
         string memory encoded = Base64.encode(bytes(input));
-        bool freeMemoryPointerIs32ByteAligned;
+
         assembly {
             let freeMemoryPointer := mload(0x40)
             // This ensures that the memory allocated is 32-byte aligned.
-            freeMemoryPointerIs32ByteAligned := iszero(and(freeMemoryPointer, 31))
-            // Write a non Base64 character to the free memory pointer.
+            if and(freeMemoryPointer, 31) {
+                revert(0, 0)
+            }
+            // Write some garbage to the free memory.
             // If the allocated memory is insufficient, this will change the
-            // encoded string and cause the subsequent asserts to fail.
-            mstore(freeMemoryPointer, "#")
+            // decoded string and cause the subsequent asserts to fail.
+            mstore(freeMemoryPointer, keccak256(0x00, 0x60))
         }
-        assertTrue(freeMemoryPointerIs32ByteAligned);
+
         assertEq(keccak256(bytes(encoded)), keccak256(bytes(output)));
+    }
+
+    function testBase64EncodeDecode(bytes memory input) public {
+        string memory encoded = Base64.encode(input);
+        bytes memory decoded = Base64.decode(encoded);
+
+        assertEq(input, decoded);
+    }
+
+    function testBase64DecodeShortStringGas() public {
+        assertEq(Base64.decode("TWlsYWR5").length, 6);
+    }
+
+    function testBase64DecodeSentenceGas() public {
+        assertEq(
+            Base64.decode("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=").length,
+            56
+        );
+    }
+
+    function testBase64EncodeDecodeAltModes(
+        bytes memory input,
+        bool[4] memory randomness,
+        bytes calldata brutalizeWith
+    ) public brutalizeMemory(brutalizeWith) {
+        for (uint256 i; i < 2; ++i) {
+            string memory encoded = Base64.encode(input);
+
+            if (randomness[0]) {
+                encoded = LibString.replace(encoded, "=", "");
+            }
+            if (randomness[1]) {
+                encoded = LibString.replace(encoded, "/", ",");
+            }
+            if (randomness[2]) {
+                encoded = LibString.replace(encoded, "/", "_");
+            }
+            if (randomness[3]) {
+                encoded = LibString.replace(encoded, "+", "-");
+            }
+
+            bytes memory decoded = Base64.decode(encoded);
+
+            assertEq(input, decoded);
+
+            input = abi.encode(encoded);
+        }
+    }
+
+    function testBase64EncodeFileSafeAndNoPadding(
+        bytes memory input,
+        bool fileSafe,
+        bool noPadding
+    ) public {
+        string memory expectedEncoded = Base64.encode(input);
+
+        if (fileSafe) {
+            expectedEncoded = LibString.replace(expectedEncoded, "+", "-");
+            expectedEncoded = LibString.replace(expectedEncoded, "/", "_");
+        }
+        if (noPadding) {
+            expectedEncoded = LibString.replace(expectedEncoded, "=", "");
+        }
+
+        assertEq(Base64.encode(input, fileSafe, noPadding), expectedEncoded);
+    }
+
+    function testBase64DecodeMemorySafety(bytes memory input, bytes calldata brutalizeWith)
+        public
+        brutalizeMemory(brutalizeWith)
+    {
+        bytes memory decoded = bytes(Base64.decode(string(input)));
+        bytes32 hashBefore = keccak256(decoded);
+
+        assembly {
+            let freeMemoryPointer := mload(0x40)
+            // This ensures that the memory allocated is 32-byte aligned.
+            if and(freeMemoryPointer, 31) {
+                revert(0, 0)
+            }
+            // Write some garbage to the free memory.
+            // If the allocated memory is insufficient, this will change the
+            // decoded string and cause the subsequent asserts to fail.
+            mstore(freeMemoryPointer, hashBefore)
+        }
+        bytes32 hashAfter = keccak256(decoded);
+        assertEq(hashBefore, hashAfter);
     }
 }
