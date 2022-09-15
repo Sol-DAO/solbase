@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "../../../utils/Multicallable.sol";
+import "../../../utils/SafeMulticallable.sol";
 
-contract MockMulticallable is Multicallable {
+contract MockSafeMulticallable is SafeMulticallable {
     error CustomError();
 
     struct Tuple {
@@ -29,12 +29,6 @@ contract MockMulticallable is Multicallable {
 
     function returnsString(string calldata s) external pure returns (string memory) {
         return s;
-    }
-
-    uint256 public paid;
-
-    function pay() external payable {
-        paid += msg.value;
     }
 
     function returnsSender() external view returns (address) {
