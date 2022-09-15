@@ -2,9 +2,9 @@
 pragma solidity ^0.8.4;
 
 /// @notice Three-step single owner authorization mixin.
-/// @author SolBase (https://github.com/Sol-DAO/solbase/blob/main/src/auth/ThreeStepOwned.sol)
+/// @author SolBase (https://github.com/Sol-DAO/solbase/blob/main/src/auth/OwnedThreeStep.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Owned.sol)
-abstract contract ThreeStepOwned {
+abstract contract OwnedThreeStep {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
