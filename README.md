@@ -1,4 +1,4 @@
-# solbase
+# ⚡ Solbase
 
 **Modern**, **opinionated**, and **gas optimized** base for **smart contract development**.
 
