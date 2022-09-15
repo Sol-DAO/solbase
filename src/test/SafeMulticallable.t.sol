@@ -46,8 +46,8 @@ contract SafeMulticallableTest is Test {
         data[0] = abi.encodeWithSelector(MockSafeMulticallable.returnsTuple.selector, a0, b0);
         data[1] = abi.encodeWithSelector(MockSafeMulticallable.returnsTuple.selector, a1, b1);
         bytes[] memory returnedData = multicallable.multicall(data);
-        MockMulticallable.Tuple memory t0 = abi.decode(returnedData[0], (MockSafeMulticallable.Tuple));
-        MockMulticallable.Tuple memory t1 = abi.decode(returnedData[1], (MockSafeMulticallable.Tuple));
+        MockSafeMulticallable.Tuple memory t0 = abi.decode(returnedData[0], (MockSafeMulticallable.Tuple));
+        MockSafeMulticallable.Tuple memory t1 = abi.decode(returnedData[1], (MockSafeMulticallable.Tuple));
         assertEq(t0.a, a0);
         assertEq(t0.b, b0);
         assertEq(t1.a, a1);
