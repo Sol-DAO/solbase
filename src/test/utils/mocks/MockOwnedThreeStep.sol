@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ThreeStepOwned} from "../../../auth/ThreeStepOwned.sol";
+import {OwnedThreeStep} from "../../../auth/OwnedThreeStep.sol";
 
-contract MockThreeStepOwned is ThreeStepOwned(msg.sender) {
+contract MockOwnedThreeStep is OwnedThreeStep(msg.sender) {
     bool public flag;
 
     function updateFlag() public virtual onlyOwner {

@@ -2,13 +2,13 @@
 pragma solidity ^0.8.4;
 
 import {DSTestPlus} from "./utils/DSTestPlus.sol";
-import {MockThreeStepOwned} from "./utils/mocks/MockThreeStepOwned.sol";
+import {MockOwnedThreeStep} from "./utils/mocks/MockOwnedThreeStep.sol";
 
 contract ThreeStepOwnedTest is DSTestPlus {
-    MockThreeStepOwned mockThreeStepOwned;
+    MockOwnedThreeStep mockOwnedThreeStep;
 
     function setUp() public {
-        mockThreeStepOwned = new MockThreeStepOwned();
+        mockOwnedThreeStep = new MockOwnedThreeStep();
     }
 
     function testSetOwner() public {
@@ -18,17 +18,17 @@ contract ThreeStepOwnedTest is DSTestPlus {
     function testCallFunctionAsNonOwner() public {
         address nonOwner = address(0xBAD);
 
-        assertFalse(mockThreeStepOwned.owner() == nonOwner);
+        assertFalse(mockOwnedThreeStep.owner() == nonOwner);
 
         hevm.prank(nonOwner);
         hevm.expectRevert("UNAUTHORIZED");
-        mockThreeStepOwned.setOwner(address(0xC0FFEE));
+        mockOwnedThreeStep.setOwner(address(0xC0FFEE));
 
-        assertEq(mockThreeStepOwned.owner(), address(this));
+        assertEq(mockOwnedThreeStep.owner(), address(this));
     }
 
     function testCallFunctionAsOwner() public {
-        mockThreeStepOwned.updateFlag();
+        mockOwnedThreeStep.updateFlag();
     }
 
     function testCallFunctionAsOwnerAfterUpdatingIt() public {
@@ -36,60 +36,60 @@ contract ThreeStepOwnedTest is DSTestPlus {
         testSetOwner(newOwner);
 
         hevm.prank(newOwner);
-        mockThreeStepOwned.updateFlag();
+        mockOwnedThreeStep.updateFlag();
     }
 
     function testRenounceOwner() public {
-        mockThreeStepOwned.renounceOwner();
+        mockOwnedThreeStep.renounceOwner();
 
-        assertEq(mockThreeStepOwned.owner(), address(0));
+        assertEq(mockOwnedThreeStep.owner(), address(0));
 
         hevm.expectRevert("UNAUTHORIZED");
-        mockThreeStepOwned.updateFlag();
+        mockOwnedThreeStep.updateFlag();
     }
 
     function testRenounceOwnerAsNonOwner() public {
         address nonOwner = address(0xBAD);
-        assertFalse(mockThreeStepOwned.owner() == nonOwner);
+        assertFalse(mockOwnedThreeStep.owner() == nonOwner);
 
         hevm.prank(nonOwner);
         hevm.expectRevert("UNAUTHORIZED");
-        mockThreeStepOwned.renounceOwner();
+        mockOwnedThreeStep.renounceOwner();
     }
 
     function testConfirmOwnerAfterRenounceOwner() public {
         address newOwner = address(0xC0FFEE);
-        mockThreeStepOwned.setOwner(newOwner);
+        mockOwnedThreeStep.setOwner(newOwner);
 
-        mockThreeStepOwned.renounceOwner();
-        assertEq(mockThreeStepOwned.owner(), address(0));
+        mockOwnedThreeStep.renounceOwner();
+        assertEq(mockOwnedThreeStep.owner(), address(0));
 
         hevm.prank(newOwner);
-        mockThreeStepOwned.confirmOwner();
+        mockOwnedThreeStep.confirmOwner();
 
         hevm.expectRevert("UNAUTHORIZED");
-        mockThreeStepOwned.confirmOwner();
+        mockOwnedThreeStep.confirmOwner();
     }
 
     function testConfirmOwnerInWrongOrder() public {
-        mockThreeStepOwned.setOwner(address(0xC0FFEE));
+        mockOwnedThreeStep.setOwner(address(0xC0FFEE));
 
         hevm.expectRevert("UNAUTHORIZED");
-        mockThreeStepOwned.confirmOwner();
+        mockOwnedThreeStep.confirmOwner();
     }
 
     function testSetOwner(address newOwner) public {
-        mockThreeStepOwned.setOwner(newOwner);
+        mockOwnedThreeStep.setOwner(newOwner);
 
-        assertEq(mockThreeStepOwned.owner(), address(this));
+        assertEq(mockOwnedThreeStep.owner(), address(this));
 
         hevm.prank(newOwner);
-        mockThreeStepOwned.confirmOwner();
+        mockOwnedThreeStep.confirmOwner();
 
-        assertEq(mockThreeStepOwned.owner(), address(this));
+        assertEq(mockOwnedThreeStep.owner(), address(this));
 
-        mockThreeStepOwned.confirmOwner();
+        mockOwnedThreeStep.confirmOwner();
 
-        assertEq(mockThreeStepOwned.owner(), newOwner);
+        assertEq(mockOwnedThreeStep.owner(), newOwner);
     }
 }
