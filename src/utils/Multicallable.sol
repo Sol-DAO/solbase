@@ -10,7 +10,7 @@ pragma solidity ^0.8.4;
 /// It WILL open up your contract to double-spend vulnerabilities / exploits.
 /// See: (https://www.paradigm.xyz/2021/08/two-rights-might-make-a-wrong/)
 abstract contract Multicallable {
-    function multicall(bytes[] calldata data) public payable returns (bytes[] memory results) {
+    function multicall(bytes[] calldata data) public payable virtual returns (bytes[] memory results) {
         assembly {
             if data.length {
                 results := mload(0x40) // Point `results` to start of free memory.
