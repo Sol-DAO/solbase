@@ -17,4 +17,8 @@ contract MockERC20 is ERC20 {
     function burn(address from, uint256 value) public virtual {
         _burn(from, value);
     }
+    
+    function burnFrom(address from, uint256 value) public virtual {
+        _burn(from, value);
+    }
 }
