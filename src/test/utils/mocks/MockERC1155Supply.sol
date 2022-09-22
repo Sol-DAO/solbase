@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 import {ERC1155} from "../../../tokens/ERC1155.sol";
 
 contract MockERC1155Supply is ERC1155 {
-    mapping(uint256 => uint256) totalSupply;
+    mapping(uint256 => uint256) public totalSupply;
 
     function uri(uint256) public pure virtual override returns (string memory) {}
 
