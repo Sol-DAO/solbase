@@ -43,6 +43,7 @@ utils
 ├─ SafeTransferLib — "Safe ERC20/ETH transfer lib that handles missing return values"
 ├─ LibString — "Library for converting numbers into strings and other string operations"
 ├─ Multicallable — "Contract that enables a single call to call multiple methods on itself"
+├─ SafeMulticallable — "Contract that enables a single call to call multiple methods on itself"
 ├─ MerkleProofLib — "Gas optimized verification of proof of inclusion for a leaf in a Merkle tree"
 ├─ SignatureCheckerLib — "Signature verification helper that supports both ECDSA signatures from EOAs"
 ```
