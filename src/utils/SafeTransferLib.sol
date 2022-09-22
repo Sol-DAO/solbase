@@ -7,19 +7,19 @@ pragma solidity ^0.8.4;
 /// @dev Caution! This library won't check that a token has code, responsibility is delegated to the caller.
 library SafeTransferLib {
     /// -----------------------------------------------------------------------
-    /// Custom Errors 
+    /// Custom Errors
     /// -----------------------------------------------------------------------
 
     error ETHTransferFailed();
-    
+
     error ApproveFailed();
-    
+
     error TransferFailed();
 
     error TransferFromFailed();
 
     /// -----------------------------------------------------------------------
-    /// ETH Operations 
+    /// ETH Operations
     /// -----------------------------------------------------------------------
 
     function safeTransferETH(address to, uint256 amount) internal {
@@ -35,9 +35,9 @@ library SafeTransferLib {
     }
 
     /// -----------------------------------------------------------------------
-    /// ERC20 Operations 
+    /// ERC20 Operations
     /// -----------------------------------------------------------------------
-    
+
     function safeApprove(
         address token,
         address to,
@@ -72,7 +72,7 @@ library SafeTransferLib {
             mstore(0x40, memPointer) // Restore the memPointer.
         }
     }
-    
+
     function safeTransfer(
         address token,
         address to,

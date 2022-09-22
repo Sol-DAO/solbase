@@ -6,7 +6,7 @@ pragma solidity ^0.8.4;
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibClone.sol)
 library LibClone {
     /// -----------------------------------------------------------------------
-    /// Custom Errors 
+    /// Custom Errors
     /// -----------------------------------------------------------------------
 
     /// @dev Unable to deploy the clone.
