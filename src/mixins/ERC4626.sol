@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC20} from "../tokens/ERC20/ERC20.sol";
 import {ERC20Permit} from "../tokens/ERC20/extensions/ERC20Permit.sol";
 import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 import {FixedPointMathLib} from "../utils/FixedPointMathLib.sol";
@@ -34,7 +33,7 @@ abstract contract ERC4626 is ERC20Permit {
     address public immutable asset;
 
     constructor(
-        ERC20 _asset,
+        ERC20Permit _asset,
         string memory _name,
         string memory _symbol
     ) ERC20Permit(_name, _symbol, _asset.decimals()) {

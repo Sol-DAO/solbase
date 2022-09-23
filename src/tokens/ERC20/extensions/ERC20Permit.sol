@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {EIP712} from "../../../utils/EIP712.sol";
 import {ERC20} from "../../../tokens/ERC20/ERC20.sol";
+import {EIP712} from "../../../utils/EIP712.sol";
 
+/// @notice ERC20 + EIP-2612 implementation.
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC20/extensions/ERC20Permit.sol)
 abstract contract ERC20Permit is ERC20, EIP712 {
-
     /// -----------------------------------------------------------------------
     /// EIP-2612 Storage
     /// -----------------------------------------------------------------------
@@ -20,10 +21,7 @@ abstract contract ERC20Permit is ERC20, EIP712 {
         string memory _name,
         string memory _symbol,
         uint8 _decimals
-    ) 
-        ERC20(_name, _symbol, _decimals)
-        EIP712(_name, "1") 
-    {}
+    ) ERC20(_name, _symbol, _decimals) EIP712(_name, "1") {}
 
     /// -----------------------------------------------------------------------
     /// EIP-2612 Logic
@@ -44,7 +42,7 @@ abstract contract ERC20Permit is ERC20, EIP712 {
         // the owner's nonce which cannot realistically overflow.
         unchecked {
             address recoveredAddress = ecrecover(
-                computeDigest(                        
+                computeDigest(
                     keccak256(
                         abi.encode(
                             keccak256(
