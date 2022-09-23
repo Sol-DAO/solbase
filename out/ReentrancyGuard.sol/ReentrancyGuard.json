@@ -1,0 +1,393 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "Reentrancy",
+      "type": "error"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {},
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"Reentrancy\",\"type\":\"error\"}],\"devdoc\":{\"author\":\"SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/ReentrancyGuard.sol)\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Gas-optimized reentrancy protection for smart contracts.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/utils/ReentrancyGuard.sol\":\"ReentrancyGuard\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":ds-test/=lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0x8a895e2ce09eaf7f1556a8f0b7c187e8d537ceae1d528699b9b97a6f7b21c5c7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://da5a9437425012addc590b8a777a1e7654bd4bf6bd835302b69407e995cd41aa\",\"dweb:/ipfs/QmWLVqHswbJag9JK8y16WeAyWMynf2RPXjzYYwZmo1XLe4\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "type": "error",
+          "name": "Reentrancy"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":ds-test/=lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "metadata": {
+        "bytecodeHash": "none"
+      },
+      "compilationTarget": {
+        "src/utils/ReentrancyGuard.sol": "ReentrancyGuard"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/utils/ReentrancyGuard.sol": {
+        "keccak256": "0x8a895e2ce09eaf7f1556a8f0b7c187e8d537ceae1d528699b9b97a6f7b21c5c7",
+        "urls": [
+          "bzz-raw://da5a9437425012addc590b8a777a1e7654bd4bf6bd835302b69407e995cd41aa",
+          "dweb:/ipfs/QmWLVqHswbJag9JK8y16WeAyWMynf2RPXjzYYwZmo1XLe4"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/utils/ReentrancyGuard.sol",
+    "id": 71909,
+    "exportedSymbols": {
+      "ReentrancyGuard": [
+        71908
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:430:94",
+    "nodes": [
+      {
+        "id": 71882,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:94",
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ]
+      },
+      {
+        "id": 71908,
+        "nodeType": "ContractDefinition",
+        "src": "222:239:94",
+        "nodes": [
+          {
+            "id": 71885,
+            "nodeType": "ErrorDefinition",
+            "src": "262:19:94",
+            "errorSelector": "ab143c06",
+            "name": "Reentrancy",
+            "nameLocation": "268:10:94",
+            "parameters": {
+              "id": 71884,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "278:2:94"
+            }
+          },
+          {
+            "id": 71888,
+            "nodeType": "VariableDeclaration",
+            "src": "287:26:94",
+            "constant": false,
+            "mutability": "mutable",
+            "name": "locked",
+            "nameLocation": "303:6:94",
+            "scope": 71908,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 71886,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "287:7:94",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "31",
+              "id": 71887,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "312:1:94",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1_by_1",
+                "typeString": "int_const 1"
+              },
+              "value": "1"
+            },
+            "visibility": "private"
+          },
+          {
+            "id": 71907,
+            "nodeType": "ModifierDefinition",
+            "src": "320:139:94",
+            "body": {
+              "id": 71906,
+              "nodeType": "Block",
+              "src": "352:107:94",
+              "statements": [
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 71892,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 71890,
+                      "name": "locked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 71888,
+                      "src": "366:6:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "32",
+                      "id": 71891,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "376:1:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_2_by_1",
+                        "typeString": "int_const 2"
+                      },
+                      "value": "2"
+                    },
+                    "src": "366:11:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 71896,
+                  "nodeType": "IfStatement",
+                  "src": "362:36:94",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 71893,
+                        "name": "Reentrancy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 71885,
+                        "src": "386:10:94",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 71894,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "386:12:94",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 71895,
+                    "nodeType": "RevertStatement",
+                    "src": "379:19:94"
+                  }
+                },
+                {
+                  "expression": {
+                    "id": 71899,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 71897,
+                      "name": "locked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 71888,
+                      "src": "409:6:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "32",
+                      "id": 71898,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "418:1:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_2_by_1",
+                        "typeString": "int_const 2"
+                      },
+                      "value": "2"
+                    },
+                    "src": "409:10:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 71900,
+                  "nodeType": "ExpressionStatement",
+                  "src": "409:10:94"
+                },
+                {
+                  "id": 71901,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "430:1:94"
+                },
+                {
+                  "expression": {
+                    "id": 71904,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 71902,
+                      "name": "locked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 71888,
+                      "src": "442:6:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 71903,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "451:1:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "442:10:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 71905,
+                  "nodeType": "ExpressionStatement",
+                  "src": "442:10:94"
+                }
+              ]
+            },
+            "name": "nonReentrant",
+            "nameLocation": "329:12:94",
+            "parameters": {
+              "id": 71889,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "341:2:94"
+            },
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "ReentrancyGuard",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 71883,
+          "nodeType": "StructuredDocumentation",
+          "src": "57:165:94",
+          "text": "@notice Gas-optimized reentrancy protection for smart contracts.\n @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/ReentrancyGuard.sol)"
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          71908
+        ],
+        "name": "ReentrancyGuard",
+        "nameLocation": "240:15:94",
+        "scope": 71909,
+        "usedErrors": [
+          71885
+        ]
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 94
+}

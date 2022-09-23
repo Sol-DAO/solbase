@@ -1,0 +1,1187 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "log",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "log_address",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "log_bytes",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "log_bytes32",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "name": "log_int",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "val",
+          "type": "address"
+        }
+      ],
+      "name": "log_named_address",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "val",
+          "type": "bytes"
+        }
+      ],
+      "name": "log_named_bytes",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "val",
+          "type": "bytes32"
+        }
+      ],
+      "name": "log_named_bytes32",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "val",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "decimals",
+          "type": "uint256"
+        }
+      ],
+      "name": "log_named_decimal_int",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "val",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "decimals",
+          "type": "uint256"
+        }
+      ],
+      "name": "log_named_decimal_uint",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "val",
+          "type": "int256"
+        }
+      ],
+      "name": "log_named_int",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "val",
+          "type": "string"
+        }
+      ],
+      "name": "log_named_string",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "val",
+          "type": "uint256"
+        }
+      ],
+      "name": "log_named_uint",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "log_string",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "log_uint",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "logs",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "IS_TEST",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "failed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "testFillLast12Bytes",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "testFromLast20Bytes",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60806040526000805460ff1916600190811790915560025534801561002357600080fd5b506107da806100336000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80632f20fb3414610051578063ba414fa61461005b578063dc1607f314610077578063fa7626d41461007f575b600080fd5b61005961008c565b005b6100636100cc565b604051901515815260200160405180910390f35b61005961022c565b6000546100639060ff1681565b6100ca7ffeedfacecafebeeffeedfacecafebeeffeedfacecafebeeffeedfacecafebeef73cafebeeffeedfacecafebeeffeedfacecafebeef610256565b565b60008054610100900460ff16156100ec5750600054610100900460ff1690565b6000737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156102275760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c6564000000000000000000000000000000000000000000000000000082840152825180830384018152606083019093526000929091610191917f667f9d70ca411d70ead50d8d5c22070dafc36ad75f3dcf5e7237b22ade9aecc491608001610636565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526101c991610672565b6000604051808303816000865af19150503d8060008114610206576040519150601f19603f3d011682016040523d82523d6000602084013e61020b565b606091505b50915050808060200190518101906102239190610685565b9150505b919050565b6100ca7ffeedfacecafebeeffeedfacecafebeeffeedface00000000000000000000000080610390565b8073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161461038c577f41304facd9323d75b11bcdd609cb38effffdb05710f7caf0e9b16c6d9d709f5060405161030e9060208082526025908201527f4572726f723a2061203d3d2062206e6f7420736174697366696564205b61646460408201527f726573735d000000000000000000000000000000000000000000000000000000606082015260800190565b60405180910390a17f9c4e8541ca8f0dc1c413f9108f66d82d3cecb1bddbce437a61caa3175c4cc96f8160405161034591906106a7565b60405180910390a17f9c4e8541ca8f0dc1c413f9108f66d82d3cecb1bddbce437a61caa3175c4cc96f8260405161037c9190610708565b60405180910390a161038c61048a565b5050565b80821461038c577f41304facd9323d75b11bcdd609cb38effffdb05710f7caf0e9b16c6d9d709f5060405161041c9060208082526025908201527f4572726f723a2061203d3d2062206e6f7420736174697366696564205b62797460408201527f657333325d000000000000000000000000000000000000000000000000000000606082015260800190565b60405180910390a17fafb795c9c61e4fe7468c386f925d7a5429ecad9c0495ddb8d38d690614d32f99816040516104539190610745565b60405180910390a17fafb795c9c61e4fe7468c386f925d7a5429ecad9c0495ddb8d38d690614d32f998260405161037c9190610790565b737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156105d85760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c656400000000000000000000000000000000000000000000000000009282019290925260016060820152600091907f70ca10bbd0dbfd9020a9f4b13402c16cb120705e0d1c0aeab10fa353ae586fc490608001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526105599291602001610636565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe08184030181529082905261059191610672565b6000604051808303816000865af19150503d80600081146105ce576040519150601f19603f3d011682016040523d82523d6000602084013e6105d3565b606091505b505050505b600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff16610100179055565b6000815160005b81811015610627576020818501810151868301520161060d565b50600093019283525090919050565b7fffffffff0000000000000000000000000000000000000000000000000000000083168152600061066a6004830184610606565b949350505050565b600061067e8284610606565b9392505050565b60006020828403121561069757600080fd5b8151801515811461067e57600080fd5b6040815260006106e460408301600a81527f2020457870656374656400000000000000000000000000000000000000000000602082015260400190565b905073ffffffffffffffffffffffffffffffffffffffff8316602083015292915050565b6040815260006106e460408301600a81527f2020202041637475616c00000000000000000000000000000000000000000000602082015260400190565b60408152600061078260408301600a81527f2020457870656374656400000000000000000000000000000000000000000000602082015260400190565b905082602083015292915050565b60408152600061078260408301600a81527f2020202041637475616c0000000000000000000000000000000000000000000060208201526040019056fea164736f6c6343000811000a",
+    "sourceMap": "176:547:16:-:0;;;1572:26:0;;;-1:-1:-1;;1572:26:0;1594:4;1572:26;;;;;;518:37:49;;176:547:16;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80632f20fb3414610051578063ba414fa61461005b578063dc1607f314610077578063fa7626d41461007f575b600080fd5b61005961008c565b005b6100636100cc565b604051901515815260200160405180910390f35b61005961022c565b6000546100639060ff1681565b6100ca7ffeedfacecafebeeffeedfacecafebeeffeedfacecafebeeffeedfacecafebeef73cafebeeffeedfacecafebeeffeedfacecafebeef610256565b565b60008054610100900460ff16156100ec5750600054610100900460ff1690565b6000737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156102275760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c6564000000000000000000000000000000000000000000000000000082840152825180830384018152606083019093526000929091610191917f667f9d70ca411d70ead50d8d5c22070dafc36ad75f3dcf5e7237b22ade9aecc491608001610636565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526101c991610672565b6000604051808303816000865af19150503d8060008114610206576040519150601f19603f3d011682016040523d82523d6000602084013e61020b565b606091505b50915050808060200190518101906102239190610685565b9150505b919050565b6100ca7ffeedfacecafebeeffeedfacecafebeeffeedface00000000000000000000000080610390565b8073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161461038c577f41304facd9323d75b11bcdd609cb38effffdb05710f7caf0e9b16c6d9d709f5060405161030e9060208082526025908201527f4572726f723a2061203d3d2062206e6f7420736174697366696564205b61646460408201527f726573735d000000000000000000000000000000000000000000000000000000606082015260800190565b60405180910390a17f9c4e8541ca8f0dc1c413f9108f66d82d3cecb1bddbce437a61caa3175c4cc96f8160405161034591906106a7565b60405180910390a17f9c4e8541ca8f0dc1c413f9108f66d82d3cecb1bddbce437a61caa3175c4cc96f8260405161037c9190610708565b60405180910390a161038c61048a565b5050565b80821461038c577f41304facd9323d75b11bcdd609cb38effffdb05710f7caf0e9b16c6d9d709f5060405161041c9060208082526025908201527f4572726f723a2061203d3d2062206e6f7420736174697366696564205b62797460408201527f657333325d000000000000000000000000000000000000000000000000000000606082015260800190565b60405180910390a17fafb795c9c61e4fe7468c386f925d7a5429ecad9c0495ddb8d38d690614d32f99816040516104539190610745565b60405180910390a17fafb795c9c61e4fe7468c386f925d7a5429ecad9c0495ddb8d38d690614d32f998260405161037c9190610790565b737109709ecfa91a80626ff3989d68f67f5b1dd12d3b156105d85760408051737109709ecfa91a80626ff3989d68f67f5b1dd12d602082018190527f6661696c656400000000000000000000000000000000000000000000000000009282019290925260016060820152600091907f70ca10bbd0dbfd9020a9f4b13402c16cb120705e0d1c0aeab10fa353ae586fc490608001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0818403018152908290526105599291602001610636565b604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe08184030181529082905261059191610672565b6000604051808303816000865af19150503d80600081146105ce576040519150601f19603f3d011682016040523d82523d6000602084013e6105d3565b606091505b505050505b600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff16610100179055565b6000815160005b81811015610627576020818501810151868301520161060d565b50600093019283525090919050565b7fffffffff0000000000000000000000000000000000000000000000000000000083168152600061066a6004830184610606565b949350505050565b600061067e8284610606565b9392505050565b60006020828403121561069757600080fd5b8151801515811461067e57600080fd5b6040815260006106e460408301600a81527f2020457870656374656400000000000000000000000000000000000000000000602082015260400190565b905073ffffffffffffffffffffffffffffffffffffffff8316602083015292915050565b6040815260006106e460408301600a81527f2020202041637475616c00000000000000000000000000000000000000000000602082015260400190565b60408152600061078260408301600a81527f2020457870656374656400000000000000000000000000000000000000000000602082015260400190565b905082602083015292915050565b60408152600061078260408301600a81527f2020202041637475616c0000000000000000000000000000000000000000000060208201526040019056fea164736f6c6343000811000a",
+    "sourceMap": "176:547:16:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;477:244;;;:::i;:::-;;1819:584:0;;;:::i;:::-;;;179:14:101;;172:22;154:41;;142:2;127:18;1819:584:0;;;;;;;227:244:16;;;:::i;1572:26:0:-;;;;;;;;;477:244:16;525:189;581:66;662:42;525:8;:189::i;:::-;477:244::o;1819:584:0:-;1853:4;1873:7;;;;;;;1869:528;;;-1:-1:-1;1903:7:0;;;;;;;;1819:584::o;1869:528::-;1941:17;2990:42;2978:55;3059:16;1980:374;;2196:43;;;1671:64;2196:43;;;380:74:101;;;2221:17:0;470:18:101;;;463:34;2196:43:0;;;;;;;;;353:18:101;;;2196:43:0;;;-1:-1:-1;;1671:64:0;;2086:175;;2135:34;;2086:175;;;:::i;:::-;;;;;;;;;;;;;;;2047:232;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2020:259;;;2323:7;2312:27;;;;;;;;;;;;:::i;:::-;2297:42;;2002:352;1980:374;2374:12;1819:584;-1:-1:-1;1819:584:0:o;227:244:16:-;275:189;629:21:79;388:66:16;275:8;:189::i;3615:277:0:-;3683:1;3678:6;;:1;:6;;;3674:212;;3705:44;;;;;1842:2:101;1824:21;;;1881:2;1861:18;;;1854:30;1920:34;1915:2;1900:18;;1893:62;1991:7;1986:2;1971:18;;1964:35;2031:3;2016:19;;1640:401;3705:44:0;;;;;;;;3768:34;3800:1;3768:34;;;;;;:::i;:::-;;;;;;;;3821;3853:1;3821:34;;;;;;:::i;:::-;;;;;;;;3869:6;:4;:6::i;:::-;3615:277;;:::o;4088:::-;4156:1;4151;:6;4147:212;;4178:44;;;;;3380:2:101;3362:21;;;3419:2;3399:18;;;3392:30;3458:34;3453:2;3438:18;;3431:62;3529:7;3524:2;3509:18;;3502:35;3569:3;3554:19;;3178:401;4178:44:0;;;;;;;;4241:34;4273:1;4241:34;;;;;;:::i;:::-;;;;;;;;4294;4326:1;4294:34;;;;;;:::i;2410:424::-;2990:42;2978:55;3059:16;2445:359;;2645:67;;;1671:64;2645:67;;;4492:74:101;;;2670:17:0;4582:18:101;;;4575:34;;;;2705:4:0;4625:18:101;;;4618:34;2482:11:0;;1671:64;2579:43;;4465:18:101;;2645:67:0;;;;;;;;;;;;;;2534:196;;;2645:67;2534:196;;:::i;:::-;;;;;;;;;;;;;;;2499:245;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;2445:359:0;2813:7;:14;;;;;;;;2410:424::o;508:322:101:-;549:3;587:5;581:12;611:1;621:128;635:6;632:1;629:13;621:128;;;732:4;717:13;;;713:24;;707:31;694:11;;;687:52;650:12;621:128;;;-1:-1:-1;804:1:101;768:16;;793:13;;;-1:-1:-1;768:16:101;;508:322;-1:-1:-1;508:322:101:o;835:324::-;1032:66;1024:6;1020:79;1015:3;1008:92;990:3;1116:37;1150:1;1145:3;1141:11;1133:6;1116:37;:::i;:::-;1109:44;835:324;-1:-1:-1;;;;835:324:101:o;1164:189::-;1293:3;1318:29;1343:3;1335:6;1318:29;:::i;:::-;1311:36;1164:189;-1:-1:-1;;;1164:189:101:o;1358:277::-;1425:6;1478:2;1466:9;1457:7;1453:23;1449:32;1446:52;;;1494:1;1491;1484:12;1446:52;1526:9;1520:16;1579:5;1572:13;1565:21;1558:5;1555:32;1545:60;;1601:1;1598;1591:12;2210:397;2440:2;2429:9;2422:21;2403:4;2460:49;2505:2;2494:9;2490:18;2123:2;2111:15;;2158:12;2151:4;2142:14;;2135:36;2196:2;2187:12;;2046:159;2460:49;2452:57;;2557:42;2549:6;2545:55;2540:2;2529:9;2525:18;2518:83;2210:397;;;;:::o;2776:::-;3006:2;2995:9;2988:21;2969:4;3026:49;3071:2;3060:9;3056:18;2689:2;2677:15;;2724:12;2717:4;2708:14;;2701:36;2762:2;2753:12;;2612:159;3584:348;3814:2;3803:9;3796:21;3777:4;3834:49;3879:2;3868:9;3864:18;2123:2;2111:15;;2158:12;2151:4;2142:14;;2135:36;2196:2;2187:12;;2046:159;3834:49;3826:57;;3919:6;3914:2;3903:9;3899:18;3892:34;3584:348;;;;:::o;3937:::-;4167:2;4156:9;4149:21;4130:4;4187:49;4232:2;4221:9;4217:18;2689:2;2677:15;;2724:12;2717:4;2708:14;;2701:36;2762:2;2753:12;;2612:159",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "IS_TEST()": "fa7626d4",
+    "failed()": "ba414fa6",
+    "testFillLast12Bytes()": "dc1607f3",
+    "testFromLast20Bytes()": "2f20fb34"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"log_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"log_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"log_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"log_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"val\",\"type\":\"address\"}],\"name\":\"log_named_address\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"val\",\"type\":\"bytes\"}],\"name\":\"log_named_bytes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"val\",\"type\":\"bytes32\"}],\"name\":\"log_named_bytes32\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"decimals\",\"type\":\"uint256\"}],\"name\":\"log_named_decimal_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"int256\",\"name\":\"val\",\"type\":\"int256\"}],\"name\":\"log_named_int\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"val\",\"type\":\"string\"}],\"name\":\"log_named_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"val\",\"type\":\"uint256\"}],\"name\":\"log_named_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"log_string\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"log_uint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"logs\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"IS_TEST\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"failed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"testFillLast12Bytes\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"testFromLast20Bytes\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/test/Bytes32AddressLib.t.sol\":\"Bytes32AddressLibTest\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":ds-test/=lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"lib/ds-test/src/test.sol\":{\"keccak256\":\"0xb39cd1d5220cb474947b131e15a4538334b7e886af244b440ae5c9c6bba96a54\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://3101520221449ac0070bda3881311a71d9aa87e5210765e875246922cb5cb5f5\",\"dweb:/ipfs/Qmbg6kAHNoG7ox9N9Xqd9Ere2H2XixMFWFqvyPwFCzB3Gr\"]},\"src/test/Bytes32AddressLib.t.sol\":{\"keccak256\":\"0xfe3451e9d250e076fefc59bcc5f8f4c8f3ef1d69371550cb40e9f60439d4205a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d1ae02fc17861c59469568dd226933488ee47bb94a6b0fc10dc37f9e03c3766\",\"dweb:/ipfs/QmU3AVTxdL1dwR9ZZwZpyA2DF2B8ZBpvZWP3j7YiCmP2Fv\"]},\"src/test/utils/DSTestPlus.sol\":{\"keccak256\":\"0xb6043777581945529525b1e18fa265dc8e004fd271e221e78c813bb67dea40c4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e633cd308bdcc9b76e25292e2029e7c1a1e5ac2edf2b9dc5aaefd502d039f8af\",\"dweb:/ipfs/QmRmkuViB9oAB9PwydaaUCcUth42bXeZd35RjttHB6xUEa\"]},\"src/test/utils/Hevm.sol\":{\"keccak256\":\"0x503dbe7e3dcd7e0939de940aa439fc48bac5a0df28434771ffbdce95754ccc18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8c6fb7b18d2d4ad99db823a9e05de5b3785f95ad69add19700cd6f49c4d2f7e2\",\"dweb:/ipfs/QmSa9TaJTVqYPQurBDKBux5aCHCLhscXrdDuhBwSkFEkiM\"]},\"src/utils/Bytes32AddressLib.sol\":{\"keccak256\":\"0x70707b80502abc10886205f75194e031dcb702e7e3fba8851c48b74759f46281\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8c7f2bc0874cb47580fea8edd8a09ea6e75c0fce3e0128ab9ed3f22a4322a282\",\"dweb:/ipfs/QmYaCyQzLAjdWnqMidhvAKsrSN5DMpaJZYWq94bdhYCvHa\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_address",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_bytes",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_bytes32",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "int256",
+              "name": "",
+              "type": "int256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_int",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "val",
+              "type": "address",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_address",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes",
+              "name": "val",
+              "type": "bytes",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_bytes",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes32",
+              "name": "val",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_bytes32",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "int256",
+              "name": "val",
+              "type": "int256",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "decimals",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_decimal_int",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "val",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "decimals",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_decimal_uint",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "int256",
+              "name": "val",
+              "type": "int256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_int",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "string",
+              "name": "val",
+              "type": "string",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_string",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "key",
+              "type": "string",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "val",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_named_uint",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_string",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "log_uint",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "logs",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "IS_TEST",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "failed",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "testFillLast12Bytes"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "testFromLast20Bytes"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":ds-test/=lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "metadata": {
+        "bytecodeHash": "none"
+      },
+      "compilationTarget": {
+        "src/test/Bytes32AddressLib.t.sol": "Bytes32AddressLibTest"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "lib/ds-test/src/test.sol": {
+        "keccak256": "0xb39cd1d5220cb474947b131e15a4538334b7e886af244b440ae5c9c6bba96a54",
+        "urls": [
+          "bzz-raw://3101520221449ac0070bda3881311a71d9aa87e5210765e875246922cb5cb5f5",
+          "dweb:/ipfs/Qmbg6kAHNoG7ox9N9Xqd9Ere2H2XixMFWFqvyPwFCzB3Gr"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/test/Bytes32AddressLib.t.sol": {
+        "keccak256": "0xfe3451e9d250e076fefc59bcc5f8f4c8f3ef1d69371550cb40e9f60439d4205a",
+        "urls": [
+          "bzz-raw://5d1ae02fc17861c59469568dd226933488ee47bb94a6b0fc10dc37f9e03c3766",
+          "dweb:/ipfs/QmU3AVTxdL1dwR9ZZwZpyA2DF2B8ZBpvZWP3j7YiCmP2Fv"
+        ],
+        "license": "MIT"
+      },
+      "src/test/utils/DSTestPlus.sol": {
+        "keccak256": "0xb6043777581945529525b1e18fa265dc8e004fd271e221e78c813bb67dea40c4",
+        "urls": [
+          "bzz-raw://e633cd308bdcc9b76e25292e2029e7c1a1e5ac2edf2b9dc5aaefd502d039f8af",
+          "dweb:/ipfs/QmRmkuViB9oAB9PwydaaUCcUth42bXeZd35RjttHB6xUEa"
+        ],
+        "license": "MIT"
+      },
+      "src/test/utils/Hevm.sol": {
+        "keccak256": "0x503dbe7e3dcd7e0939de940aa439fc48bac5a0df28434771ffbdce95754ccc18",
+        "urls": [
+          "bzz-raw://8c6fb7b18d2d4ad99db823a9e05de5b3785f95ad69add19700cd6f49c4d2f7e2",
+          "dweb:/ipfs/QmSa9TaJTVqYPQurBDKBux5aCHCLhscXrdDuhBwSkFEkiM"
+        ],
+        "license": "MIT"
+      },
+      "src/utils/Bytes32AddressLib.sol": {
+        "keccak256": "0x70707b80502abc10886205f75194e031dcb702e7e3fba8851c48b74759f46281",
+        "urls": [
+          "bzz-raw://8c7f2bc0874cb47580fea8edd8a09ea6e75c0fce3e0128ab9ed3f22a4322a282",
+          "dweb:/ipfs/QmYaCyQzLAjdWnqMidhvAKsrSN5DMpaJZYWq94bdhYCvHa"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/test/Bytes32AddressLib.t.sol",
+    "id": 27579,
+    "exportedSymbols": {
+      "Bytes32AddressLib": [
+        70340
+      ],
+      "Bytes32AddressLibTest": [
+        27578
+      ],
+      "DSTestPlus": [
+        65947
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:692:16",
+    "nodes": [
+      {
+        "id": 27547,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:16",
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ]
+      },
+      {
+        "id": 27549,
+        "nodeType": "ImportDirective",
+        "src": "57:50:16",
+        "absolutePath": "src/test/utils/DSTestPlus.sol",
+        "file": "./utils/DSTestPlus.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 27579,
+        "sourceUnit": 65948,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 27548,
+              "name": "DSTestPlus",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 65947,
+              "src": "65:10:16",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 27551,
+        "nodeType": "ImportDirective",
+        "src": "109:65:16",
+        "absolutePath": "src/utils/Bytes32AddressLib.sol",
+        "file": "../utils/Bytes32AddressLib.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 27579,
+        "sourceUnit": 70341,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 27550,
+              "name": "Bytes32AddressLib",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 70340,
+              "src": "117:17:16",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 27578,
+        "nodeType": "ContractDefinition",
+        "src": "176:547:16",
+        "nodes": [
+          {
+            "id": 27565,
+            "nodeType": "FunctionDefinition",
+            "src": "227:244:16",
+            "body": {
+              "id": 27564,
+              "nodeType": "Block",
+              "src": "265:206:16",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "hexValue": "307866454544466143456361466542454546664545444641436563614645426565466665456466416365",
+                            "id": 27559,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "331:42:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            "value": "0xfEEDFaCEcaFeBEEFfEEDFACecaFEBeeFfeEdfAce"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "expression": {
+                            "id": 27557,
+                            "name": "Bytes32AddressLib",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 70340,
+                            "src": "297:17:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_Bytes32AddressLib_$70340_$",
+                              "typeString": "type(library Bytes32AddressLib)"
+                            }
+                          },
+                          "id": 27558,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "315:15:16",
+                          "memberName": "fillLast12Bytes",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 70339,
+                          "src": "297:33:16",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_address_$returns$_t_bytes32_$",
+                            "typeString": "function (address) pure returns (bytes32)"
+                          }
+                        },
+                        "id": 27560,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "297:77:16",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "hexValue": "307866656564666163656361666562656566666565646661636563616665626565666665656466616365303030303030303030303030303030303030303030303030",
+                        "id": 27561,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "388:66:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_115307937306215730088059262655190692033592530375903862528823224851242382524416_by_1",
+                          "typeString": "int_const 1153...(70 digits omitted)...4416"
+                        },
+                        "value": "0xfeedfacecafebeeffeedfacecafebeeffeedface000000000000000000000000"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_115307937306215730088059262655190692033592530375903862528823224851242382524416_by_1",
+                          "typeString": "int_const 1153...(70 digits omitted)...4416"
+                        }
+                      ],
+                      "id": 27556,
+                      "name": "assertEq",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        320,
+                        345,
+                        375,
+                        400,
+                        459,
+                        484,
+                        514,
+                        539,
+                        1639,
+                        1674
+                      ],
+                      "referencedDeclaration": 375,
+                      "src": "275:8:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32,bytes32)"
+                      }
+                    },
+                    "id": 27562,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "275:189:16",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 27563,
+                  "nodeType": "ExpressionStatement",
+                  "src": "275:189:16"
+                }
+              ]
+            },
+            "functionSelector": "dc1607f3",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "testFillLast12Bytes",
+            "nameLocation": "236:19:16",
+            "parameters": {
+              "id": 27554,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "255:2:16"
+            },
+            "returnParameters": {
+              "id": 27555,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "265:0:16"
+            },
+            "scope": 27578,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 27577,
+            "nodeType": "FunctionDefinition",
+            "src": "477:244:16",
+            "body": {
+              "id": 27576,
+              "nodeType": "Block",
+              "src": "515:206:16",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "hexValue": "307866656564666163656361666562656566666565646661636563616665626565666665656466616365636166656265656666656564666163656361666562656566",
+                            "id": 27571,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "581:66:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_115307937306215730088059262655190692033592530375966686469642091864005527125743_by_1",
+                              "typeString": "int_const 1153...(70 digits omitted)...5743"
+                            },
+                            "value": "0xfeedfacecafebeeffeedfacecafebeeffeedfacecafebeeffeedfacecafebeef"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_rational_115307937306215730088059262655190692033592530375966686469642091864005527125743_by_1",
+                              "typeString": "int_const 1153...(70 digits omitted)...5743"
+                            }
+                          ],
+                          "expression": {
+                            "id": 27569,
+                            "name": "Bytes32AddressLib",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 70340,
+                            "src": "547:17:16",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_Bytes32AddressLib_$70340_$",
+                              "typeString": "type(library Bytes32AddressLib)"
+                            }
+                          },
+                          "id": 27570,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "565:15:16",
+                          "memberName": "fromLast20Bytes",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 70323,
+                          "src": "547:33:16",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_bytes32_$returns$_t_address_$",
+                            "typeString": "function (bytes32) pure returns (address)"
+                          }
+                        },
+                        "id": 27572,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "547:101:16",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "hexValue": "307843416665426565664665656466416365434146654245456666454544666143656361664542656546",
+                        "id": 27573,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "662:42:16",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "value": "0xCAfeBeefFeedfAceCAFeBEEffEEDfaCecafEBeeF"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 27568,
+                      "name": "assertEq",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        320,
+                        345,
+                        375,
+                        400,
+                        459,
+                        484,
+                        514,
+                        539,
+                        1639,
+                        1674
+                      ],
+                      "referencedDeclaration": 320,
+                      "src": "525:8:16",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 27574,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "525:189:16",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 27575,
+                  "nodeType": "ExpressionStatement",
+                  "src": "525:189:16"
+                }
+              ]
+            },
+            "functionSelector": "2f20fb34",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "testFromLast20Bytes",
+            "nameLocation": "486:19:16",
+            "parameters": {
+              "id": 27566,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "505:2:16"
+            },
+            "returnParameters": {
+              "id": 27567,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "515:0:16"
+            },
+            "scope": 27578,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 27552,
+              "name": "DSTestPlus",
+              "nameLocations": [
+                "210:10:16"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 65947,
+              "src": "210:10:16"
+            },
+            "id": 27553,
+            "nodeType": "InheritanceSpecifier",
+            "src": "210:10:16"
+          }
+        ],
+        "canonicalName": "Bytes32AddressLibTest",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          27578,
+          65947,
+          1786
+        ],
+        "name": "Bytes32AddressLibTest",
+        "nameLocation": "185:21:16",
+        "scope": 27579,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 16
+}

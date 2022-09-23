@@ -1,0 +1,383 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "domainName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "version",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x61010060405234801561001157600080fd5b5060405161035a38038061035a8339810160408190526100309161016f565b8151602092830120608081815282519284019290922060a0818152604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f818801528082019490945260608401929092524693830184905230838201528151808403909101815260c0928301909152805193019290922090915260e0526101d2565b634e487b7160e01b600052604160045260246000fd5b600082601f8301126100db57600080fd5b81516001600160401b03808211156100f5576100f56100b4565b604051601f8301601f19908116603f0116810190828211818310171561011d5761011d6100b4565b8160405283815260209250868385880101111561013957600080fd5b600091505b8382101561015b578582018301518183018401529082019061013e565b600093810190920192909252949350505050565b6000806040838503121561018257600080fd5b82516001600160401b038082111561019957600080fd5b6101a5868387016100ca565b935060208501519150808211156101bb57600080fd5b506101c8858286016100ca565b9150509250929050565b60805160a05160c05160e0516101526102086000396000604e015260006101230152600060ca0152600060a201526101526000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80633644e51514610030575b600080fd5b61003861004a565b60405190815260200160405180910390f35b60007f000000000000000000000000000000000000000000000000000000000000000046146101205761011b604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f60208201527f0000000000000000000000000000000000000000000000000000000000000000918101919091527f000000000000000000000000000000000000000000000000000000000000000060608201524660808201523060a082015260009060c00160405160208183030381529060405280519060200120905090565b905090565b507f00000000000000000000000000000000000000000000000000000000000000009056fea164736f6c6343000811000a",
+    "sourceMap": "108:129:4:-:0;;;144:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1168:28:5;;;;;;;1147:49;;;;1231:25;;;;;;;;;1207:49;;;;1870:100;;;607:66;1870:100;;;1817:25:6;1858:18;;;1851:34;;;;1901:18;;;1894:34;;;;1941:13:5;1944:18:6;;;1937:34;;;1964:4:5;1987:19:6;;;1980:61;1870:100:5;;;;;;;;;;1789:19:6;;;;1870:100:5;;;1843:141;;;;;;;;1267:51;;;1329:32;;108:129:4;;14:127:6;75:10;70:3;66:20;63:1;56:31;106:4;103:1;96:15;130:4;127:1;120:15;146:840;200:5;253:3;246:4;238:6;234:17;230:27;220:55;;271:1;268;261:12;220:55;294:13;;-1:-1:-1;;;;;356:10:6;;;353:36;;;369:18;;:::i;:::-;444:2;438:9;412:2;498:13;;-1:-1:-1;;494:22:6;;;518:2;490:31;486:40;474:53;;;542:18;;;562:22;;;539:46;536:72;;;588:18;;:::i;:::-;628:10;624:2;617:22;663:2;655:6;648:18;685:4;675:14;;730:3;725:2;720;712:6;708:15;704:24;701:33;698:53;;;747:1;744;737:12;698:53;769:1;760:10;;779:133;793:2;790:1;787:9;779:133;;;881:14;;;877:23;;871:30;850:14;;;846:23;;839:63;804:10;;;;779:133;;;954:1;932:15;;;928:24;;;921:35;;;;936:6;146:840;-1:-1:-1;;;;146:840:6:o;991:562::-;1090:6;1098;1151:2;1139:9;1130:7;1126:23;1122:32;1119:52;;;1167:1;1164;1157:12;1119:52;1194:16;;-1:-1:-1;;;;;1259:14:6;;;1256:34;;;1286:1;1283;1276:12;1256:34;1309:61;1362:7;1353:6;1342:9;1338:22;1309:61;:::i;:::-;1299:71;;1416:2;1405:9;1401:18;1395:25;1379:41;;1445:2;1435:8;1432:16;1429:36;;;1461:1;1458;1451:12;1429:36;;1484:63;1539:7;1528:8;1517:9;1513:24;1484:63;:::i;:::-;1474:73;;;991:562;;;;;:::o;1558:489::-;108:129:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c80633644e51514610030575b600080fd5b61003861004a565b60405190815260200160405180910390f35b60007f000000000000000000000000000000000000000000000000000000000000000046146101205761011b604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f60208201527f0000000000000000000000000000000000000000000000000000000000000000918101919091527f000000000000000000000000000000000000000000000000000000000000000060608201524660808201523060a082015260009060c00160405160208183030381529060405280519060200120905090565b905090565b507f00000000000000000000000000000000000000000000000000000000000000009056fea164736f6c6343000811000a",
+    "sourceMap": "108:129:4:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1557:177:5;;;:::i;:::-;;;160:25:6;;;148:2;133:18;1557:177:5;;;;;;;;1614:7;1657:16;1640:13;:33;:87;;1703:24;1870:100;;;607:66;1870:100;;;455:25:6;1898:18:5;496::6;;;489:34;;;;1918:21:5;539:18:6;;;532:34;1941:13:5;582:18:6;;;575:34;1964:4:5;625:19:6;;;618:84;1805:7:5;;427:19:6;;1870:100:5;;;;;;;;;;;;1843:141;;;;;;1824:160;;1740:251;;1703:24;1633:94;;1557:177;:::o;1640:87::-;-1:-1:-1;1676:24:5;;1557:177::o",
+    "linkReferences": {},
+    "immutableReferences": {
+      "2634": [
+        {
+          "start": 162,
+          "length": 32
+        }
+      ],
+      "2636": [
+        {
+          "start": 202,
+          "length": 32
+        }
+      ],
+      "2638": [
+        {
+          "start": 291,
+          "length": 32
+        }
+      ],
+      "2640": [
+        {
+          "start": 78,
+          "length": 32
+        }
+      ]
+    }
+  },
+  "methodIdentifiers": {
+    "DOMAIN_SEPARATOR()": "3644e515"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"domainName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"DOMAIN_SEPARATOR()\":{\"notice\":\"----------------------------------------------------------------------- EIP-712 Logic -----------------------------------------------------------------------\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/test/utils/mocks/MockEIP712.sol\":\"MockEIP712\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":ds-test/=lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/test/utils/mocks/MockEIP712.sol\":{\"keccak256\":\"0x42e42ed19b0a1dd8d770ef2be3d8d529e9fe381e0f364818cbc00e0beef17dc9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0885cf17beccce6b41c87f2087b4d083c1387af6d9701ff5d5a1c46f10a90c9e\",\"dweb:/ipfs/QmPdSs4NJgvgd1y3HBD5e5QbLrnQi5BVHPckj4yyJNgboA\"]},\"src/utils/EIP712.sol\":{\"keccak256\":\"0x00008285c46aadc7d5b5b6e3e5590102511c14db3baa7105b2d39dac10d61fc5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2b1db374a386c07bc8d94bdcc8ba71552da7022144a0da2ba38c683cdcb381b9\",\"dweb:/ipfs/QmX1q6AxP86kiEGaESudZPurkRt8EvRupFD8j4obZJezSD\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "domainName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "version",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "DOMAIN_SEPARATOR",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "DOMAIN_SEPARATOR()": {
+            "notice": "----------------------------------------------------------------------- EIP-712 Logic -----------------------------------------------------------------------"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":ds-test/=lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 1000000
+      },
+      "metadata": {
+        "bytecodeHash": "none"
+      },
+      "compilationTarget": {
+        "src/test/utils/mocks/MockEIP712.sol": "MockEIP712"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/test/utils/mocks/MockEIP712.sol": {
+        "keccak256": "0x42e42ed19b0a1dd8d770ef2be3d8d529e9fe381e0f364818cbc00e0beef17dc9",
+        "urls": [
+          "bzz-raw://0885cf17beccce6b41c87f2087b4d083c1387af6d9701ff5d5a1c46f10a90c9e",
+          "dweb:/ipfs/QmPdSs4NJgvgd1y3HBD5e5QbLrnQi5BVHPckj4yyJNgboA"
+        ],
+        "license": "MIT"
+      },
+      "src/utils/EIP712.sol": {
+        "keccak256": "0x00008285c46aadc7d5b5b6e3e5590102511c14db3baa7105b2d39dac10d61fc5",
+        "urls": [
+          "bzz-raw://2b1db374a386c07bc8d94bdcc8ba71552da7022144a0da2ba38c683cdcb381b9",
+          "dweb:/ipfs/QmX1q6AxP86kiEGaESudZPurkRt8EvRupFD8j4obZJezSD"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/test/utils/mocks/MockEIP712.sol",
+    "id": 2626,
+    "exportedSymbols": {
+      "EIP712": [
+        2733
+      ],
+      "MockEIP712": [
+        2625
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:205:4",
+    "nodes": [
+      {
+        "id": 2608,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:4",
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ]
+      },
+      {
+        "id": 2610,
+        "nodeType": "ImportDirective",
+        "src": "57:49:4",
+        "absolutePath": "src/utils/EIP712.sol",
+        "file": "../../../utils/EIP712.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 2626,
+        "sourceUnit": 2734,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 2609,
+              "name": "EIP712",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 2733,
+              "src": "65:6:4",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 2625,
+        "nodeType": "ContractDefinition",
+        "src": "108:129:4",
+        "nodes": [
+          {
+            "id": 2624,
+            "nodeType": "FunctionDefinition",
+            "src": "144:91:4",
+            "body": {
+              "id": 2623,
+              "nodeType": "Block",
+              "src": "233:2:4",
+              "statements": []
+            },
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 2619,
+                    "name": "domainName",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2614,
+                    "src": "212:10:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  {
+                    "id": 2620,
+                    "name": "version",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2616,
+                    "src": "224:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  }
+                ],
+                "id": 2621,
+                "kind": "baseConstructorSpecifier",
+                "modifierName": {
+                  "id": 2618,
+                  "name": "EIP712",
+                  "nameLocations": [
+                    "205:6:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2733,
+                  "src": "205:6:4"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "205:27:4"
+              }
+            ],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "parameters": {
+              "id": 2617,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2614,
+                  "mutability": "mutable",
+                  "name": "domainName",
+                  "nameLocation": "170:10:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2624,
+                  "src": "156:24:4",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2613,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:6:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2616,
+                  "mutability": "mutable",
+                  "name": "version",
+                  "nameLocation": "196:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2624,
+                  "src": "182:21:4",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2615,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "182:6:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "155:49:4"
+            },
+            "returnParameters": {
+              "id": 2622,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "233:0:4"
+            },
+            "scope": 2625,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 2611,
+              "name": "EIP712",
+              "nameLocations": [
+                "131:6:4"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2733,
+              "src": "131:6:4"
+            },
+            "id": 2612,
+            "nodeType": "InheritanceSpecifier",
+            "src": "131:6:4"
+          }
+        ],
+        "canonicalName": "MockEIP712",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          2625,
+          2733
+        ],
+        "name": "MockEIP712",
+        "nameLocation": "117:10:4",
+        "scope": 2626,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 4
+}
