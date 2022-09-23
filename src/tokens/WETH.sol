@@ -8,7 +8,6 @@ import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 /// @notice Minimalist and modern Wrapped Ether implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/WETH.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/WETH.sol)
-/// @author Inspired by WETH9 (https://github.com/dapphub/ds-weth/blob/master/src/weth9.sol)
 contract WETH is ERC20("Wrapped Ether", "WETH", 18) {
     using SafeTransferLib for address;
 

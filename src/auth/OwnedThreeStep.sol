@@ -5,17 +5,17 @@ pragma solidity ^0.8.4;
 /// @author SolBase (https://github.com/Sol-DAO/solbase/blob/main/src/auth/OwnedThreeStep.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Owned.sol)
 abstract contract OwnedThreeStep {
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Events
+    /// -----------------------------------------------------------------------
 
     event OwnerUpdateInitiated(address indexed user, address indexed ownerCandidate);
 
     event OwnerUpdated(address indexed user, address indexed newOwner);
 
-    /*//////////////////////////////////////////////////////////////
-                            OWNERSHIP STORAGE
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Ownership Storage
+    /// -----------------------------------------------------------------------
 
     address public owner;
 
@@ -29,9 +29,9 @@ abstract contract OwnedThreeStep {
         _;
     }
 
-    /*//////////////////////////////////////////////////////////////
-                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Constructor
+    /// -----------------------------------------------------------------------
 
     /// @notice Create contract and set `owner`.
     /// @param _owner The `owner` of contract.
@@ -41,9 +41,9 @@ abstract contract OwnedThreeStep {
         emit OwnerUpdated(address(0), _owner);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                             OWNERSHIP LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Ownership Logic
+    /// -----------------------------------------------------------------------
 
     /// @notice Initiate ownership transfer.
     /// @param newOwner The `_ownerCandidate` that will `confirmOwner()`.

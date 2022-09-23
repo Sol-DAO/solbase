@@ -3,11 +3,11 @@ pragma solidity ^0.8.4;
 
 /// @notice Read and write to persistent storage at a fraction of the cost.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SSTORE2.sol)
-/// @author Solady (https://github.com/vectorized/solmady/blob/main/src/utils/SSTORE2.sol)
+/// @author Modified from Solady (https://github.com/vectorized/solmady/blob/main/src/utils/SSTORE2.sol)
 library SSTORE2 {
-    /*//////////////////////////////////////////////////////////////
-                              CUSTOM ERRORS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
 
     error DeploymentFailed();
 
@@ -15,9 +15,9 @@ library SSTORE2 {
 
     error ReadOutOfBounds();
 
-    /*//////////////////////////////////////////////////////////////
-                               WRITE LOGIC                        
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Write Logic
+    /// -----------------------------------------------------------------------
 
     function write(bytes memory data) internal returns (address pointer) {
         // Note: The assembly block below does not expand the memory.
@@ -68,9 +68,9 @@ library SSTORE2 {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                               READ LOGIC                         
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Read Logic
+    /// -----------------------------------------------------------------------
 
     function read(address pointer) internal view returns (bytes memory data) {
         assembly {

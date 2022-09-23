@@ -12,9 +12,9 @@ abstract contract ERC4626 is ERC20 {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;
 
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Events
+    /// -----------------------------------------------------------------------
 
     event Deposit(address indexed caller, address indexed owner, uint256 assets, uint256 shares);
 
@@ -26,9 +26,9 @@ abstract contract ERC4626 is ERC20 {
         uint256 shares
     );
 
-    /*//////////////////////////////////////////////////////////////
-                               IMMUTABLES
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Immutables
+    /// -----------------------------------------------------------------------
 
     address public immutable asset;
 
@@ -40,9 +40,9 @@ abstract contract ERC4626 is ERC20 {
         asset = address(_asset);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        DEPOSIT/WITHDRAWAL LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Deposit/Withdrawal Logic
+    /// -----------------------------------------------------------------------
 
     function deposit(uint256 assets, address receiver) public virtual returns (uint256 shares) {
         // Check for rounding error since we round down in previewDeposit.
@@ -116,9 +116,9 @@ abstract contract ERC4626 is ERC20 {
         asset.safeTransfer(receiver, assets);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                            ACCOUNTING LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Accounting Logic
+    /// -----------------------------------------------------------------------
 
     function totalAssets() public view virtual returns (uint256);
 
@@ -154,9 +154,9 @@ abstract contract ERC4626 is ERC20 {
         return convertToAssets(shares);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                     DEPOSIT/WITHDRAWAL LIMIT LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Deposit/Withdrawal Limit Logic
+    /// -----------------------------------------------------------------------
 
     function maxDeposit(address) public view virtual returns (uint256) {
         return type(uint256).max;
@@ -174,9 +174,9 @@ abstract contract ERC4626 is ERC20 {
         return balanceOf[owner];
     }
 
-    /*//////////////////////////////////////////////////////////////
-                          INTERNAL HOOKS LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Internal Hooks Logic
+    /// -----------------------------------------------------------------------
 
     function beforeWithdraw(uint256 assets, uint256 shares) internal virtual {}
 

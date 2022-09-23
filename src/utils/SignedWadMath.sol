@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.4;
 
 /// @notice Signed 18 decimal fixed point (wad) arithmetic library.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SignedWadMath.sol)
