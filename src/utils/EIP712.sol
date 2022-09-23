@@ -3,7 +3,8 @@ pragma solidity ^0.8.4;
 
 abstract contract EIP712 {
 
-    bytes32 internal constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
+    // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
+    bytes32 internal constant DOMAIN_TYPEHASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
     
     bytes32 internal immutable HASHED_DOMAIN_NAME;
 
