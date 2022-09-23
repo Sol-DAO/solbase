@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Gas optimized reentrancy protection for smart contracts.
+/// @notice Gas-optimized reentrancy protection for smart contracts.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/ReentrancyGuard.sol)
 abstract contract ReentrancyGuard {
     error Reentrancy();

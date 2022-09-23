@@ -17,13 +17,13 @@ mixins
 ├─ ERC4626 — "Minimal ERC4626 tokenized Vault implementation"
 tokens
 ├─ WETH — "Minimalist and modern Wrapped Ether implementation"
-├─ ERC20 — "Modern and gas efficient ERC20 + EIP-2612 implementation"
-├─ ERC721 — "Modern, minimalist, and gas efficient ERC721 implementation"
-├─ ERC1155 — "Minimalist and gas efficient standard ERC1155 implementation"
+├─ ERC20 — "Modern, minimalist, and gas-optimized ERC20 implementation"
+├─ ERC721 — "Modern, minimalist, and gas-optimized ERC721 implementation"
+├─ ERC1155 — "Modern, minimalist, and gas-optimized ERC1155 implementation"
 utils
 ├─ LibSort — "Optimized intro sort"
 ├─ LibClone — "Minimal proxy library"
-├─ ECDSA — "Gas optimized ECDSA wrapper"
+├─ ECDSA — "Gas-optimized ECDSA wrapper"
 ├─ Base64 — "Library to encode strings in Base64"
 ├─ LibBit — "Library for bit twiddling operations"
 ├─ LibBytemap — "Efficient bytemap library for mapping integers to bytes"
@@ -33,7 +33,7 @@ utils
 ├─ LibString — "Library for creating string representations of uint values"
 ├─ SafeCastLib — "Safe unsigned integer casting lib that reverts on overflow"
 ├─ SignedWadMath — "Signed integer 18 decimal fixed point arithmetic library"
-├─ ReentrancyGuard — "Gas optimized reentrancy protection for smart contracts"
+├─ ReentrancyGuard — "Gas-optimized reentrancy protection for smart contracts"
 ├─ MerkleProofLib — "Efficient merkle tree inclusion proof verification library"
 ├─ SafeCastLib — "Safe unsigned integer casting library that reverts on overflow"
 ├─ FixedPointMathLib — "Arithmetic library with operations for fixed-point numbers"
@@ -42,9 +42,10 @@ utils
 ├─ LibBitMap — "Efficient bitmap library for mapping integers to single bit booleans"
 ├─ SafeTransferLib — "Safe ERC20/ETH transfer lib that handles missing return values"
 ├─ LibString — "Library for converting numbers into strings and other string operations"
+├─ EIP712 — "Gas-optimized implementation of EIP-712 domain separator and digest encoding"
 ├─ Multicallable — "Contract that enables a single call to call multiple methods on itself"
 ├─ SafeMulticallable — "Contract that enables a single call to call multiple methods on itself"
-├─ MerkleProofLib — "Gas optimized verification of proof of inclusion for a leaf in a Merkle tree"
+├─ MerkleProofLib — "Gas-optimized verification of proof of inclusion for a leaf in a Merkle tree"
 ├─ SignatureCheckerLib — "Signature verification helper that supports both ECDSA signatures from EOAs"
 ```
 
