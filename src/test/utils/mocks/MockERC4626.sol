@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC20} from "../../../tokens/ERC20.sol";
+import {ERC20} from "../../../tokens/ERC20/ERC20.sol";
 import {ERC4626} from "../../../mixins/ERC4626.sol";
 
 contract MockERC4626 is ERC4626 {

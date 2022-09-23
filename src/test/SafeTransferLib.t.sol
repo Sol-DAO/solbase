@@ -12,7 +12,7 @@ import {ReturnsTooLittleToken} from "./utils/weird-tokens/ReturnsTooLittleToken.
 
 import "./utils/TestPlus.sol";
 
-import {ERC20} from "../tokens/ERC20.sol";
+import {ERC20} from "../tokens/ERC20/ERC20.sol";
 import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 
 contract SafeTransferLibTest is TestPlus {
