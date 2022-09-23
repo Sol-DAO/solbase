@@ -3,14 +3,14 @@ pragma solidity ^0.8.4;
 
 /// @notice Simple single owner and multiroles authorization mixin.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/auth/OwnedRoles.sol)
-/// @author Solady (https://github.com/vectorized/solady/blob/main/src/auth/OwnableRoles.sol)
+/// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/auth/OwnableRoles.sol)
 /// @dev While the ownable portion follows [EIP-173](https://eips.ethereum.org/EIPS/eip-173)
 /// for compatibility, the nomenclature for the 2-step ownership handover and roles
 /// may be unique to this codebase.
 abstract contract OwnedRoles {
-    /*//////////////////////////////////////////////////////////////
-                              CUSTOM ERRORS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
 
     /// @dev The caller is not authorized to call the function.
     error Unauthorized();
@@ -30,9 +30,9 @@ abstract contract OwnedRoles {
     /// @dev `bytes4(keccak256(bytes("NoHandoverRequest()")))`.
     uint256 private constant _NO_HANDOVER_REQUEST_ERROR_SELECTOR = 0x6f5e8818;
 
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS                           
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Events
+    /// -----------------------------------------------------------------------
 
     /// @dev The ownership is transferred from `oldOwner` to `newOwner`.
     /// This event is intentionally kept the same as OpenZeppelin's Ownable to be
@@ -66,9 +66,9 @@ abstract contract OwnedRoles {
     uint256 private constant _ROLES_UPDATED_EVENT_SIGNATURE =
         0x715ad5ce61fc9595c7b415289d59cf203f23a94fa06f04af7e489a0a76e1fe26;
 
-    /*//////////////////////////////////////////////////////////////
-                                STORAGE                           
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Storage
+    /// -----------------------------------------------------------------------
 
     /// @dev The owner slot is given by: `not(_OWNER_SLOT_NOT)`.
     /// It is intentionally choosen to be a high value
@@ -93,9 +93,9 @@ abstract contract OwnedRoles {
     /// It stores the expiry timestamp of the two-step ownership handover.
     uint256 private constant _HANDOVER_SLOT_SEED = 0x389a75e1;
 
-    /*//////////////////////////////////////////////////////////////
-                           INTERNAL FUNCTIONS                     
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Internal Functions
+    /// -----------------------------------------------------------------------
 
     /// @dev Initializes the owner directly without authorization guard.
     /// This function must be called upon initialization,
@@ -163,9 +163,9 @@ abstract contract OwnedRoles {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        PUBLIC UPDATE FUNCTIONS                   
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Public Update Functions
+    /// -----------------------------------------------------------------------
 
     /// @dev Allows the owner to transfer the ownership to `newOwner`.
     function transferOwnership(address newOwner) public virtual onlyOwner {
@@ -261,9 +261,9 @@ abstract contract OwnedRoles {
         _removeRoles(msg.sender, roles);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         PUBLIC READ FUNCTIONS                    
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Public Read Functions
+    /// -----------------------------------------------------------------------
 
     /// @dev Returns the owner of the contract.
     function owner() public view virtual returns (address result) {
@@ -362,9 +362,9 @@ abstract contract OwnedRoles {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                               MODIFIERS                          
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Modifiers
+    /// -----------------------------------------------------------------------
 
     /// @dev Marks a function as only callable by the owner.
     modifier onlyOwner() virtual {
@@ -431,9 +431,9 @@ abstract contract OwnedRoles {
         _;
     }
 
-    /*//////////////////////////////////////////////////////////////
-                             ROLE CONSTANTS                       
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Role Constants
+    /// -----------------------------------------------------------------------
 
     uint256 internal constant _ROLE_0 = 1 << 0;
     uint256 internal constant _ROLE_1 = 1 << 1;

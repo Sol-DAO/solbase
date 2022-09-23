@@ -5,9 +5,9 @@ pragma solidity ^0.8.4;
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/FixedPointMathLib.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/FixedPointMathLib.sol)
 library FixedPointMathLib {
-    /*//////////////////////////////////////////////////////////////
-                              CUSTOM ERRORS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
 
     /// @dev The operation failed, as the output exceeds the maximum value of uint256.
     error ExpOverflow();
@@ -35,16 +35,16 @@ library FixedPointMathLib {
     /// @dev The output is undefined, as the input is zero.
     error Log2Undefined();
 
-    /*//////////////////////////////////////////////////////////////
-                               CONSTANTS                          
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Constants
+    /// -----------------------------------------------------------------------
 
     /// @dev The scalar of ETH and most ERC20s.
     uint256 internal constant WAD = 1e18;
 
-    /*//////////////////////////////////////////////////////////////
-                    SIMPLIFIED FIXED POINT OPERATIONS             
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Simplified Fixed Point Operations
+    /// -----------------------------------------------------------------------
 
     /// @dev Equivalent to `(x * y) / WAD` rounded down.
     function mulWadDown(uint256 x, uint256 y) internal pure returns (uint256 z) {
@@ -250,9 +250,9 @@ library FixedPointMathLib {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        GENERAL NUMBER UTILITIES                  
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// General Number Utilities
+    /// -----------------------------------------------------------------------
 
     /// @dev Returns `floor(x * y / denominator)`.
     /// Reverts if `x * y` overflows, or `denominator` is zero.

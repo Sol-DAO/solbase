@@ -5,15 +5,15 @@ pragma solidity ^0.8.4;
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibString.sol)
 /// @author Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibString.sol)
 library LibString {
-    /*//////////////////////////////////////////////////////////////
-                              CUSTOM ERRORS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
 
     error HexLengthInsufficient();
 
-    /*//////////////////////////////////////////////////////////////
-                           DECIMAL OPERATIONS                     
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Decimal Operations
+    /// -----------------------------------------------------------------------
 
     function toString(uint256 value) internal pure returns (string memory str) {
         assembly {
@@ -54,9 +54,9 @@ library LibString {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         HEXADECIMAL OPERATIONS                   
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Hexadecimal Operations
+    /// -----------------------------------------------------------------------
 
     function toHexString(uint256 value, uint256 length) internal pure returns (string memory str) {
         assembly {
@@ -188,9 +188,9 @@ library LibString {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         OTHER STRING OPERATIONS                  
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Other String Operations
+    /// -----------------------------------------------------------------------
 
     function replace(
         string memory subject,

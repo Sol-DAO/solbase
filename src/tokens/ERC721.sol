@@ -3,11 +3,11 @@ pragma solidity ^0.8.4;
 
 /// @notice Modern, minimalist, and gas efficient ERC-721 implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721.sol)
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)
 abstract contract ERC721 {
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Events
+    /// -----------------------------------------------------------------------
 
     event Transfer(address indexed from, address indexed to, uint256 indexed id);
 
@@ -15,9 +15,9 @@ abstract contract ERC721 {
 
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
-    /*//////////////////////////////////////////////////////////////
-                         METADATA STORAGE/LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Metadata Storage/Logic
+    /// -----------------------------------------------------------------------
 
     string public name;
 
@@ -25,9 +25,9 @@ abstract contract ERC721 {
 
     function tokenURI(uint256 id) public view virtual returns (string memory);
 
-    /*//////////////////////////////////////////////////////////////
-                      ERC721 BALANCE/OWNER STORAGE
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC721 Balance/Owner Storage
+    /// -----------------------------------------------------------------------
 
     mapping(uint256 => address) internal _ownerOf;
 
@@ -43,26 +43,26 @@ abstract contract ERC721 {
         return _balanceOf[owner];
     }
 
-    /*//////////////////////////////////////////////////////////////
-                         ERC721 APPROVAL STORAGE
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC721 Approval Storage
+    /// -----------------------------------------------------------------------
 
     mapping(uint256 => address) public getApproved;
 
     mapping(address => mapping(address => bool)) public isApprovedForAll;
 
-    /*//////////////////////////////////////////////////////////////
-                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Constructor
+    /// -----------------------------------------------------------------------
 
     constructor(string memory _name, string memory _symbol) {
         name = _name;
         symbol = _symbol;
     }
 
-    /*//////////////////////////////////////////////////////////////
-                              ERC721 LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC721 Logic
+    /// -----------------------------------------------------------------------
 
     function approve(address spender, uint256 id) public virtual {
         address owner = _ownerOf[id];
@@ -140,9 +140,9 @@ abstract contract ERC721 {
         );
     }
 
-    /*//////////////////////////////////////////////////////////////
-                              ERC165 LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC165 Logic
+    /// -----------------------------------------------------------------------
 
     function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {
         return
@@ -151,9 +151,9 @@ abstract contract ERC721 {
             interfaceId == 0x5b5e139f; // ERC165 Interface ID for ERC721Metadata
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        INTERNAL MINT/BURN LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Internal Mint/Burn Logic
+    /// -----------------------------------------------------------------------
 
     function _mint(address to, uint256 id) internal virtual {
         require(to != address(0), "INVALID_RECIPIENT");
@@ -187,9 +187,9 @@ abstract contract ERC721 {
         emit Transfer(owner, address(0), id);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        INTERNAL SAFE MINT LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Internal Safe Mint Logic
+    /// -----------------------------------------------------------------------
 
     function _safeMint(address to, uint256 id) internal virtual {
         _mint(to, id);
@@ -219,7 +219,8 @@ abstract contract ERC721 {
 }
 
 /// @notice A generic interface for a contract which properly accepts ERC721 tokens.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol)
 abstract contract ERC721TokenReceiver {
     function onERC721Received(
         address,

@@ -3,11 +3,11 @@ pragma solidity ^0.8.4;
 
 /// @notice Minimalist and gas efficient standard ERC1155 implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
 abstract contract ERC1155 {
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Events
+    /// -----------------------------------------------------------------------
 
     event TransferSingle(
         address indexed operator,
@@ -29,23 +29,23 @@ abstract contract ERC1155 {
 
     event URI(string value, uint256 indexed id);
 
-    /*//////////////////////////////////////////////////////////////
-                             ERC1155 STORAGE
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC1155 Storage
+    /// -----------------------------------------------------------------------
 
     mapping(address => mapping(uint256 => uint256)) public balanceOf;
 
     mapping(address => mapping(address => bool)) public isApprovedForAll;
 
-    /*//////////////////////////////////////////////////////////////
-                             METADATA LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Metadata Logic
+    /// -----------------------------------------------------------------------
 
     function uri(uint256 id) public view virtual returns (string memory);
 
-    /*//////////////////////////////////////////////////////////////
-                              ERC1155 LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC1155 Logic
+    /// -----------------------------------------------------------------------
 
     function setApprovalForAll(address operator, bool approved) public virtual {
         isApprovedForAll[msg.sender][operator] = approved;
@@ -135,9 +135,9 @@ abstract contract ERC1155 {
         }
     }
 
-    /*//////////////////////////////////////////////////////////////
-                              ERC165 LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// ERC165 Logic
+    /// -----------------------------------------------------------------------
 
     function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {
         return
@@ -146,9 +146,9 @@ abstract contract ERC1155 {
             interfaceId == 0x0e89341c; // ERC165 Interface ID for ERC1155MetadataURI
     }
 
-    /*//////////////////////////////////////////////////////////////
-                        INTERNAL MINT/BURN LOGIC
-    //////////////////////////////////////////////////////////////*/
+    /// -----------------------------------------------------------------------
+    /// Internal Mint/Burn Logic
+    /// -----------------------------------------------------------------------
 
     function _mint(
         address to,
@@ -233,8 +233,8 @@ abstract contract ERC1155 {
     }
 }
 
-/// @notice A generic interface for a contract which properly accepts ERC1155 tokens.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
 abstract contract ERC1155TokenReceiver {
     function onERC1155Received(
         address,
