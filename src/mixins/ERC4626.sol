@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC20} from "../tokens/ERC20.sol";
+import {ERC20} from "../tokens/ERC20/ERC20.sol";
+import {ERC20Permit} from "../tokens/ERC20/extensions/ERC20Permit.sol";
 import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 import {FixedPointMathLib} from "../utils/FixedPointMathLib.sol";
 
 /// @notice Minimal ERC4626 tokenized Vault implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/mixins/ERC4626.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/mixins/ERC4626.sol)
-abstract contract ERC4626 is ERC20 {
+abstract contract ERC4626 is ERC20Permit {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;
 
@@ -36,7 +37,7 @@ abstract contract ERC4626 is ERC20 {
         ERC20 _asset,
         string memory _name,
         string memory _symbol
-    ) ERC20(_name, _symbol, _asset.decimals()) {
+    ) ERC20Permit(_name, _symbol, _asset.decimals()) {
         asset = address(_asset);
     }
 
