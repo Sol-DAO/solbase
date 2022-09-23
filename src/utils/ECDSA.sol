@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Gas optimized ECDSA wrapper.
+/// @notice Gas-optimized ECDSA wrapper.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/ECDSA.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/ECDSA.sol)
 library ECDSA {

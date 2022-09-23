@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Minimalist and gas efficient standard ERC1155 implementation.
+/// @notice Modern, minimalist, and gas-optimized ERC1155 implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
 /// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
 abstract contract ERC1155 {
