@@ -2,11 +2,7 @@
 pragma solidity ^0.8.4;
 
 import {DSTestPlus} from "./utils/DSTestPlus.sol";
-import {EIP712} from "../utils/EIP712.sol";
-
-contract MockEIP712 is EIP712 {
-    constructor(string memory domainName, string memory version) EIP712(domainName, version) {}
-}
+import {MockEIP712} from "./utils/mocks/MockEIP712.sol";
 
 contract EIP712Test is DSTestPlus {
     MockEIP712 mock;
