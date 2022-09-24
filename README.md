@@ -20,6 +20,8 @@ tokens
 ├─ ERC20 — "Modern, minimalist, and gas-optimized ERC20 implementation"
 ├─ ERC721 — "Modern, minimalist, and gas-optimized ERC721 implementation"
 ├─ ERC1155 — "Modern, minimalist, and gas-optimized ERC1155 implementation"
+extensions
+├─ ERC20Permit — "ERC20 + EIP-2612 implementation"
 utils
 ├─ LibSort — "Optimized intro sort"
 ├─ LibClone — "Minimal proxy library"
