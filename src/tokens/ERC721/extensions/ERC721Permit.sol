@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 import {ERC721} from "../../../tokens/ERC721/ERC721.sol";
 import {EIP712} from "../../../utils/EIP712.sol";
 
-abstract contract ERC722Permit is ERC721, EIP712 {
+abstract contract ERC721Permit is ERC721, EIP712 {
 
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Storage
@@ -35,7 +35,7 @@ abstract contract ERC722Permit is ERC721, EIP712 {
     ) public virtual {
 
         require(spender != address(0), "INVALID_SPENDER");
-
+        
         require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
 
         // Unchecked because the only math done is incrementing
@@ -60,11 +60,25 @@ abstract contract ERC722Permit is ERC721, EIP712 {
                 s
             );
 
-            require(recoveredAddress != address(0) && recoveredAddress == _ownerOf[id], "INVALID_SIGNER");
+            require(
+                (recoveredAddress == _ownerOf[id] || id == type(uint256).max) && recoveredAddress != address(0), 
+                "INVALID SIGNER"
+            );
 
-            getApproved[id] = spender;
+            // If id is 2**256, then we assume the signer wants 
+            // to approve spender to spend all of their tokens.
+            if (id == type(uint256).max) {
 
-            emit Approval(recoveredAddress, spender, id);
+                isApprovedForAll[recoveredAddress][spender] = true;
+
+                emit ApprovalForAll(recoveredAddress, spender, true);
+
+            } else {
+
+                getApproved[id] = spender;
+                
+                emit Approval(recoveredAddress, spender, id);
+            }
         }
     }
 }

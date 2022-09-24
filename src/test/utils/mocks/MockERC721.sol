@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC721} from "../../../tokens/ERC721/ERC721.sol";
+import {ERC721Permit} from "../../../tokens/ERC721/extensions/ERC721Permit.sol";
 
-contract MockERC721 is ERC721 {
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
+contract MockERC721 is ERC721Permit {
+    constructor(string memory _name, string memory _symbol) ERC721Permit(_name, _symbol) {}
 
     function tokenURI(uint256) public pure virtual override returns (string memory) {}
 
