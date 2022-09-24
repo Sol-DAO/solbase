@@ -2,8 +2,8 @@
 pragma solidity ^0.8.4;
 
 /// @notice Modern, minimalist, and gas-optimized ERC1155 implementation.
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
-/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155/ERC1155.sol)
 abstract contract ERC1155 {
     /// -----------------------------------------------------------------------
     /// Events
@@ -233,8 +233,8 @@ abstract contract ERC1155 {
     }
 }
 
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155.sol)
-/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol)
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155.sol)
+/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155/ERC1155.sol)
 abstract contract ERC1155TokenReceiver {
     function onERC1155Received(
         address,
