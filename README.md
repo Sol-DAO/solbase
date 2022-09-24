@@ -22,6 +22,8 @@ tokens
 ├─ ERC1155 — "Modern, minimalist, and gas-optimized ERC1155 implementation"
 extensions
 ├─ ERC20Permit — "ERC20 + EIP-2612 implementation"
+├─ ERC721Permit — "ERC721 + EIP-2612-Style implementation"
+├─ ERC1155Permit — "ERC1155 + EIP-2612-Style implementation"
 utils
 ├─ LibSort — "Optimized intro sort"
 ├─ LibClone — "Minimal proxy library"

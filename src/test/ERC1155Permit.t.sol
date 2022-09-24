@@ -9,7 +9,8 @@ import {MockERC1155} from "./utils/mocks/MockERC1155.sol";
 contract ERC1155PermitTest is DSTestPlus {
     MockERC1155 token;
 
-    bytes32 constant PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)");
+    bytes32 constant PERMIT_TYPEHASH =
+        keccak256("Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)");
 
     function setUp() public {
         token = new MockERC1155();
@@ -31,7 +32,7 @@ contract ERC1155PermitTest is DSTestPlus {
         );
 
         token.mint(owner, 0, 1, new bytes(0));
-        token.permit(owner,address(0xCAFE), 0, block.timestamp, v, r, s);
+        token.permit(owner, address(0xCAFE), 0, block.timestamp, v, r, s);
 
         assertTrue(token.isApprovedForAll(owner, address(0xCAFE)));
         assertEq(token.nonces(owner, 0), 1);
@@ -71,7 +72,7 @@ contract ERC1155PermitTest is DSTestPlus {
         );
 
         token.mint(owner, 0, 1, new bytes(0));
-        token.permit(owner,address(0xCAFE), 0, block.timestamp + 1, v, r, s);
+        token.permit(owner, address(0xCAFE), 0, block.timestamp + 1, v, r, s);
     }
 
     function testFailPermitPastDeadline() public {
@@ -90,7 +91,7 @@ contract ERC1155PermitTest is DSTestPlus {
         );
 
         token.mint(owner, 0, 1, new bytes(0));
-        token.permit(owner,address(0xCAFE), 0, block.timestamp - 1, v, r, s);
+        token.permit(owner, address(0xCAFE), 0, block.timestamp - 1, v, r, s);
     }
 
     function testFailPermitReplay() public {

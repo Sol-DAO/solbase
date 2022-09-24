@@ -54,14 +54,14 @@ contract ERC721PermitTest is DSTestPlus {
 
         token.mint(owner, 0);
         token.permit(address(0xCAFE), 0, block.timestamp, v, r, s);
-        
+
         assertEq(token.getApproved(0), address(0xCAFE));
         assertEq(token.nonces(0), 1);
     }
 
     function testFailPermitBadNonce() public {
         uint256 privateKey = 0xBEEF;
-        address owner = hevm.addr(privateKey);
+        //address owner = hevm.addr(privateKey);
 
         (uint8 v, bytes32 r, bytes32 s) = hevm.sign(
             privateKey,
@@ -116,7 +116,7 @@ contract ERC721PermitTest is DSTestPlus {
 
     function testFailPermitReplay() public {
         uint256 privateKey = 0xBEEF;
-        address owner = hevm.addr(privateKey);
+        //address owner = hevm.addr(privateKey);
 
         (uint8 v, bytes32 r, bytes32 s) = hevm.sign(
             privateKey,

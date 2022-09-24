@@ -4,8 +4,9 @@ pragma solidity ^0.8.4;
 import {ERC1155} from "../../../tokens/ERC1155/ERC1155.sol";
 import {EIP712} from "../../../utils/EIP712.sol";
 
+/// @notice ERC1155 + EIP-2612-Style implementation.
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/extensions/ERC1155Permit.sol)
 abstract contract ERC1155Permit is ERC1155, EIP712 {
-
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Storage
     /// -----------------------------------------------------------------------
@@ -31,9 +32,8 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-
         require(spender != address(0), "INVALID_SPENDER");
-        
+
         require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
 
         // Unchecked because the only math done is incrementing
@@ -58,14 +58,11 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
                 s
             );
 
-            require(
-                recoveredAddress == owner && recoveredAddress != address(0),
-                "INVALID SIGNER"
-            );
+            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID SIGNER");
 
             isApprovedForAll[owner][spender] = true;
 
-            emit ApprovalForAll(owner, spender, true); 
+            emit ApprovalForAll(owner, spender, true);
         }
     }
 }
