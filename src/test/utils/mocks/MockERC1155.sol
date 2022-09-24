@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC1155} from "../../../tokens/ERC1155.sol";
+import {ERC1155Permit} from "../../../tokens/ERC1155/extensions/ERC1155Permit.sol";
 
-contract MockERC1155 is ERC1155 {
+contract MockERC1155 is ERC1155Permit {
+
     function uri(uint256) public pure virtual override returns (string memory) {}
+
+    constructor() ERC1155Permit("Example name") {}
 
     function mint(
         address to,

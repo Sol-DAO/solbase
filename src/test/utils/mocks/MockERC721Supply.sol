@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC721} from "../../../tokens/ERC721.sol";
+import {ERC721} from "../../../tokens/ERC721/ERC721.sol";
 
 contract MockERC721Supply is ERC721 {
     uint256 public totalSupply;
