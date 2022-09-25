@@ -30,6 +30,7 @@ utils
 ├─ ECDSA — "Gas-optimized ECDSA wrapper"
 ├─ Base64 — "Library to encode strings in Base64"
 ├─ LibBit — "Library for bit twiddling operations"
+├─ ERC165 — "Interface for contracts with ERC165 support"
 ├─ LibBytemap — "Efficient bytemap library for mapping integers to bytes"
 ├─ SSTORE2 — "Library for cheaper reads and writes to persistent storage"
 ├─ Clone — "Class with helper read functions for clone with immutable args"

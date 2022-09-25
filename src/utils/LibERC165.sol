@@ -1,11 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Interface for contracts with ERC165 support (https://eips.ethereum.org/EIPS/eip-165[EIP]).
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibERC165.sol)
-abstract contract ERC165 {
-    function supportsInterface(bytes4 interfaceId) external view virtual returns (bool);
-}
+import {ERC165} from "./ERC165.sol";
 
 /// @notice Library used to query support of an interface declared via ERC165.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibERC165.sol)
