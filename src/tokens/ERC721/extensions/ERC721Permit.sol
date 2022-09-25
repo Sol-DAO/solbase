@@ -63,14 +63,16 @@ abstract contract ERC721Permit is ERC721, EIP712 {
                 s
             );
 
+            bool isApprovingAll = id == type(uint256).max;
+
             require(
-                (recoveredAddress == _ownerOf[id] || id == type(uint256).max) && recoveredAddress != address(0),
-                "INVALID SIGNER"
+                (recoveredAddress == _ownerOf[id] || isApprovingAll) && recoveredAddress != address(0),
+                "INVALID_SIGNER"
             );
 
             // If id is 2**256, then we assume the signer wants
             // to approve spender to spend all of their tokens.
-            if (id == type(uint256).max) {
+            if (isApprovingAll) {                
                 isApprovedForAll[recoveredAddress][spender] = true;
 
                 emit ApprovalForAll(recoveredAddress, spender, true);

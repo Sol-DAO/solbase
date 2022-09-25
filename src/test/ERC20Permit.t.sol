@@ -16,24 +16,6 @@ contract ERC20Test is DSTestPlus {
         token = new MockERC20("Token", "TKN", 18);
     }
 
-    // function testGasPermit() public {
-    //     uint256 privateKey = 0xBEEF;
-    //     address owner = hevm.addr(privateKey);
-
-    //     (uint8 v, bytes32 r, bytes32 s) = hevm.sign(
-    //         privateKey,
-    //         keccak256(
-    //             abi.encodePacked(
-    //                 "\x19\x01",
-    //                 token.DOMAIN_SEPARATOR(),
-    //                 keccak256(abi.encode(PERMIT_TYPEHASH, owner, address(0xCAFE), 1e18, 0, block.timestamp))
-    //             )
-    //         )
-    //     );
-
-    //     token.permit(owner, address(0xCAFE), 1e18, block.timestamp, v, r, s);
-    // }
-
     function testPermit() public {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);

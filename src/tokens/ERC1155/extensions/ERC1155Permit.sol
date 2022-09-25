@@ -65,7 +65,7 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
                 s
             );
 
-            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID SIGNER");
+            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID_SIGNER");
 
             isApprovedForAll[owner][spender] = true;
 
