@@ -7,6 +7,10 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @notice ERC721 + EIP-2612-Style implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721/extensions/ERC721Permit.sol)
 abstract contract ERC721Permit is ERC721, EIP712 {
+
+    // @dev 'keccak256("Permit(address spender,uint256 id,uint256 nonce,uint256 deadline)")'
+    bytes32 public constant PERMIT_TYPEHASH = 0xf01eb1ca10960d4c3e51084e76fe5255d292d4b84c5297cdd41025ecd1f10ead;
+
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Storage
     /// -----------------------------------------------------------------------
@@ -42,7 +46,7 @@ abstract contract ERC721Permit is ERC721, EIP712 {
                 computeDigest(
                     keccak256(
                         abi.encode(
-                            keccak256("Permit(address spender,uint256 id,uint256 nonce,uint256 deadline)"),
+                            PERMIT_TYPEHASH,
                             spender,
                             id,
                             nonces[id]++,
