@@ -11,7 +11,7 @@ abstract contract ERC165 {
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibERC165.sol)
 /// @author Modified from OpenZeppelin (https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165Checker.sol)
 /// @dev Note that these functions return the actual result of the query: they do not
-/// `revert` if an interface is not supported. It is up to the caller to decide
+/// revert if an interface is not supported. It is up to the caller to decide
 /// what to do in these cases.
 library LibERC165 {
     /// @dev As per the ERC165 spec, no interface should ever match `0xffffffff`.
