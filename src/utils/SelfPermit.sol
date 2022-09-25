@@ -3,10 +3,10 @@ pragma solidity ^0.8.4;
 
 import {ERC20Permit} from "../tokens/ERC20/extensions/ERC20Permit.sol";
 
-/// @notice Functionality to call `permit()` on any EIP-2612 or Dai-style token for use in the route.
+/// @notice Signature permit helper for any EIP-2612 or Dai-style token.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SelfPermit.sol)
 /// @author Modified from Uniswap (https://github.com/Uniswap/v3-periphery/blob/main/contracts/base/SelfPermit.sol)
-/// @dev These functions are expected to be embedded in `multicall()` to allow EOAs to approve a contract and call a function
+/// @dev These functions are expected to be embedded in {multicall} to allow EOAs to approve a contract and call a function
 /// that requires an approval in a single transaction.
 abstract contract SelfPermit {
     /// @notice Permits this contract to spend a given token from `msg.sender`.
@@ -47,7 +47,7 @@ abstract contract SelfPermit {
         SelfPermit(token).permit(msg.sender, address(this), nonce, deadline, true, v, r, s);
     }
 
-    /// @dev Helper for Dai-style `permit()` via `selfPermitAllowed()`.
+    /// @dev Helper for Dai-style {permit} via {selfPermitAllowed}.
     function permit(
         address owner,
         address spender,
