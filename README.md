@@ -36,6 +36,7 @@ utils
 ├─ CREATE3 — "Deploy to deterministic addresses without an initcode factor"
 ├─ LibString — "Library for creating string representations of uint values"
 ├─ SafeCastLib — "Safe unsigned integer casting lib that reverts on overflow"
+├─ SelfPermit — "Signature permit helper for any EIP-2612 or Dai-style token"
 ├─ SignedWadMath — "Signed integer 18 decimal fixed point arithmetic library"
 ├─ ReentrancyGuard — "Gas-optimized reentrancy protection for smart contracts"
 ├─ MerkleProofLib — "Efficient merkle tree inclusion proof verification library"
