@@ -8,6 +8,10 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721/extensions/ERC721Permit.sol)
 abstract contract ERC721Permit is ERC721, EIP712 {
 
+    /// -----------------------------------------------------------------------
+    /// EIP-2612-Style Constants
+    /// -----------------------------------------------------------------------
+
     // @dev 'keccak256("Permit(address spender,uint256 id,uint256 nonce,uint256 deadline)")'
     bytes32 public constant PERMIT_TYPEHASH = 0xf01eb1ca10960d4c3e51084e76fe5255d292d4b84c5297cdd41025ecd1f10ead;
 
