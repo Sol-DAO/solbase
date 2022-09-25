@@ -41,6 +41,7 @@ utils
 ├─ ReentrancyGuard — "Gas-optimized reentrancy protection for smart contracts"
 ├─ MerkleProofLib — "Efficient merkle tree inclusion proof verification library"
 ├─ SafeCastLib — "Safe unsigned integer casting library that reverts on overflow"
+├─ LibERC165 — "Library used to query support of an interface declared via ERC165"
 ├─ FixedPointMathLib — "Arithmetic library with operations for fixed-point numbers"
 ├─ Bytes32AddressLib — "Library for converting between addresses and bytes32 values"
 ├─ LibRLP — "Library for computing contract addresses from their deployer and nonce"
