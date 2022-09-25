@@ -46,6 +46,7 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
                             keccak256(
                                 "Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)"
                             ),
+                            owner,
                             spender,
                             id,
                             nonces[owner][id]++,

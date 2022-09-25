@@ -26,7 +26,7 @@ contract ERC1155PermitTest is DSTestPlus {
                 abi.encodePacked(
                     "\x19\x01",
                     token.DOMAIN_SEPARATOR(),
-                    keccak256(abi.encode(PERMIT_TYPEHASH, address(0xCAFE), 0, 0, block.timestamp))
+                    keccak256(abi.encode(PERMIT_TYPEHASH, owner, address(0xCAFE), 0, 0, block.timestamp))
                 )
             )
         );
@@ -53,6 +53,7 @@ contract ERC1155PermitTest is DSTestPlus {
             )
         );
 
+        token.mint(owner, 0, 1, new bytes(0));
         token.permit(owner, address(0xCAFE), 0, block.timestamp, v, r, s);
     }
 
