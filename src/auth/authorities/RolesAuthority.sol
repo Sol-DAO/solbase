@@ -21,7 +21,7 @@ contract RolesAuthority is Auth, Authority {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    constructor(address _owner, Authority _authority) Auth(_owner, _authority) {}
+    constructor(address _owner, Authority _authority) payable Auth(_owner, _authority) {}
 
     /*//////////////////////////////////////////////////////////////
                             ROLE/USER STORAGE

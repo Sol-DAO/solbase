@@ -35,7 +35,7 @@ abstract contract OwnedThreeStep {
 
     /// @notice Create contract and set `owner`.
     /// @param _owner The `owner` of contract.
-    constructor(address _owner) {
+    constructor(address _owner) payable {
         owner = _owner;
 
         emit OwnerUpdated(address(0), _owner);

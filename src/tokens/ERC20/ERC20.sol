@@ -42,7 +42,7 @@ abstract contract ERC20 {
         string memory _name,
         string memory _symbol,
         uint8 _decimals
-    ) {
+    ) payable {
         name = _name;
         symbol = _symbol;
         decimals = _decimals;

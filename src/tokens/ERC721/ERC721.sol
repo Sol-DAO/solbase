@@ -55,7 +55,7 @@ abstract contract ERC721 {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name, string memory _symbol) {
+    constructor(string memory _name, string memory _symbol) payable {
         name = _name;
         symbol = _symbol;
     }

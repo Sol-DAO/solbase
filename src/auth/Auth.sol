@@ -13,7 +13,7 @@ abstract contract Auth {
 
     Authority public authority;
 
-    constructor(address _owner, Authority _authority) {
+    constructor(address _owner, Authority _authority) payable {
         owner = _owner;
         authority = _authority;
 

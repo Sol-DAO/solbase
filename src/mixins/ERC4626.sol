@@ -36,7 +36,7 @@ abstract contract ERC4626 is ERC20Permit {
         ERC20Permit _asset,
         string memory _name,
         string memory _symbol
-    ) ERC20Permit(_name, _symbol, _asset.decimals()) {
+    ) payable ERC20Permit(_name, _symbol, _asset.decimals()) {
         asset = address(_asset);
     }
 

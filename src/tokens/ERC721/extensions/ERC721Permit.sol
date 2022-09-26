@@ -17,7 +17,7 @@ abstract contract ERC721Permit is ERC721, EIP712 {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) EIP712(_name, "1") {}
+    constructor(string memory _name, string memory _symbol) payable ERC721(_name, _symbol) EIP712(_name, "1") {}
 
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Permit Logic

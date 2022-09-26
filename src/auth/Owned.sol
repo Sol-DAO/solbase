@@ -27,7 +27,7 @@ abstract contract Owned {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(address _owner) {
+    constructor(address _owner) payable {
         owner = _owner;
 
         emit OwnerUpdated(address(0), _owner);

@@ -21,7 +21,7 @@ abstract contract ERC20Permit is ERC20, EIP712 {
         string memory _name,
         string memory _symbol,
         uint8 _decimals
-    ) ERC20(_name, _symbol, _decimals) EIP712(_name, "1") {}
+    ) payable ERC20(_name, _symbol, _decimals) EIP712(_name, "1") {}
 
     /// -----------------------------------------------------------------------
     /// EIP-2612 Logic

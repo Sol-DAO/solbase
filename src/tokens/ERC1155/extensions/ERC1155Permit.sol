@@ -17,7 +17,7 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name) EIP712(_name, "1") {}
+    constructor(string memory _name) payable EIP712(_name, "1") {}
 
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Permit Logic
