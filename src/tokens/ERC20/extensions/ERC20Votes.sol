@@ -45,6 +45,16 @@ abstract contract ERC20Votes is ERC20Permit {
     Checkpoint[] public totalSupplyCheckpoints;
 
     /// -----------------------------------------------------------------------
+    /// Constructor
+    /// -----------------------------------------------------------------------
+
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint8 _decimals
+    ) ERC20Permit(_name, _symbol, _decimals) {}
+
+    /// -----------------------------------------------------------------------
     /// ERC20Votes Logic
     /// -----------------------------------------------------------------------
 
@@ -220,7 +230,12 @@ abstract contract ERC20Votes is ERC20Permit {
         if (pos > 0 && oldCkpt.fromBlock == block.number) {
             _unsafeAccess(ckpts, pos - 1).votes = SafeCastLib.safeCastTo224(newWeight);
         } else {
-            ckpts.push(Checkpoint({fromBlock: SafeCastLib.safeCastTo32(block.number), votes: SafeCastLib.safeCastTo224(newWeight)}));
+            ckpts.push(
+                Checkpoint({
+                    fromBlock: SafeCastLib.safeCastTo32(block.number), 
+                    votes: SafeCastLib.safeCastTo224(newWeight)
+                })
+            );
         }
     }
 
