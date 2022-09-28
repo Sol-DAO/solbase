@@ -40,7 +40,6 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(spender != address(0), "INVALID_SPENDER");
 
         require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
 
