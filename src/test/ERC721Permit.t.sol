@@ -17,14 +17,15 @@ contract ERC721PermitTest is DSTestPlus {
     /// Helpers
     /// -----------------------------------------------------------------------
 
-    // @dev 'keccak256("Permit(address spender,uint256 id,uint256 nonce,uint256 deadline)")'
-    bytes32 public constant PERMIT_TYPEHASH = 0xf01eb1ca10960d4c3e51084e76fe5255d292d4b84c5297cdd41025ecd1f10ead;
+    // @dev 'keccak256("Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)")'
+    bytes32 public constant PERMIT_TYPEHASH = 0x29da74a9365f97c3d77de334aec5c720e44b0c8a6e640ceb375e27a8ab7acadd;
 
-    function computeDigest(address to, uint256 id, uint256 nonce, uint256 deadline) internal view virtual returns (bytes32) {
+    function computeDigest(address owner, address to, uint256 id, uint256 nonce, uint256 deadline) internal view virtual returns (bytes32) {
         bytes32 hashStruct = 
             keccak256(
                 abi.encode(
-                    PERMIT_TYPEHASH, 
+                    PERMIT_TYPEHASH,
+                    owner,
                     to, 
                     id, 
                     nonce, 
@@ -44,10 +45,10 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
-        token.permit(to, 0, block.timestamp, v, r, s);
+        token.permit(owner, to, 0, block.timestamp, v, r, s);
 
         assertEq(token.getApproved(0), to);
         assertEq(token.nonces(0), 1);
@@ -58,10 +59,10 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, type(uint256).max, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, type(uint256).max, 0, block.timestamp));
 
         token.mint(owner, 0);
-        token.permit(to, type(uint256).max, block.timestamp, v, r, s);
+        token.permit(owner, to, type(uint256).max, block.timestamp, v, r, s);
 
         assertTrue(token.isApprovedForAll(owner, to));
         assertEq(token.nonces(type(uint256).max), 1);
@@ -72,10 +73,10 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 1, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 1, block.timestamp));
 
         token.mint(owner, 0);
-        token.permit(to, 0, block.timestamp, v, r, s);
+        token.permit(owner, to, 0, block.timestamp, v, r, s);
     }
 
     function testFailPermitBadDeadline() public {
@@ -83,10 +84,10 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
-        token.permit(to, 0, block.timestamp + 1, v, r, s);
+        token.permit(owner, to, 0, block.timestamp + 1, v, r, s);
     }
 
     function testFailPermitPastDeadline() public {
@@ -97,10 +98,10 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, block.timestamp - 1));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp - 1));
 
         token.mint(owner, 0);
-        token.permit(to, 0, block.timestamp - 1, v, r, s);
+        token.permit(owner, to, 0, block.timestamp - 1, v, r, s);
     }
 
     function testFailPermitReplay() public {
@@ -108,21 +109,22 @@ contract ERC721PermitTest is DSTestPlus {
         uint256 privateKey = 0xBEEF;
         address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
-        token.permit(to, 0, block.timestamp, v, r, s);
-        token.permit(to, 0, block.timestamp, v, r, s);
+        token.permit(owner, to, 0, block.timestamp, v, r, s);
+        token.permit(owner, to, 0, block.timestamp, v, r, s);
     }
 
     function testFailPermitAllReplay() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, type(uint256).max, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, type(uint256).max, 0, block.timestamp));
 
-        token.permit(to, type(uint256).max, block.timestamp, v, r, s);
-        token.permit(to, type(uint256).max, block.timestamp, v, r, s);
+        token.permit(owner, to, type(uint256).max, block.timestamp, v, r, s);
+        token.permit(owner, to, type(uint256).max, block.timestamp, v, r, s);
     }
 
     /// -----------------------------------------------------------------------
@@ -138,12 +140,12 @@ contract ERC721PermitTest is DSTestPlus {
         hevm.assume(to > address(0));
         hevm.assume(deadline >= block.timestamp);
         
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, deadline));
-
         address owner = hevm.addr(privateKey);
+
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
         
         token.mint(owner, 0);
-        token.permit(to, 0, deadline, v, r, s);
+        token.permit(owner, to, 0, deadline, v, r, s);
 
         assertEq(token.getApproved(0), to);
         assertEq(token.nonces(0), 1);
@@ -160,12 +162,12 @@ contract ERC721PermitTest is DSTestPlus {
         hevm.assume(deadline >= block.timestamp);
         hevm.assume(nonce > 0); // bad nonce
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, nonce, deadline));
-
         address owner = hevm.addr(privateKey);
+
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, nonce, deadline));
         
         token.mint(owner, 0);
-        token.permit(to, 0, deadline, v, r, s);
+        token.permit(owner, to, 0, deadline, v, r, s);
     }
 
     function testFailPermitBadDeadline(
@@ -177,12 +179,12 @@ contract ERC721PermitTest is DSTestPlus {
         hevm.assume(to > address(0));
         hevm.assume(deadline < block.timestamp); // bad deadline
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, deadline));
-
         address owner = hevm.addr(privateKey);
-        
+
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+
         token.mint(owner, 0);
-        token.permit(to, 0, deadline + 1, v, r, s);
+        token.permit(owner, to, 0, deadline + 1, v, r, s);
     }
 
     function testFailPermitPastDeadline(
@@ -194,12 +196,12 @@ contract ERC721PermitTest is DSTestPlus {
         hevm.assume(to > address(0));
         deadline = bound(deadline, 0, block.timestamp - 1);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, deadline));
-
         address owner = hevm.addr(privateKey);
+
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
         
         token.mint(owner, 0);
-        token.permit(to, 0, deadline, v, r, s);
+        token.permit(owner, to, 0, deadline, v, r, s);
     }
 
     function testFailPermitReplay(
@@ -211,12 +213,12 @@ contract ERC721PermitTest is DSTestPlus {
         hevm.assume(to > address(0));
         hevm.assume(deadline >= block.timestamp);
 
-        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(to, 0, 0, deadline));
-
         address owner = hevm.addr(privateKey);
 
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+
         token.mint(owner, 0);
-        token.permit(to, 0, deadline, v, r, s);
-        token.permit(to, 0, deadline, v, r, s);
+        token.permit(owner, to, 0, deadline, v, r, s);
+        token.permit(owner, to, 0, deadline, v, r, s);
     }
 }

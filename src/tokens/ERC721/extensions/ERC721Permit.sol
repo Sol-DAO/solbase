@@ -11,9 +11,9 @@ abstract contract ERC721Permit is ERC721, EIP712 {
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Constants
     /// -----------------------------------------------------------------------
-
-    // @dev 'keccak256("Permit(address spender,uint256 id,uint256 nonce,uint256 deadline)")'
-    bytes32 public constant PERMIT_TYPEHASH = 0xf01eb1ca10960d4c3e51084e76fe5255d292d4b84c5297cdd41025ecd1f10ead;
+    
+    // @dev 'keccak256("Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)")'
+    bytes32 public constant PERMIT_TYPEHASH = 0x29da74a9365f97c3d77de334aec5c720e44b0c8a6e640ceb375e27a8ab7acadd;
 
     /// -----------------------------------------------------------------------
     /// EIP-2612-Style Storage
@@ -32,6 +32,7 @@ abstract contract ERC721Permit is ERC721, EIP712 {
     /// -----------------------------------------------------------------------
 
     function permit(
+        address owner,
         address spender,
         uint256 id,
         uint256 deadline,
@@ -39,7 +40,6 @@ abstract contract ERC721Permit is ERC721, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(spender != address(0), "INVALID_SPENDER");
 
         require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
 
@@ -51,6 +51,7 @@ abstract contract ERC721Permit is ERC721, EIP712 {
                     keccak256(
                         abi.encode(
                             PERMIT_TYPEHASH,
+                            owner,
                             spender,
                             id,
                             nonces[id]++,
@@ -66,7 +67,9 @@ abstract contract ERC721Permit is ERC721, EIP712 {
             bool isApprovingAll = id == type(uint256).max;
 
             require(
-                (recoveredAddress == _ownerOf[id] || isApprovingAll) && recoveredAddress != address(0),
+                (isApprovingAll || recoveredAddress == _ownerOf[id]) && 
+                recoveredAddress != address(0) && 
+                recoveredAddress == owner,
                 "INVALID_SIGNER"
             );
 
