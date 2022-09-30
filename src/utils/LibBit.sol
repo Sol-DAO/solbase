@@ -5,9 +5,12 @@ pragma solidity ^0.8.4;
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/LibBit.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/LibBit.sol)
 library LibBit {
-    /// @dev Returns the index of the most significant bit of `x`.
+    /// @dev Find last set.
+    /// Returns the index of the most significant bit of `x`,
+    /// counting from the least significant bit position.
     /// If `x` is zero, returns 256.
-    function msb(uint256 x) internal pure returns (uint256 r) {
+    /// Equivalent to `log2(x)`, but without reverting for the zero case.
+    function fls(uint256 x) internal pure returns (uint256 r) {
         assembly {
             r := shl(8, iszero(x))
 
@@ -29,9 +32,23 @@ library LibBit {
         }
     }
 
-    /// @dev Returns the index of the least significant bit of `x`.
+    /// @dev Count leading zeros.
+    /// Returns the number of zeros preceding the most significant one bit.
     /// If `x` is zero, returns 256.
-    function lsb(uint256 x) internal pure returns (uint256 r) {
+    function clz(uint256 x) internal pure returns (uint256 r) {
+        r = fls(x);
+        assembly {
+            r := or(and(r, 256), mul(sub(255, r), lt(r, 256)))
+        }
+    }
+
+    /// @dev Find first set.
+    /// Returns the index of the least significant bit of `x`,
+    /// counting from the least significant bit position.
+    /// If `x` is zero, returns 256.
+    /// Equivalent to `ctz` (count trailing zeros), which gives
+    /// the number of zeros following the least significant one bit.
+    function ffs(uint256 x) internal pure returns (uint256 r) {
         assembly {
             r := shl(8, iszero(x))
 
@@ -50,14 +67,22 @@ library LibBit {
     }
 
     /// @dev Returns the number of set bits in `x`.
-    function popCount(uint256 x) public pure returns (uint256 c) {
+    function popCount(uint256 x) internal pure returns (uint256 c) {
         assembly {
             let max := not(0)
-            let isNotMax := lt(x, max)
+            let isMax := eq(x, max)
             x := sub(x, and(shr(1, x), div(max, 3)))
             x := add(and(x, div(max, 5)), and(shr(2, x), div(max, 5)))
             x := and(add(x, shr(4, x)), div(max, 17))
-            c := xor(256, mul(isNotMax, xor(256, shr(248, mul(x, div(max, 255))))))
+            c := or(shl(8, isMax), shr(248, mul(x, div(max, 255))))
+        }
+    }
+
+    /// @dev Returns whether `x` is a power of 2.
+    function isPo2(uint256 x) internal pure returns (bool result) {
+        assembly {
+            // Equivalent to `x && !(x & (x - 1))`.
+            result := iszero(add(and(x, sub(x, 1)), iszero(x)))
         }
     }
 }
