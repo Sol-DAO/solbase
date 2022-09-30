@@ -43,7 +43,7 @@ abstract contract OwnedRoles {
     /// @dev An ownership handover to `pendingOwner` has been requested.
     event OwnershipHandoverRequested(address indexed pendingOwner);
 
-    /// @dev The ownership handover to `pendingOwner` has been cancelled.
+    /// @dev The ownership handover to `pendingOwner` has been canceled.
     event OwnershipHandoverCanceled(address indexed pendingOwner);
 
     /// @dev The `user`'s roles is updated to `roles`.
@@ -318,7 +318,7 @@ abstract contract OwnedRoles {
         }
     }
 
-    /// @dev Convenience function to return a `roles` bitmap from the `ordinals`.
+    /// @dev Convenience function to return a `roles` bitmap from an array of `ordinals`.
     /// This is meant for frontends like Etherscan, and is therefore not fully optimized.
     /// Not recommended to be called on-chain.
     function rolesFromOrdinals(uint8[] memory ordinals) public pure returns (uint256 roles) {
@@ -334,7 +334,7 @@ abstract contract OwnedRoles {
         }
     }
 
-    /// @dev Convenience function to return a `roles` bitmap from the `ordinals`.
+    /// @dev Convenience function to return an array of `ordinals` from the `roles` bitmap.
     /// This is meant for frontends like Etherscan, and is therefore not fully optimized.
     /// Not recommended to be called on-chain.
     function ordinalsFromRoles(uint256 roles) public pure returns (uint8[] memory ordinals) {
