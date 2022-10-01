@@ -89,7 +89,9 @@ abstract contract ERC20Votes is ERC20Permit {
         uint256 high = length;
 
         if (length > 5) {
+
             uint256 mid = length - FixedPointMathLib.sqrt(length);
+            
             if (_unsafeAccess(ckpts, mid).fromBlock > blockNumber) {
                 high = mid;
             } else {
@@ -131,12 +133,7 @@ abstract contract ERC20Votes is ERC20Permit {
             address recoveredAddress = ecrecover(
                 computeDigest(
                     keccak256(
-                        abi.encode(
-                            DELEGATION_TYPEHASH, 
-                            delegatee, 
-                            nonce, 
-                            expiry
-                        )
+                        abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry)
                     )
                 ),
                 v,
@@ -144,11 +141,9 @@ abstract contract ERC20Votes is ERC20Permit {
                 s
             );
 
-            require(recoveredAddress != address(0), "INVALID_SIGNATURE");
+            require(recoveredAddress != address(0) && nonce == nonces[recoveredAddress]++, "INVALID_SIGNATURE");
 
-            require(nonce == nonces[recoveredAddress]++, "INVALID_NONCE");
-
-            _delegate(recoveredAddress, delegatee);   
+            _delegate(recoveredAddress, delegatee);
         }
     }
 
