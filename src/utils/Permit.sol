@@ -25,7 +25,7 @@ abstract contract Permit {
     /// @notice Permit to spend tokens for permit signatures that have the `allowed` parameter.
     /// @param owner The address of the token holder.
     /// @param spender The address of the token permit holder.
-    /// @param nonce The state of the token permit.
+    /// @param nonce The current nonce of the `owner`.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param allowed If true, `spender` will be given permission to spend `owner`'s tokens.
     /// @param v Must produce valid secp256k1 signature from the `owner` along with `r` and `s`.
