@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Signature permit helper for any EIP-2612 or Dai-style token.
+/// @notice Signature permit interface for any EIP-2612 or Dai-style token.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/Permit.sol)
 abstract contract Permit {
     /// @notice Permit to spend tokens for EIP-2612 permit signatures.
