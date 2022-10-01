@@ -36,6 +36,7 @@ utils
 ├─ Clone — "Class with helper read functions for clone with immutable args"
 ├─ CREATE3 — "Deploy to deterministic addresses without an initcode factor"
 ├─ LibString — "Library for creating string representations of uint values"
+├─ Permit — "Signature permit interface for any EIP-2612 or Dai-style token"
 ├─ SafeCastLib — "Safe unsigned integer casting lib that reverts on overflow"
 ├─ SelfPermit — "Signature permit helper for any EIP-2612 or Dai-style token"
 ├─ SignedWadMath — "Signed integer 18 decimal fixed point arithmetic library"
