@@ -4,11 +4,18 @@ pragma solidity ^0.8.4;
 import {ERC1155} from "../../../tokens/ERC1155/ERC1155.sol";
 import {EIP712} from "../../../utils/EIP712.sol";
 
-/// @notice ERC1155 + EIP-2612-Style implementation.
+/// @notice ERC1155 + EIP-2612-style implementation.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/extensions/ERC1155Permit.sol)
 abstract contract ERC1155Permit is ERC1155, EIP712 {
     /// -----------------------------------------------------------------------
-    /// EIP-2612-Style Storage
+    /// EIP-2612-style Constants
+    /// -----------------------------------------------------------------------
+
+    /// @dev `keccak256("Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)")`.
+    bytes32 public constant PERMIT_TYPEHASH = 0x29da74a9365f97c3d77de334aec5c720e44b0c8a6e640ceb375e27a8ab7acadd;
+
+    /// -----------------------------------------------------------------------
+    /// EIP-2612-style Storage
     /// -----------------------------------------------------------------------
 
     mapping(address => mapping(uint256 => uint256)) public nonces;
@@ -17,10 +24,10 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name) EIP712(_name, "1") {}
+    constructor(string memory domainName) EIP712(domainName, "1") {}
 
     /// -----------------------------------------------------------------------
-    /// EIP-2612-Style Permit Logic
+    /// EIP-2612-style Permit Logic
     /// -----------------------------------------------------------------------
 
     function permit(
@@ -32,8 +39,6 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(spender != address(0), "INVALID_SPENDER");
-
         require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
 
         // Unchecked because the only math done is incrementing
@@ -41,24 +46,14 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
         unchecked {
             address recoveredAddress = ecrecover(
                 computeDigest(
-                    keccak256(
-                        abi.encode(
-                            keccak256(
-                                "Permit(address owner,address spender,uint256 id,uint256 nonce,uint256 deadline)"
-                            ),
-                            spender,
-                            id,
-                            nonces[owner][id]++,
-                            deadline
-                        )
-                    )
+                    keccak256(abi.encode(PERMIT_TYPEHASH, owner, spender, id, nonces[owner][id]++, deadline))
                 ),
                 v,
                 r,
                 s
             );
 
-            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID SIGNER");
+            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID_SIGNER");
 
             isApprovedForAll[owner][spender] = true;
 
