@@ -7,8 +7,7 @@ import {MockERC20Votes} from "./utils/mocks/MockERC20Votes.sol";
 
 contract ERC20VotesTest is DSTestPlus {
 
-    bytes32 public constant DELEGATION_TYPEHASH
-         = keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
+    bytes32 public constant DELEGATION_TYPEHASH = keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
 
     MockERC20Votes token;
 
@@ -45,7 +44,7 @@ contract ERC20VotesTest is DSTestPlus {
         assertEq(token.getPastVotes(holder, block.number - 1), supply);
     }
 
-    function testSetDelegationWithoutBalance() public {
+    function testSetDelegation_WithoutBalance() public {
 
         assertEq(token.delegates(holder), address(0));
 
@@ -55,7 +54,7 @@ contract ERC20VotesTest is DSTestPlus {
         assertEq(token.delegates(holder), holder);
     }
 
-    function testSetDelegationWithExistingDelegation() public {
+    function testSetDelegation_WithExistingDelegation() public {
         
         hevm.roll(420);
 
@@ -120,7 +119,7 @@ contract ERC20VotesTest is DSTestPlus {
         assertEq(token.getPastVotes(owner, block.number - 1), supply);
     }
 
-    function testFailSetDelegationWithSigReplay() public {
+    function testFailSetDelegationWithSig_Replay() public {
 
         hevm.roll(420);
 
@@ -148,7 +147,7 @@ contract ERC20VotesTest is DSTestPlus {
         token.delegateBySig(owner, nonce, expiry, v, r, s);
     }
 
-    function testFailDelegationWithSigBadDelegate() public {
+    function testFailDelegationWithSig_BadDelegate() public {
         // it('rejects bad delegatee', async function () {
         // const { v, r, s } = fromRpcSig(ethSigUtil.signTypedMessage(
         //     delegator.getPrivateKey(),
@@ -189,7 +188,7 @@ contract ERC20VotesTest is DSTestPlus {
         token.delegateBySig(address(0xBAD), nonce, expiry, v, r, s);
     }
 
-    function testFailDelegationWithSigBadNonce() public {
+    function testFailDelegation_WithSigBadNonce() public {
         hevm.roll(420);
 
         uint256 privateKey = uint256(0xB0b);
@@ -213,7 +212,7 @@ contract ERC20VotesTest is DSTestPlus {
         token.delegateBySig(address(0xBAD), nonce, expiry, v, r, s);
     }
 
-    function testFailDelegationWithSigExpired() public {
+    function testFailDelegation_WithSigExpired() public {
         hevm.roll(420);
         hevm.warp(420);
 
@@ -236,5 +235,356 @@ contract ERC20VotesTest is DSTestPlus {
         );
         
         token.delegateBySig(address(0xBAD), nonce, expiry, v, r, s);
+    }
+
+    function testTransfer_WithoutExistingDelegation() public {
+        
+        address to = address(0xc0de);
+
+        token.mint(holder, supply);
+
+        hevm.prank(holder);
+        token.transfer(to, 1 ether);
+
+        assertEq(token.getVotes(holder), 0);
+        assertEq(token.getVotes(to), 0);
+
+        hevm.roll(block.number + 1);
+
+        assertEq(token.getPastVotes(holder, block.number - 1), 0);
+        assertEq(token.getPastVotes(to, block.number - 1), 0);
+    }
+
+    function testTransfer_WithExistingSelfDelegation() public {
+        
+        address to = address(0xc0de);
+
+        token.mint(holder, supply);
+
+        hevm.startPrank(holder);
+        
+        token.delegate(holder);
+        token.transfer(to, 1 ether);
+
+        hevm.stopPrank();
+
+        assertEq(token.getVotes(holder), supply - 1 ether);
+        assertEq(token.getVotes(to), 0);
+
+        hevm.roll(block.number + 1);
+
+        assertEq(token.getPastVotes(holder, block.number - 1), supply - 1 ether);
+        assertEq(token.getPastVotes(to, block.number - 1), 0);
+    }
+
+    function testTransfer_WithExistingReceiverDelegation() public {
+        
+        address to = address(0xc0de);
+
+        token.mint(holder, supply);
+
+        hevm.startPrank(holder);
+        
+        token.delegate(to);
+        token.transfer(to, 1 ether);
+
+        hevm.stopPrank();
+
+        assertEq(token.getVotes(holder), 0);
+        assertEq(token.getVotes(to), supply - 1 ether);
+
+        hevm.roll(block.number + 1);
+
+        assertEq(token.getPastVotes(holder, block.number - 1), 0);
+        assertEq(token.getPastVotes(to, block.number - 1), supply - 1 ether);
+    }
+    
+    function testTransfer_WithFullDelegation() public {
+        
+        address to = address(0xc0de);
+
+        token.mint(holder, supply);
+
+        hevm.startPrank(holder);
+        
+        token.delegate(holder);
+        token.delegate(to);
+        token.transfer(to, 1 ether);
+
+        hevm.stopPrank();
+
+        assertEq(token.getVotes(holder), 0);
+        assertEq(token.getVotes(to), supply - 1 ether);
+
+        hevm.roll(block.number + 1);
+
+        assertEq(token.getPastVotes(holder, block.number - 1), 0);
+        assertEq(token.getPastVotes(to, block.number - 1), supply - 1 ether);
+    }
+
+    /// -----------------------------------------------------------------------
+    /// Compound Tests
+    /// -----------------------------------------------------------------------
+
+    function testNumCheckpoints() public {
+
+        address to = address(0xc0de);
+        address otherTo = address(0xb0b);
+
+        token.mint(holder, supply);
+
+        hevm.prank(holder);
+        token.transfer(to, 100);
+        assertEq(token.numCheckpoints(to), 0);
+
+        hevm.roll(block.number + 1);
+        uint256 t1 = block.number;
+
+        hevm.prank(to);
+        token.delegate(otherTo);
+        assertEq(token.numCheckpoints(otherTo), 1);
+
+        hevm.roll(block.number + 1);
+        uint256 t2 = block.number;
+
+        hevm.prank(to);
+        token.transfer(otherTo, 10);
+        assertEq(token.numCheckpoints(otherTo), 2);
+
+        hevm.roll(block.number + 1);
+        uint256 t3 = block.number;
+
+        hevm.prank(to);
+        token.transfer(otherTo, 10);
+        assertEq(token.numCheckpoints(otherTo), 3);
+
+        hevm.roll(block.number + 1);
+        uint256 t4 = block.number;
+
+        hevm.prank(holder);
+        token.transfer(to, 20);
+        assertEq(token.numCheckpoints(otherTo), 4);
+
+        (uint256 fromBlock, uint256 votes) = token.checkpoints(otherTo, 0);
+        assertEq(fromBlock, t1);
+        assertEq(votes, 100);
+
+        (fromBlock, votes) = token.checkpoints(otherTo, 1);
+        assertEq(fromBlock, t2);
+        assertEq(votes, 90);
+
+        (fromBlock, votes) = token.checkpoints(otherTo, 2);
+        assertEq(fromBlock, t3);
+        assertEq(votes, 80);
+
+        (fromBlock, votes) = token.checkpoints(otherTo, 3);
+        assertEq(fromBlock, t4);
+        assertEq(votes, 100);
+
+        hevm.roll(block.number + 1);
+
+        assertEq(token.getPastVotes(otherTo, t1), 100);
+        assertEq(token.getPastVotes(otherTo, t2), 90);
+        assertEq(token.getPastVotes(otherTo, t3), 80);
+        assertEq(token.getPastVotes(otherTo, t4), 100);   
+    }
+
+    function testNumCheckpoints_OnlySingleCheckpointPerBlock() public {
+
+        address to = address(0xc0de);
+        address otherTo = address(0xb0b);
+
+        token.mint(holder, supply);
+
+        hevm.startPrank(holder);
+
+        token.delegate(holder);
+        token.transfer(to, 100);
+
+        hevm.stopPrank();
+
+        assertEq(token.numCheckpoints(otherTo), 0);
+
+        hevm.startPrank(to);
+        
+        token.delegate(otherTo);
+        token.transfer(otherTo, 10);
+        token.transfer(otherTo, 10);
+
+        hevm.stopPrank();
+
+        assertEq(token.numCheckpoints(otherTo), 1);
+
+        (uint256 fromBlock, uint256 votes) = token.checkpoints(otherTo, 0);
+        assertEq(fromBlock, 0);
+        assertEq(votes, 80);
+
+        hevm.roll(block.number + 1);
+
+        hevm.prank(holder);
+        token.transfer(to, 20);
+
+        assertEq(token.numCheckpoints(otherTo), 2);
+
+        (fromBlock, votes) = token.checkpoints(otherTo, 1);
+        assertEq(fromBlock, 1);
+        assertEq(votes, 100);
+    }
+
+    function testFailGetPastVotes_RevertOnCurrentBlockAndGreater() public {
+        token.getPastVotes(holder, block.number + 1);
+    }
+
+    function testGetPastVotes_ReturnsZeroWithoutExistingCheckpoints() public {
+        hevm.roll(block.number + 1);
+        assertEq(token.getPastVotes(holder, 0), 0);
+    }
+
+    function testGetPastVotes_ReturnsLastestBlockIfInputIsGreaterThanCurrentBlock() public {
+
+        address to = address(0xc0de);
+
+        token.mint(holder, supply);
+
+        hevm.prank(holder);
+        token.delegate(to);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastVotes(to, block.number - 1), supply);
+        assertEq(token.getPastVotes(to, block.number - 2), supply);
+    }
+
+    function testGetPastVotes_ReturnsZeroIfInputIsLessThanFirstCheckpointBlock() public {
+        
+        address to = address(0xc0de);
+
+        hevm.roll(block.number + 1);
+
+        token.mint(holder, supply);
+        
+        hevm.prank(holder);
+        token.delegate(to);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastVotes(to, block.number - 3), 0);
+        assertEq(token.getPastVotes(to, block.number - 1), supply);
+    }
+
+    function testGetPastVotes_ReturnsCorrectVotingBalancePerCheckpoint() public {
+
+        address to = address(0xc0de);
+
+        hevm.roll(block.number + 1);
+        uint256 t1 = block.number;
+
+        token.mint(holder, supply);
+
+        hevm.prank(holder);
+        token.delegate(to);
+
+        hevm.roll(block.number + 2);
+        uint256 t2 = block.number;
+
+        hevm.prank(holder);
+        token.transfer(to, 10);
+
+        hevm.roll(block.number + 2);
+        uint256 t3 = block.number;
+
+        hevm.prank(holder);
+        token.transfer(to, 10);
+
+        hevm.roll(block.number + 2);
+        uint256 t4 = block.number;
+
+        hevm.prank(to);
+        token.transfer(holder, 20);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastVotes(to, t1 - 1), 0);
+        assertEq(token.getPastVotes(to, t1), supply);
+
+        assertEq(token.getPastVotes(to, t1 + 1), supply);
+        assertEq(token.getPastVotes(to, t2), supply - 10);
+
+        assertEq(token.getPastVotes(to, t2 + 1), supply - 10);
+        assertEq(token.getPastVotes(to, t3), supply - 20);
+        
+        assertEq(token.getPastVotes(to, t3 + 1), supply - 20);
+        assertEq(token.getPastVotes(to, t4), supply);
+
+        assertEq(token.getPastVotes(to, t4 + 1), supply);
+    }
+
+    function testFailGetPastTotalSupply_RevertOnCurrentBlockAndGreater() public {
+        token.getPastTotalSupply(block.number + 1);
+    }
+
+    function testGetPastTotalSupply_ReturnsZeroWhenNoExistingCheckpoints() public {
+        hevm.roll(block.number + 1);
+        assertEq(token.getPastTotalSupply(0), 0);
+    }
+    
+    function testGetPastTotalSupply_ReturnsLatestBlockOnCurrentBlockOrGreater() public {
+
+        token.mint(holder, supply);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastTotalSupply(block.number - 1), supply);
+        assertEq(token.getPastTotalSupply(block.number - 2), supply);
+    }
+    
+    function testGetPastTotalSupply_ReturnsZeroIfLessThanFirstCheckpointBlock() public {
+
+        hevm.roll(block.number + 1);
+
+        token.mint(holder, supply);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastTotalSupply(block.number - 3), 0);
+        assertEq(token.getPastTotalSupply(block.number - 1), supply);
+    }
+
+    function testGetPastTotalSupply_ReturnsCorrectVotingBalancePerCheckpoint() public {
+
+        hevm.roll(block.number + 1);
+        uint256 t1 = block.number;
+
+        token.mint(holder, supply);
+
+        hevm.roll(block.number + 2);
+        uint256 t2 = block.number;
+
+        token.burn(holder, 10);
+
+        hevm.roll(block.number + 2);
+        uint256 t3 = block.number;
+
+        token.burn(holder, 10);
+
+        hevm.roll(block.number + 2);
+        uint256 t4 = block.number;
+
+        token.mint(holder, 20);
+
+        hevm.roll(block.number + 2);
+
+        assertEq(token.getPastTotalSupply(t1 - 1), 0);
+        assertEq(token.getPastTotalSupply(t1), supply);
+
+        assertEq(token.getPastTotalSupply(t1 + 1), supply);
+        assertEq(token.getPastTotalSupply(t2), supply - 10);
+
+        assertEq(token.getPastTotalSupply(t2 + 1), supply - 10);
+        assertEq(token.getPastTotalSupply(t3), supply - 20);
+
+        assertEq(token.getPastTotalSupply(t3 + 1), supply - 20);
+        assertEq(token.getPastTotalSupply(t4), supply);
+        assertEq(token.getPastTotalSupply(t4 + 1), supply);
     }
 }
