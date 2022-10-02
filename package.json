@@ -12,9 +12,12 @@
   },
   "devDependencies": {
     "prettier": "^2.7.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.13"
+    "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "husky": "^8.0.0"
   },
   "scripts": {
-    "lint": "prettier --write **.sol"
+    "lint": "prettier --write **.sol",
+    "prepare": "husky install",
+    "test": "forge test"
   }
 }
