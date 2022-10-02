@@ -18,6 +18,7 @@
   "scripts": {
     "lint": "prettier --write **.sol",
     "prepare": "husky install",
-    "test": "forge test"
+    "test": "forge test",
+    "snap": "forge snapshot"
   }
 }
