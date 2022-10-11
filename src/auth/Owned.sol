@@ -10,6 +10,12 @@ abstract contract Owned {
     /// -----------------------------------------------------------------------
 
     event OwnerUpdated(address indexed user, address indexed newOwner);
+    
+    /// -----------------------------------------------------------------------
+    /// Errors
+    /// -----------------------------------------------------------------------
+    
+    error Unauthorized();
 
     /// -----------------------------------------------------------------------
     /// Ownership Storage
@@ -18,7 +24,7 @@ abstract contract Owned {
     address public owner;
 
     modifier onlyOwner() virtual {
-        require(msg.sender == owner, "UNAUTHORIZED");
+        if (msg.sender != owner) revert Unauthorized();
 
         _;
     }
