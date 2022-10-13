@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "../../../src/utils/ECDSA.sol";
+import {ECDSA} from "../../../src/utils/ECDSA.sol";
 
-contract MockERC1271Wallet {
+import {ERC721TokenReceiver} from "../../../src/tokens/ERC721/ERC721.sol";
+import {ERC1155TokenReceiver} from "../../../src/tokens/ERC1155/ERC1155.sol";
+
+contract MockERC1271Wallet is ERC721TokenReceiver, ERC1155TokenReceiver {
     address signer;
 
     constructor(address signer_) {
