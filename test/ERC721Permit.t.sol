@@ -178,7 +178,7 @@ contract ERC721PermitTest is DSTestPlus {
     ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
-        hevm.assume(deadline < block.timestamp); // bad deadline
+        deadline = bound(deadline, 0, block.timestamp);
 
         address owner = hevm.addr(privateKey);
 
