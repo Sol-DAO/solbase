@@ -34,7 +34,7 @@ contract OwnedTest is DSTestPlus {
 
         mockOwned.setOwner(owner);
 
-        hevm.expectRevert("UNAUTHORIZED");
+        hevm.expectRevert(bytes4(keccak256("Unauthorized()")));
         mockOwned.updateFlag();
     }
 }
