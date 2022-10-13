@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 import {ECDSA} from "../../../src/utils/ECDSA.sol";
 
 import {ERC721TokenReceiver} from "../../../src/tokens/ERC721/ERC721.sol";
-import {ERC1155TokenReceiver} from "../../../src/utils/ERC1155/ERC1155.sol";
+import {ERC1155TokenReceiver} from "../../../src/tokens/ERC1155/ERC1155.sol";
 
 contract MockERC1271Wallet is ERC721TokenReceiver, ERC1155TokenReceiver {
     address signer;
