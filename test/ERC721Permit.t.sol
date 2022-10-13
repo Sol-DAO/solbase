@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "forge-std/Test.sol";
+import {DSTestPlus} from "./utils/DSTestPlus.sol";
+import {DSInvariantTest} from "./utils/DSInvariantTest.sol";
 
 import {MockERC721} from "./utils/mocks/MockERC721.sol";
 
-contract ERC721PermitTest is Test {
+contract ERC721PermitTest is DSTestPlus {
     MockERC721 token;
 
     function setUp() public {
@@ -38,9 +39,9 @@ contract ERC721PermitTest is Test {
     function testPermit() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, block.timestamp, v, r, s);
@@ -52,9 +53,9 @@ contract ERC721PermitTest is Test {
     function testPermitAll() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(
             privateKey,
             computeDigest(owner, to, type(uint256).max, 0, block.timestamp)
         );
@@ -69,9 +70,9 @@ contract ERC721PermitTest is Test {
     function testFailPermitBadNonce() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 1, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 1, block.timestamp));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, block.timestamp, v, r, s);
@@ -80,22 +81,22 @@ contract ERC721PermitTest is Test {
     function testFailPermitBadDeadline() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, block.timestamp + 1, v, r, s);
     }
 
     function testFailPermitPastDeadline() public {
-        vm.warp(420); // forge's default block.timestamp is 0, thus the test would have failed regardless
+        hevm.warp(420); // forge's default block.timestamp is 0, thus the test would have failed regardless
 
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp - 1));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp - 1));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, block.timestamp - 1, v, r, s);
@@ -104,9 +105,9 @@ contract ERC721PermitTest is Test {
     function testFailPermitReplay() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, block.timestamp));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, block.timestamp, v, r, s);
@@ -116,9 +117,9 @@ contract ERC721PermitTest is Test {
     function testFailPermitAllReplay() public {
         address to = address(0xCAFE);
         uint256 privateKey = 0xBEEF;
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(
             privateKey,
             computeDigest(owner, to, type(uint256).max, 0, block.timestamp)
         );
@@ -136,13 +137,13 @@ contract ERC721PermitTest is Test {
         address to,
         uint256 deadline
     ) public {
-        vm.assume(privateKey > 0);
-        vm.assume(to > address(0));
-        vm.assume(deadline >= block.timestamp);
+        hevm.assume(privateKey > 0);
+        hevm.assume(to > address(0));
+        hevm.assume(deadline >= block.timestamp);
 
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, deadline, v, r, s);
@@ -157,14 +158,14 @@ contract ERC721PermitTest is Test {
         uint256 deadline,
         uint256 nonce
     ) public {
-        vm.assume(privateKey > 0);
-        vm.assume(to > address(0));
-        vm.assume(deadline >= block.timestamp);
-        vm.assume(nonce > 0); // bad nonce
+        hevm.assume(privateKey > 0);
+        hevm.assume(to > address(0));
+        hevm.assume(deadline >= block.timestamp);
+        hevm.assume(nonce > 0); // bad nonce
 
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, nonce, deadline));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, nonce, deadline));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, deadline, v, r, s);
@@ -175,13 +176,13 @@ contract ERC721PermitTest is Test {
         address to,
         uint256 deadline
     ) public {
-        vm.assume(privateKey > 0);
-        vm.assume(to > address(0));
-        vm.assume(deadline < block.timestamp); // bad deadline
+        hevm.assume(privateKey > 0);
+        hevm.assume(to > address(0));
+        deadline = bound(deadline, 0, block.timestamp);
 
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, deadline + 1, v, r, s);
@@ -192,13 +193,13 @@ contract ERC721PermitTest is Test {
         address to,
         uint256 deadline
     ) public {
-        vm.assume(privateKey > 0);
-        vm.assume(to > address(0));
+        hevm.assume(privateKey > 0);
+        hevm.assume(to > address(0));
         deadline = bound(deadline, 0, block.timestamp - 1);
 
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, deadline, v, r, s);
@@ -209,13 +210,13 @@ contract ERC721PermitTest is Test {
         address to,
         uint256 deadline
     ) public {
-        vm.assume(privateKey > 0);
-        vm.assume(to > address(0));
-        vm.assume(deadline >= block.timestamp);
+        hevm.assume(privateKey > 0);
+        hevm.assume(to > address(0));
+        hevm.assume(deadline >= block.timestamp);
 
-        address owner = vm.addr(privateKey);
+        address owner = hevm.addr(privateKey);
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
+        (uint8 v, bytes32 r, bytes32 s) = hevm.sign(privateKey, computeDigest(owner, to, 0, 0, deadline));
 
         token.mint(owner, 0);
         token.permit(owner, to, 0, deadline, v, r, s);
