@@ -8,6 +8,14 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC20/extensions/ERC20Permit.sol)
 abstract contract ERC20Permit is ERC20, EIP712 {
     /// -----------------------------------------------------------------------
+    /// Errors
+    /// -----------------------------------------------------------------------
+
+    error PermitExpired();
+
+    error InvalidSigner();
+
+    /// -----------------------------------------------------------------------
     /// EIP-2612 Constants
     /// -----------------------------------------------------------------------
 
@@ -43,7 +51,7 @@ abstract contract ERC20Permit is ERC20, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
+        if (block.timestamp > deadline) revert PermitExpired();
 
         // Unchecked because the only math done is incrementing
         // the owner's nonce which cannot realistically overflow.
@@ -55,7 +63,9 @@ abstract contract ERC20Permit is ERC20, EIP712 {
                 s
             );
 
-            require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
+            if (recoveredAddress == address(0)) revert InvalidSigner();
+
+            if (recoveredAddress != owner) revert InvalidSigner();
 
             allowance[recoveredAddress][spender] = value;
         }
