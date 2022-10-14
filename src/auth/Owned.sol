@@ -43,7 +43,7 @@ abstract contract Owned {
     /// Ownership Logic
     /// -----------------------------------------------------------------------
 
-    function transferOwnership(address newOwner) public virtual onlyOwner {
+    function transferOwnership(address newOwner) public payable virtual onlyOwner {
         owner = newOwner;
 
         emit OwnershipTransferred(msg.sender, newOwner);

@@ -11,7 +11,13 @@ abstract contract OwnedThreeStep {
 
     event OwnerUpdateInitiated(address indexed user, address indexed ownerCandidate);
 
-    event OwnerUpdated(address indexed user, address indexed newOwner);
+    event OwnershipTransferred(address indexed user, address indexed newOwner);
+
+    /// -----------------------------------------------------------------------
+    /// Errors
+    /// -----------------------------------------------------------------------
+
+    error Unauthorized();
 
     /// -----------------------------------------------------------------------
     /// Ownership Storage
@@ -24,7 +30,7 @@ abstract contract OwnedThreeStep {
     bool internal _ownerCandidateConfirmed;
 
     modifier onlyOwner() virtual {
-        require(msg.sender == owner, "UNAUTHORIZED");
+        if (msg.sender != owner) revert Unauthorized();
 
         _;
     }
@@ -38,7 +44,7 @@ abstract contract OwnedThreeStep {
     constructor(address _owner) {
         owner = _owner;
 
-        emit OwnerUpdated(address(0), _owner);
+        emit OwnershipTransferred(address(0), _owner);
     }
 
     /// -----------------------------------------------------------------------
@@ -47,16 +53,16 @@ abstract contract OwnedThreeStep {
 
     /// @notice Initiate ownership transfer.
     /// @param newOwner The `_ownerCandidate` that will `confirmOwner()`.
-    function setOwner(address newOwner) public virtual onlyOwner {
+    function transferOwnership(address newOwner) public payable virtual onlyOwner {
         _ownerCandidate = newOwner;
 
         emit OwnerUpdateInitiated(msg.sender, newOwner);
     }
 
     /// @notice Confirm ownership between `owner` and `_ownerCandidate`.
-    function confirmOwner() public virtual {
+    function confirmOwner() public payable virtual {
         if (_ownerCandidateConfirmed) {
-            require(msg.sender == owner, "UNAUTHORIZED");
+            if (msg.sender != owner) revert Unauthorized();
 
             delete _ownerCandidateConfirmed;
 
@@ -64,18 +70,18 @@ abstract contract OwnedThreeStep {
 
             owner = newOwner;
 
-            emit OwnerUpdated(msg.sender, newOwner);
+            emit OwnershipTransferred(msg.sender, newOwner);
         } else {
-            require(msg.sender == _ownerCandidate, "UNAUTHORIZED");
+            if (msg.sender != _ownerCandidate) revert Unauthorized();
 
             _ownerCandidateConfirmed = true;
         }
     }
 
     /// @notice Terminate ownership by `owner`.
-    function renounceOwner() public virtual onlyOwner {
+    function renounceOwner() public payable virtual onlyOwner {
         delete owner;
 
-        emit OwnerUpdated(msg.sender, address(0));
+        emit OwnershipTransferred(msg.sender, address(0));
     }
 }

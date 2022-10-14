@@ -5,33 +5,35 @@ import {DSTestPlus} from "./utils/DSTestPlus.sol";
 import {MockOwnedThreeStep} from "./utils/mocks/MockOwnedThreeStep.sol";
 
 contract ThreeStepOwnedTest is DSTestPlus {
+    error Unauthorized();
+
     MockOwnedThreeStep mockOwnedThreeStep;
 
-    function setUp() public {
+    function setUp() public payable {
         mockOwnedThreeStep = new MockOwnedThreeStep();
     }
 
-    function testSetOwner() public {
+    function testSetOwner() public payable {
         testSetOwner(address(0xBEEF));
     }
 
-    function testCallFunctionAsNonOwner() public {
+    function testCallFunctionAsNonOwner() public payable {
         address nonOwner = address(0xBAD);
 
         assertFalse(mockOwnedThreeStep.owner() == nonOwner);
 
         hevm.prank(nonOwner);
-        hevm.expectRevert("UNAUTHORIZED");
-        mockOwnedThreeStep.setOwner(address(0xC0FFEE));
+        hevm.expectRevert(Unauthorized.selector);
+        mockOwnedThreeStep.transferOwnership(address(0xC0FFEE));
 
         assertEq(mockOwnedThreeStep.owner(), address(this));
     }
 
-    function testCallFunctionAsOwner() public {
+    function testCallFunctionAsOwner() public payable {
         mockOwnedThreeStep.updateFlag();
     }
 
-    function testCallFunctionAsOwnerAfterUpdatingIt() public {
+    function testCallFunctionAsOwnerAfterUpdatingIt() public payable {
         address newOwner = address(0xCAFE);
         testSetOwner(newOwner);
 
@@ -39,27 +41,27 @@ contract ThreeStepOwnedTest is DSTestPlus {
         mockOwnedThreeStep.updateFlag();
     }
 
-    function testRenounceOwner() public {
+    function testRenounceOwner() public payable {
         mockOwnedThreeStep.renounceOwner();
 
         assertEq(mockOwnedThreeStep.owner(), address(0));
 
-        hevm.expectRevert("UNAUTHORIZED");
+        hevm.expectRevert(Unauthorized.selector);
         mockOwnedThreeStep.updateFlag();
     }
 
-    function testRenounceOwnerAsNonOwner() public {
+    function testRenounceOwnerAsNonOwner() public payable {
         address nonOwner = address(0xBAD);
         assertFalse(mockOwnedThreeStep.owner() == nonOwner);
 
         hevm.prank(nonOwner);
-        hevm.expectRevert("UNAUTHORIZED");
+        hevm.expectRevert(Unauthorized.selector);
         mockOwnedThreeStep.renounceOwner();
     }
 
-    function testConfirmOwnerAfterRenounceOwner() public {
+    function testConfirmOwnerAfterRenounceOwner() public payable {
         address newOwner = address(0xC0FFEE);
-        mockOwnedThreeStep.setOwner(newOwner);
+        mockOwnedThreeStep.transferOwnership(newOwner);
 
         mockOwnedThreeStep.renounceOwner();
         assertEq(mockOwnedThreeStep.owner(), address(0));
@@ -67,19 +69,19 @@ contract ThreeStepOwnedTest is DSTestPlus {
         hevm.prank(newOwner);
         mockOwnedThreeStep.confirmOwner();
 
-        hevm.expectRevert("UNAUTHORIZED");
+        hevm.expectRevert(Unauthorized.selector);
         mockOwnedThreeStep.confirmOwner();
     }
 
-    function testConfirmOwnerInWrongOrder() public {
-        mockOwnedThreeStep.setOwner(address(0xC0FFEE));
+    function testConfirmOwnerInWrongOrder() public payable {
+        mockOwnedThreeStep.transferOwnership(address(0xC0FFEE));
 
-        hevm.expectRevert("UNAUTHORIZED");
+        hevm.expectRevert(Unauthorized.selector);
         mockOwnedThreeStep.confirmOwner();
     }
 
-    function testSetOwner(address newOwner) public {
-        mockOwnedThreeStep.setOwner(newOwner);
+    function testSetOwner(address newOwner) public payable {
+        mockOwnedThreeStep.transferOwnership(newOwner);
 
         assertEq(mockOwnedThreeStep.owner(), address(this));
 
