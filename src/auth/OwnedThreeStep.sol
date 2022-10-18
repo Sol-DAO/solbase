@@ -14,7 +14,7 @@ abstract contract OwnedThreeStep {
     event OwnershipTransferred(address indexed user, address indexed newOwner);
 
     /// -----------------------------------------------------------------------
-    /// Errors
+    /// Custom Errors
     /// -----------------------------------------------------------------------
 
     error Unauthorized();

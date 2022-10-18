@@ -9,6 +9,8 @@ abstract contract Auth {
 
     event AuthorityUpdated(address indexed user, Authority indexed newAuthority);
 
+    error Unauthorized();
+
     address public owner;
 
     Authority public authority;
@@ -22,7 +24,7 @@ abstract contract Auth {
     }
 
     modifier requiresAuth() virtual {
-        require(isAuthorized(msg.sender, msg.sig), "UNAUTHORIZED");
+        if (!isAuthorized(msg.sender, msg.sig)) revert Unauthorized();
 
         _;
     }
@@ -35,17 +37,17 @@ abstract contract Auth {
         return (address(auth) != address(0) && auth.canCall(user, address(this), functionSig)) || user == owner;
     }
 
-    function setAuthority(Authority newAuthority) public virtual {
+    function setAuthority(Authority newAuthority) public payable virtual {
         // We check if the caller is the owner first because we want to ensure they can
         // always swap out the authority even if it's reverting or using up a lot of gas.
-        require(msg.sender == owner || authority.canCall(msg.sender, address(this), msg.sig));
+        if (msg.sender != owner && !authority.canCall(msg.sender, address(this), msg.sig)) revert Unauthorized();
 
         authority = newAuthority;
 
         emit AuthorityUpdated(msg.sender, newAuthority);
     }
 
-    function setOwner(address newOwner) public virtual requiresAuth {
+    function setOwner(address newOwner) public payable virtual requiresAuth {
         owner = newOwner;
 
         emit OwnerUpdated(msg.sender, newOwner);

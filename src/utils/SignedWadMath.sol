@@ -140,7 +140,7 @@ function wadExp(int256 x) pure returns (int256 r) {
 
 function wadLn(int256 x) pure returns (int256 r) {
     unchecked {
-        require(x > 0, "UNDEFINED");
+        if (x <= 0) revert("UNDEFINED");
 
         // We want to convert x from 10**18 fixed point to 2**96 fixed point.
         // We do this by multiplying by 2**96 / 10**18. But since

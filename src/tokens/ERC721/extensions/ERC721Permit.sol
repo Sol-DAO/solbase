@@ -8,6 +8,14 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721/extensions/ERC721Permit.sol)
 abstract contract ERC721Permit is ERC721, EIP712 {
     /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
+
+    error PermitExpired();
+
+    error InvalidSigner();
+
+    /// -----------------------------------------------------------------------
     /// EIP-2612-style Constants
     /// -----------------------------------------------------------------------
 
@@ -39,7 +47,7 @@ abstract contract ERC721Permit is ERC721, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
+        if (block.timestamp > deadline) revert PermitExpired();
 
         // Unchecked because the only math done is incrementing
         // the owner's nonce which cannot realistically overflow.
@@ -53,12 +61,10 @@ abstract contract ERC721Permit is ERC721, EIP712 {
 
             bool isApprovingAll = id == type(uint256).max;
 
-            require(
-                (isApprovingAll || recoveredAddress == _ownerOf[id]) &&
-                    recoveredAddress != address(0) &&
-                    recoveredAddress == owner,
-                "INVALID_SIGNER"
-            );
+            if (
+                ((!isApprovingAll && recoveredAddress != _ownerOf[id]) && recoveredAddress == address(0)) ||
+                recoveredAddress != owner
+            ) revert InvalidSigner();
 
             // If id is 2**256, then we assume the signer wants
             // to approve spender to spend all of their tokens.

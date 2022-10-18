@@ -5,7 +5,7 @@ pragma solidity ^0.8.4;
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/Sort.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/Sort.sol)
 library LibSort {
-    // @dev Sorts the array in-place.
+    /// @dev Sorts the array in-place.
     function sort(uint256[] memory a) internal pure {
         assembly {
             let n := mload(a) // Length of `a`.

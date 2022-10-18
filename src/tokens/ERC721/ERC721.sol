@@ -16,6 +16,24 @@ abstract contract ERC721 {
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
+
+    error NotMinted();
+
+    error ZeroAddress();
+
+    error Unauthorized();
+
+    error WrongFrom();
+
+    error InvalidRecipient();
+
+    error UnsafeRecipient();
+
+    error AlreadyMinted();
+
+    /// -----------------------------------------------------------------------
     /// Metadata Storage/Logic
     /// -----------------------------------------------------------------------
 
@@ -34,12 +52,11 @@ abstract contract ERC721 {
     mapping(address => uint256) internal _balanceOf;
 
     function ownerOf(uint256 id) public view virtual returns (address owner) {
-        require((owner = _ownerOf[id]) != address(0), "NOT_MINTED");
+        if ((owner = _ownerOf[id]) == address(0)) revert NotMinted();
     }
 
     function balanceOf(address owner) public view virtual returns (uint256) {
-        require(owner != address(0), "ZERO_ADDRESS");
-
+        if (owner == address(0)) revert ZeroAddress();
         return _balanceOf[owner];
     }
 
@@ -67,7 +84,7 @@ abstract contract ERC721 {
     function approve(address spender, uint256 id) public virtual {
         address owner = _ownerOf[id];
 
-        require(msg.sender == owner || isApprovedForAll[owner][msg.sender], "NOT_AUTHORIZED");
+        if (msg.sender != owner && !isApprovedForAll[owner][msg.sender]) revert Unauthorized();
 
         getApproved[id] = spender;
 
@@ -85,14 +102,12 @@ abstract contract ERC721 {
         address to,
         uint256 id
     ) public virtual {
-        require(from == _ownerOf[id], "WRONG_FROM");
+        if (from != _ownerOf[id]) revert WrongFrom();
 
-        require(to != address(0), "INVALID_RECIPIENT");
+        if (to == address(0)) revert InvalidRecipient();
 
-        require(
-            msg.sender == from || isApprovedForAll[from][msg.sender] || msg.sender == getApproved[id],
-            "NOT_AUTHORIZED"
-        );
+        if (msg.sender != from && !isApprovedForAll[from][msg.sender] && msg.sender != getApproved[id])
+            revert Unauthorized();
 
         // Underflow of the sender's balance is impossible because we check for
         // ownership above and the recipient's balance can't realistically overflow.
@@ -116,12 +131,12 @@ abstract contract ERC721 {
     ) public virtual {
         transferFrom(from, to, id);
 
-        require(
-            to.code.length == 0 ||
-                ERC721TokenReceiver(to).onERC721Received(msg.sender, from, id, "") ==
-                ERC721TokenReceiver.onERC721Received.selector,
-            "UNSAFE_RECIPIENT"
-        );
+        if (to.code.length != 0) {
+            if (
+                ERC721TokenReceiver(to).onERC721Received(msg.sender, from, id, "") !=
+                ERC721TokenReceiver.onERC721Received.selector
+            ) revert UnsafeRecipient();
+        }
     }
 
     function safeTransferFrom(
@@ -132,12 +147,12 @@ abstract contract ERC721 {
     ) public virtual {
         transferFrom(from, to, id);
 
-        require(
-            to.code.length == 0 ||
-                ERC721TokenReceiver(to).onERC721Received(msg.sender, from, id, data) ==
-                ERC721TokenReceiver.onERC721Received.selector,
-            "UNSAFE_RECIPIENT"
-        );
+        if (to.code.length != 0) {
+            if (
+                ERC721TokenReceiver(to).onERC721Received(msg.sender, from, id, data) !=
+                ERC721TokenReceiver.onERC721Received.selector
+            ) revert UnsafeRecipient();
+        }
     }
 
     /// -----------------------------------------------------------------------
@@ -156,9 +171,9 @@ abstract contract ERC721 {
     /// -----------------------------------------------------------------------
 
     function _mint(address to, uint256 id) internal virtual {
-        require(to != address(0), "INVALID_RECIPIENT");
+        if (to == address(0)) revert InvalidRecipient();
 
-        require(_ownerOf[id] == address(0), "ALREADY_MINTED");
+        if (_ownerOf[id] != address(0)) revert AlreadyMinted();
 
         // Counter overflow is incredibly unrealistic.
         unchecked {
@@ -173,7 +188,7 @@ abstract contract ERC721 {
     function _burn(uint256 id) internal virtual {
         address owner = _ownerOf[id];
 
-        require(owner != address(0), "NOT_MINTED");
+        if (owner == address(0)) revert NotMinted();
 
         // Ownership check above ensures no underflow.
         unchecked {
@@ -194,12 +209,12 @@ abstract contract ERC721 {
     function _safeMint(address to, uint256 id) internal virtual {
         _mint(to, id);
 
-        require(
-            to.code.length == 0 ||
-                ERC721TokenReceiver(to).onERC721Received(msg.sender, address(0), id, "") ==
-                ERC721TokenReceiver.onERC721Received.selector,
-            "UNSAFE_RECIPIENT"
-        );
+        if (to.code.length != 0) {
+            if (
+                ERC721TokenReceiver(to).onERC721Received(msg.sender, address(0), id, "") !=
+                ERC721TokenReceiver.onERC721Received.selector
+            ) revert UnsafeRecipient();
+        }
     }
 
     function _safeMint(
@@ -209,12 +224,12 @@ abstract contract ERC721 {
     ) internal virtual {
         _mint(to, id);
 
-        require(
-            to.code.length == 0 ||
-                ERC721TokenReceiver(to).onERC721Received(msg.sender, address(0), id, data) ==
-                ERC721TokenReceiver.onERC721Received.selector,
-            "UNSAFE_RECIPIENT"
-        );
+        if (to.code.length != 0) {
+            if (
+                ERC721TokenReceiver(to).onERC721Received(msg.sender, address(0), id, data) !=
+                ERC721TokenReceiver.onERC721Received.selector
+            ) revert UnsafeRecipient();
+        }
     }
 }
 

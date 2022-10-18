@@ -8,6 +8,14 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/extensions/ERC1155Permit.sol)
 abstract contract ERC1155Permit is ERC1155, EIP712 {
     /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
+
+    error PermitExpired();
+
+    error InvalidSigner();
+
+    /// -----------------------------------------------------------------------
     /// EIP-2612-style Constants
     /// -----------------------------------------------------------------------
 
@@ -39,7 +47,7 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
+        if (block.timestamp > deadline) revert PermitExpired();
 
         // Unchecked because the only math done is incrementing
         // the owner's nonce which cannot realistically overflow.
@@ -53,7 +61,7 @@ abstract contract ERC1155Permit is ERC1155, EIP712 {
                 s
             );
 
-            require(recoveredAddress == owner && recoveredAddress != address(0), "INVALID_SIGNER");
+            if (recoveredAddress != owner || recoveredAddress == address(0)) revert InvalidSigner();
 
             isApprovedForAll[owner][spender] = true;
 

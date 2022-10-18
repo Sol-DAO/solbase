@@ -27,6 +27,14 @@ abstract contract ERC4626 is ERC20Permit {
     );
 
     /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
+
+    error ZeroShares();
+
+    error ZeroAssets();
+
+    /// -----------------------------------------------------------------------
     /// Immutables
     /// -----------------------------------------------------------------------
 
@@ -46,7 +54,7 @@ abstract contract ERC4626 is ERC20Permit {
 
     function deposit(uint256 assets, address receiver) public virtual returns (uint256 shares) {
         // Check for rounding error since we round down in previewDeposit.
-        require((shares = previewDeposit(assets)) != 0, "ZERO_SHARES");
+        if ((shares = previewDeposit(assets)) == 0) revert ZeroShares();
 
         // Need to transfer before minting or ERC777s could reenter.
         asset.safeTransferFrom(msg.sender, address(this), assets);
@@ -105,7 +113,7 @@ abstract contract ERC4626 is ERC20Permit {
         }
 
         // Check for rounding error since we round down in previewRedeem.
-        require((assets = previewRedeem(shares)) != 0, "ZERO_ASSETS");
+        if ((assets = previewRedeem(shares)) == 0) revert ZeroAssets();
 
         beforeWithdraw(assets, shares);
 
