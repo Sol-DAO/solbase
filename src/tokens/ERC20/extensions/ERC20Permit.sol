@@ -8,7 +8,7 @@ import {EIP712} from "../../../utils/EIP712.sol";
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC20/extensions/ERC20Permit.sol)
 abstract contract ERC20Permit is ERC20, EIP712 {
     /// -----------------------------------------------------------------------
-    /// Errors
+    /// Custom Errors
     /// -----------------------------------------------------------------------
 
     error PermitExpired();

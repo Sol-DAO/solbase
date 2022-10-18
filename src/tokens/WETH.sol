@@ -2,7 +2,6 @@
 pragma solidity ^0.8.4;
 
 import {ERC20} from "./ERC20/ERC20.sol";
-
 import {SafeTransferLib} from "../utils/SafeTransferLib.sol";
 
 /// @notice Minimalist and modern Wrapped Ether implementation.

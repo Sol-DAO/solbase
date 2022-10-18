@@ -23,7 +23,7 @@ abstract contract ERC721 {
 
     error ZeroAddress();
 
-    error NotAuthorized();
+    error Unauthorized();
 
     error WrongFrom();
 
@@ -84,7 +84,7 @@ abstract contract ERC721 {
     function approve(address spender, uint256 id) public virtual {
         address owner = _ownerOf[id];
 
-        if (msg.sender != owner && !isApprovedForAll[owner][msg.sender]) revert NotAuthorized();
+        if (msg.sender != owner && !isApprovedForAll[owner][msg.sender]) revert Unauthorized();
 
         getApproved[id] = spender;
 
@@ -107,7 +107,7 @@ abstract contract ERC721 {
         if (to == address(0)) revert InvalidRecipient();
 
         if (msg.sender != from && !isApprovedForAll[from][msg.sender] && msg.sender != getApproved[id])
-            revert NotAuthorized();
+            revert Unauthorized();
 
         // Underflow of the sender's balance is impossible because we check for
         // ownership above and the recipient's balance can't realistically overflow.

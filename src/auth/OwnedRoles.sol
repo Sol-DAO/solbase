@@ -9,28 +9,6 @@ pragma solidity ^0.8.4;
 /// may be unique to this codebase.
 abstract contract OwnedRoles {
     /// -----------------------------------------------------------------------
-    /// Custom Errors
-    /// -----------------------------------------------------------------------
-
-    /// @dev The caller is not authorized to call the function.
-    error Unauthorized();
-
-    /// @dev The `newOwner` cannot be the zero address.
-    error NewOwnerIsZeroAddress();
-
-    /// @dev The `pendingOwner` does not have a valid handover request.
-    error NoHandoverRequest();
-
-    /// @dev `bytes4(keccak256(bytes("Unauthorized()")))`.
-    uint256 private constant _UNAUTHORIZED_ERROR_SELECTOR = 0x82b42900;
-
-    /// @dev `bytes4(keccak256(bytes("NewOwnerIsZeroAddress()")))`.
-    uint256 private constant _NEW_OWNER_IS_ZERO_ADDRESS_ERROR_SELECTOR = 0x7448fbae;
-
-    /// @dev `bytes4(keccak256(bytes("NoHandoverRequest()")))`.
-    uint256 private constant _NO_HANDOVER_REQUEST_ERROR_SELECTOR = 0x6f5e8818;
-
-    /// -----------------------------------------------------------------------
     /// Events
     /// -----------------------------------------------------------------------
 
@@ -65,6 +43,28 @@ abstract contract OwnedRoles {
     /// @dev `keccak256(bytes("RolesUpdated(address,uint256)"))`.
     uint256 private constant _ROLES_UPDATED_EVENT_SIGNATURE =
         0x715ad5ce61fc9595c7b415289d59cf203f23a94fa06f04af7e489a0a76e1fe26;
+
+    /// -----------------------------------------------------------------------
+    /// Custom Errors
+    /// -----------------------------------------------------------------------
+
+    /// @dev The caller is not authorized to call the function.
+    error Unauthorized();
+
+    /// @dev The `newOwner` cannot be the zero address.
+    error NewOwnerIsZeroAddress();
+
+    /// @dev The `pendingOwner` does not have a valid handover request.
+    error NoHandoverRequest();
+
+    /// @dev `bytes4(keccak256(bytes("Unauthorized()")))`.
+    uint256 private constant _UNAUTHORIZED_ERROR_SELECTOR = 0x82b42900;
+
+    /// @dev `bytes4(keccak256(bytes("NewOwnerIsZeroAddress()")))`.
+    uint256 private constant _NEW_OWNER_IS_ZERO_ADDRESS_ERROR_SELECTOR = 0x7448fbae;
+
+    /// @dev `bytes4(keccak256(bytes("NoHandoverRequest()")))`.
+    uint256 private constant _NO_HANDOVER_REQUEST_ERROR_SELECTOR = 0x6f5e8818;
 
     /// -----------------------------------------------------------------------
     /// Storage
