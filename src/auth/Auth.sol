@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 /// @notice Provides a flexible and updatable auth pattern which is completely separate from application logic.
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/auth/Auth.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Auth.sol)
-/// @dev The ownable portion follows [EIP-173](https://eips.ethereum.org/EIPS/eip-173).
+/// @dev The ownable portion follows EIP-173 (https://eips.ethereum.org/EIPS/eip-173).
 abstract contract Auth {
     event OwnershipTransferred(address indexed user, address indexed newOwner);
 
