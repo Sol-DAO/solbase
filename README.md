@@ -55,6 +55,7 @@ utils
 ├─ SafeMulticallable — "Contract that enables a single call to call multiple methods on itself"
 ├─ MerkleProofLib — "Gas-optimized verification of proof of inclusion for a leaf in a Merkle tree"
 ├─ SignatureCheckerLib — "Signature verification helper that supports both ECDSA signatures from EOAs"
+├─ SafeTransfer — "Safe ETH and ERC20 free function transfer collection that gracefully handles missing return values"
 ```
 
 ## Safety
