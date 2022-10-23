@@ -420,7 +420,7 @@ contract ERC20VotesTest is DSTestPlus {
         assertEq(votes, 100);
     }*/
 
-    function testFailGetPastVotes_RevertOnCurrentBlockAndGreater() public {
+    function testFailGetPastVotes_RevertOnCurrentBlockAndGreater() public view {
         token.getPastVotes(holder, block.number + 1);
     }
 
@@ -505,7 +505,7 @@ contract ERC20VotesTest is DSTestPlus {
         assertEq(token.getPastVotes(to, t4 + 1), supply);
     }
 
-    function testFailGetPastTotalSupply_RevertOnCurrentBlockAndGreater() public {
+    function testFailGetPastTotalSupply_RevertOnCurrentBlockAndGreater() public view {
         token.getPastTotalSupply(block.number + 1);
     }
 

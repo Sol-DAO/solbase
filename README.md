@@ -53,6 +53,7 @@ utils
 ├─ EIP712 — "Gas-optimized implementation of EIP-712 domain separator and digest encoding"
 ├─ Multicallable — "Contract that enables a single call to call multiple methods on itself"
 ├─ SafeMulticallable — "Contract that enables a single call to call multiple methods on itself"
+├─ FixedPointMath — "Arithmetic free function collection with operations for fixed-point numbers"
 ├─ MerkleProofLib — "Gas-optimized verification of proof of inclusion for a leaf in a Merkle tree"
 ├─ SignatureCheckerLib — "Signature verification helper that supports both ECDSA signatures from EOAs"
 ├─ SafeTransfer — "Safe ETH and ERC20 free function transfer collection that gracefully handles missing return values"
