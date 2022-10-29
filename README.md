@@ -97,3 +97,12 @@ These contracts were inspired by or directly modified from many sources, primari
 - [Dappsys V2](https://github.com/dapp-org/dappsys-v2)
 - [0xSequence](https://github.com/0xSequence)
 - [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)
+
+More specifically, the following contributors have made all of this possible:
+
+- [transmissions11](https://github.com/transmissions11)
+- [vectorized](https://github.com/vectorized)
+- [0xclandestine](https://github.com/0xclandestine)
+- [0xduality](https://github.com/0xduality)
+- [JTraversa](https://github.com/JTraversa)
+- [donosonaumczuk](https://github.com/donosonaumczuk)
