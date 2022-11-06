@@ -2,8 +2,12 @@
 pragma solidity ^0.8.4;
 
 /// @notice Arithmetic free function collection with operations for fixed-point numbers.
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/FixedPointMath.sol)
+/// @author Solbase (https://github.com/Sol-DAO/solbase/blob/main/src/utils/FixedPointMath.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/FixedPointMathLib.sol)
+
+/// @dev The multiply-divide operation failed, either due to a
+/// multiplication overflow, or a division by a zero.
+error MulDivFailed();
 
 /// @dev The maximum possible integer.
 uint256 constant MAX_UINT256 = 2**256 - 1;
