@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Safe ETH and ERC20 free function transfer collection that gracefully handles missing return values.
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SafeTransfer.sol)
+/// @author Solbase (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SafeTransfer.sol)
 /// @author Modified from Zolidity (https://github.com/z0r0z/zolidity/blob/main/src/utils/SafeTransfer.sol)
 
 /// @dev The ETH transfer has failed.
