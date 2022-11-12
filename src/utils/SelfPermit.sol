@@ -11,9 +11,9 @@ import {Permit} from "./Permit.sol";
 abstract contract SelfPermit {
     /// @dev ERC20.
 
-    /// @notice Permits this contract to spend a given EIP-2612 `token` from `msg.sender`.
-    /// @dev The `owner` is always `msg.sender` and the `spender` is always `address(this)`.
+    /// @notice Permits this contract to spend a given EIP-2612 `token` from `owner`.
     /// @param token The address of the asset spent.
+    /// @param owner The address of the asset holder.
     /// @param value The amount permitted to spend.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param v Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `s`.
@@ -21,18 +21,19 @@ abstract contract SelfPermit {
     /// @param s Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `v`.
     function selfPermit(
         Permit token,
+        address owner,
         uint256 value,
         uint256 deadline,
         uint8 v,
         bytes32 r,
         bytes32 s
     ) public virtual {
-        token.permit(msg.sender, address(this), value, deadline, v, r, s);
+        token.permit(owner, address(this), value, deadline, v, r, s);
     }
 
-    /// @notice Permits this contract to spend a given Dai-style `token` from `msg.sender`.
-    /// @dev The `owner` is always `msg.sender` and the `spender` is always `address(this)`.
+    /// @notice Permits this contract to spend a given Dai-style `token` from `owner`.
     /// @param token The address of the asset spent.
+    /// @param owner The address of the asset holder.
     /// @param nonce The current nonce of the `owner`.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param v Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `s`.
@@ -40,19 +41,19 @@ abstract contract SelfPermit {
     /// @param s Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `v`.
     function selfPermitAllowed(
         Permit token,
+        address owner,
         uint256 nonce,
         uint256 deadline,
         uint8 v,
         bytes32 r,
         bytes32 s
     ) public virtual {
-        token.permit(msg.sender, address(this), nonce, deadline, true, v, r, s);
+        token.permit(owner, address(this), nonce, deadline, true, v, r, s);
     }
 
     /// @dev ERC721.
 
-    /// @notice Permits this contract to spend a given EIP-2612-style NFT `tokenID` from `msg.sender`.
-    /// @dev The `spender` is always `address(this)`.
+    /// @notice Permits this contract to spend a given EIP-2612-style NFT `tokenID`.
     /// @param token The address of the asset spent.
     /// @param tokenId The ID of the token that is being approved for permit.
     /// @param deadline The unix timestamp before which permit must be spent.
@@ -71,7 +72,6 @@ abstract contract SelfPermit {
     }
 
     /// @notice Permits this contract to spend a given EIP-4494 NFT `tokenID`.
-    /// @dev The `spender` is always `address(this)`.
     /// @param token The address of the asset spent.
     /// @param tokenId The ID of the token that is being approved for permit.
     /// @param deadline The unix timestamp before which permit must be spent.
@@ -88,19 +88,20 @@ abstract contract SelfPermit {
     /// @dev ERC1155.
 
     /// @notice Permits this contract to spend a given EIP-2612-style multitoken.
-    /// @dev The `owner` is always `msg.sender` and the `operator` is always `address(this)`.
     /// @param token The address of the asset spent.
+    /// @param owner The address of the asset holder.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param v Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `s`.
     /// @param r Must produce valid secp256k1 signature from the `msg.sender` along with `v` and `s`.
     /// @param s Must produce valid secp256k1 signature from the `msg.sender` along with `r` and `v`.
     function selfPermit1155(
         Permit token,
+        address owner,
         uint256 deadline,
         uint8 v,
         bytes32 r,
         bytes32 s
     ) public virtual {
-        token.permit(msg.sender, address(this), true, deadline, v, r, s);
+        token.permit(owner, address(this), true, deadline, v, r, s);
     }
 }
