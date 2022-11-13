@@ -126,11 +126,7 @@ library SSTORE2 {
         }
     }
 
-    function read(
-        address pointer,
-        uint256 start,
-        uint256 end
-    ) internal view returns (bytes memory data) {
+    function read(address pointer, uint256 start, uint256 end) internal view returns (bytes memory data) {
         assembly {
             let pointerCodesize := extcodesize(pointer)
             if iszero(pointerCodesize) {

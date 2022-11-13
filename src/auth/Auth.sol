@@ -59,9 +59,5 @@ abstract contract Auth {
 /// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/auth/Auth.sol)
 /// @author Modified from Dappsys (https://github.com/dapphub/ds-auth/blob/master/src/auth.sol)
 interface Authority {
-    function canCall(
-        address user,
-        address target,
-        bytes4 functionSig
-    ) external view returns (bool);
+    function canCall(address user, address target, bytes4 functionSig) external view returns (bool);
 }

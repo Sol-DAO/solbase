@@ -46,11 +46,7 @@ library LibBitmap {
         }
     }
 
-    function setTo(
-        Bitmap storage bitmap,
-        uint256 index,
-        bool shouldSet
-    ) internal {
+    function setTo(Bitmap storage bitmap, uint256 index, bool shouldSet) internal {
         assembly {
             mstore(0x20, bitmap.slot)
             mstore(0x00, shr(8, index))

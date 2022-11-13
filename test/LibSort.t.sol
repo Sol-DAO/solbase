@@ -583,11 +583,7 @@ contract LibSortTest is Test {
         _sortOriginal(a, 0, int256(a.length - 1));
     }
 
-    function _sortOriginal(
-        uint256[] memory arr,
-        int256 left,
-        int256 right
-    ) internal pure {
+    function _sortOriginal(uint256[] memory arr, int256 left, int256 right) internal pure {
         int256 i = left;
         int256 j = right;
         if (i == j) return;

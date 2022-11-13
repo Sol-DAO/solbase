@@ -50,12 +50,7 @@ contract CREATE3Test is DSTestPlus {
         CREATE3.deploy(salt, type(MockAuthChild).creationCode, 0);
     }
 
-    function testFuzzDeployERC20(
-        bytes32 salt,
-        string calldata name,
-        string calldata symbol,
-        uint8 decimals
-    ) public {
+    function testFuzzDeployERC20(bytes32 salt, string calldata name, string calldata symbol, uint8 decimals) public {
         MockERC20 deployed = MockERC20(
             CREATE3.deploy(salt, abi.encodePacked(type(MockERC20).creationCode, abi.encode(name, symbol, decimals)), 0)
         );

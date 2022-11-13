@@ -132,11 +132,7 @@ contract ERC721PermitTest is DSTestPlus {
     /// Fuzz Tests
     /// -----------------------------------------------------------------------
 
-    function testPermit(
-        uint248 privateKey,
-        address to,
-        uint256 deadline
-    ) public {
+    function testPermit(uint248 privateKey, address to, uint256 deadline) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         hevm.assume(deadline >= block.timestamp);
@@ -152,12 +148,7 @@ contract ERC721PermitTest is DSTestPlus {
         assertEq(token.nonces(0), 1);
     }
 
-    function testFailPermitBadNonce(
-        uint248 privateKey,
-        address to,
-        uint256 deadline,
-        uint256 nonce
-    ) public {
+    function testFailPermitBadNonce(uint248 privateKey, address to, uint256 deadline, uint256 nonce) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         hevm.assume(deadline >= block.timestamp);
@@ -171,11 +162,7 @@ contract ERC721PermitTest is DSTestPlus {
         token.permit(owner, to, 0, deadline, v, r, s);
     }
 
-    function testFailPermitBadDeadline(
-        uint248 privateKey,
-        address to,
-        uint256 deadline
-    ) public {
+    function testFailPermitBadDeadline(uint248 privateKey, address to, uint256 deadline) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         deadline = bound(deadline, 0, block.timestamp);
@@ -188,11 +175,7 @@ contract ERC721PermitTest is DSTestPlus {
         token.permit(owner, to, 0, deadline + 1, v, r, s);
     }
 
-    function testFailPermitPastDeadline(
-        uint248 privateKey,
-        address to,
-        uint256 deadline
-    ) public {
+    function testFailPermitPastDeadline(uint248 privateKey, address to, uint256 deadline) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         deadline = bound(deadline, 0, block.timestamp - 1);
@@ -205,11 +188,7 @@ contract ERC721PermitTest is DSTestPlus {
         token.permit(owner, to, 0, deadline, v, r, s);
     }
 
-    function testFailPermitReplay(
-        uint256 privateKey,
-        address to,
-        uint256 deadline
-    ) public {
+    function testFailPermitReplay(uint256 privateKey, address to, uint256 deadline) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         hevm.assume(deadline >= block.timestamp);

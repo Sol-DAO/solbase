@@ -49,11 +49,7 @@ library CREATE3 {
     /// Create3 Operations
     /// -----------------------------------------------------------------------
 
-    function deploy(
-        bytes32 salt,
-        bytes memory creationCode,
-        uint256 value
-    ) internal returns (address deployed) {
+    function deploy(bytes32 salt, bytes memory creationCode, uint256 value) internal returns (address deployed) {
         assembly {
             // Store the `_PROXY_BYTECODE` into scratch space.
             mstore(0x00, _PROXY_BYTECODE)

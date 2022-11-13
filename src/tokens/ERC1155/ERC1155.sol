@@ -126,12 +126,10 @@ abstract contract ERC1155 {
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function balanceOfBatch(address[] calldata owners, uint256[] calldata ids)
-        public
-        view
-        virtual
-        returns (uint256[] memory balances)
-    {
+    function balanceOfBatch(
+        address[] calldata owners,
+        uint256[] calldata ids
+    ) public view virtual returns (uint256[] memory balances) {
         if (ids.length != owners.length) revert LengthMismatch();
 
         balances = new uint256[](owners.length);
@@ -160,12 +158,7 @@ abstract contract ERC1155 {
     /// Internal Mint/Burn Logic
     /// -----------------------------------------------------------------------
 
-    function _mint(
-        address to,
-        uint256 id,
-        uint256 amount,
-        bytes memory data
-    ) internal virtual {
+    function _mint(address to, uint256 id, uint256 amount, bytes memory data) internal virtual {
         balanceOf[to][id] += amount;
 
         emit TransferSingle(msg.sender, address(0), to, id, amount);
@@ -208,11 +201,7 @@ abstract contract ERC1155 {
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function _batchBurn(
-        address from,
-        uint256[] memory ids,
-        uint256[] memory amounts
-    ) internal virtual {
+    function _batchBurn(address from, uint256[] memory ids, uint256[] memory amounts) internal virtual {
         uint256 idsLength = ids.length; // Saves MLOADs.
 
         if (ids.length != amounts.length) revert LengthMismatch();
@@ -230,11 +219,7 @@ abstract contract ERC1155 {
         emit TransferBatch(msg.sender, from, address(0), ids, amounts);
     }
 
-    function _burn(
-        address from,
-        uint256 id,
-        uint256 amount
-    ) internal virtual {
+    function _burn(address from, uint256 id, uint256 amount) internal virtual {
         balanceOf[from][id] -= amount;
 
         emit TransferSingle(msg.sender, from, address(0), id, amount);
@@ -244,13 +229,7 @@ abstract contract ERC1155 {
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155.sol)
 /// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155/ERC1155.sol)
 abstract contract ERC1155TokenReceiver {
-    function onERC1155Received(
-        address,
-        address,
-        uint256,
-        uint256,
-        bytes calldata
-    ) external virtual returns (bytes4) {
+    function onERC1155Received(address, address, uint256, uint256, bytes calldata) external virtual returns (bytes4) {
         return ERC1155TokenReceiver.onERC1155Received.selector;
     }
 

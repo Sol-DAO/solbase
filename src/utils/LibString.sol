@@ -305,11 +305,7 @@ library LibString {
     /// @dev Returns the byte index of the first location of `search` in `subject`,
     /// searching from left to right, starting from `from`.
     /// Returns `NOT_FOUND` (i.e. `type(uint256).max`) if the `search` is not found.
-    function indexOf(
-        string memory subject,
-        string memory search,
-        uint256 from
-    ) internal pure returns (uint256 result) {
+    function indexOf(string memory subject, string memory search, uint256 from) internal pure returns (uint256 result) {
         assembly {
             // prettier-ignore
             for { let subjectLength := mload(subject) } 1 {} {
@@ -491,11 +487,7 @@ library LibString {
 
     /// @dev Returns a copy of `subject` sliced from `start` to `end` (exclusive).
     /// `start` and `end` are byte offsets.
-    function slice(
-        string memory subject,
-        uint256 start,
-        uint256 end
-    ) internal pure returns (string memory result) {
+    function slice(string memory subject, uint256 start, uint256 end) internal pure returns (string memory result) {
         assembly {
             let subjectLength := mload(subject)
             if iszero(gt(subjectLength, end)) {

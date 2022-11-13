@@ -23,6 +23,7 @@ library SafeTransferLib {
     /// -----------------------------------------------------------------------
 
     function safeTransferETH(address to, uint256 amount) internal {
+        /// @solidity memory-safe-assembly
         assembly {
             // Transfer the ETH and check if it succeeded or not.
             if iszero(call(gas(), to, amount, 0, 0, 0, 0)) {
@@ -38,11 +39,8 @@ library SafeTransferLib {
     /// ERC20 Operations
     /// -----------------------------------------------------------------------
 
-    function safeApprove(
-        address token,
-        address to,
-        uint256 amount
-    ) internal {
+    function safeApprove(address token, address to, uint256 amount) internal {
+        /// @solidity memory-safe-assembly
         assembly {
             // We'll write our calldata to this slot below, but restore it later.
             let memPointer := mload(0x40)
@@ -73,11 +71,8 @@ library SafeTransferLib {
         }
     }
 
-    function safeTransfer(
-        address token,
-        address to,
-        uint256 amount
-    ) internal {
+    function safeTransfer(address token, address to, uint256 amount) internal {
+        /// @solidity memory-safe-assembly
         assembly {
             // We'll write our calldata to this slot below, but restore it later.
             let memPointer := mload(0x40)
@@ -108,12 +103,8 @@ library SafeTransferLib {
         }
     }
 
-    function safeTransferFrom(
-        address token,
-        address from,
-        address to,
-        uint256 amount
-    ) internal {
+    function safeTransferFrom(address token, address from, address to, uint256 amount) internal {
+        /// @solidity memory-safe-assembly
         assembly {
             // We'll write our calldata to this slot below, but restore it later.
             let memPointer := mload(0x40)

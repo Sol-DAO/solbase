@@ -27,11 +27,7 @@ contract LibBytemapTest is DSTestPlus {
         bigArrayBytemap[index] = value;
     }
 
-    function testBytemapSetAndGet(
-        uint256 index,
-        uint8 value,
-        uint256 brutalizer
-    ) public {
+    function testBytemapSetAndGet(uint256 index, uint8 value, uint256 brutalizer) public {
         assembly {
             value := or(shl(8, brutalizer), value)
         }

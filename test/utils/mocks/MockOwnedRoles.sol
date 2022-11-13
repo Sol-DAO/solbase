@@ -77,13 +77,9 @@ contract MockOwnedRoles is OwnedRoles {
         result = OwnedRoles.rolesOf(_brutalizedAddress(user));
     }
 
-    function ownershipHandoverExpiresAt(address pendingOwner)
-        public
-        view
-        virtual
-        override(OwnedRoles)
-        returns (uint256 result)
-    {
+    function ownershipHandoverExpiresAt(
+        address pendingOwner
+    ) public view virtual override(OwnedRoles) returns (uint256 result) {
         result = OwnedRoles.ownershipHandoverExpiresAt(_brutalizedAddress(pendingOwner));
     }
 

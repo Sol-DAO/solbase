@@ -79,11 +79,7 @@ library ECDSA {
     /// The `result` will be the zero address upon recovery failure.
     /// As such, it is extremely important to ensure that the address which
     /// the `result` is compared against is never zero.
-    function recover(
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (address result) {
+    function recover(bytes32 hash, bytes32 r, bytes32 vs) internal view returns (address result) {
         uint8 v;
         bytes32 s;
         assembly {
@@ -100,12 +96,7 @@ library ECDSA {
     /// The `result` will be the zero address upon recovery failure.
     /// As such, it is extremely important to ensure that the address which
     /// the `result` is compared against is never zero.
-    function recover(
-        bytes32 hash,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) internal view returns (address result) {
+    function recover(bytes32 hash, uint8 v, bytes32 r, bytes32 s) internal view returns (address result) {
         assembly {
             // Copy the free memory pointer so that we can restore it later.
             let m := mload(0x40)
