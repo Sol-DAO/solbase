@@ -15,6 +15,7 @@ uint256 constant MAX_UINT256 = 2 ** 256 - 1;
 /// @dev Returns `floor(x * y / denominator)`.
 /// Reverts if `x * y` overflows, or `denominator` is zero.
 function mulDivDown(uint256 x, uint256 y, uint256 denominator) pure returns (uint256 z) {
+    /// @solidity memory-safe-assembly
     assembly {
         // Equivalent to require(denominator != 0 && (y == 0 || x <= type(uint256).max / y))
         if iszero(mul(denominator, iszero(mul(y, gt(x, div(MAX_UINT256, y)))))) {
@@ -32,6 +33,7 @@ function mulDivDown(uint256 x, uint256 y, uint256 denominator) pure returns (uin
 /// @dev Returns `ceil(x * y / denominator)`.
 /// Reverts if `x * y` overflows, or `denominator` is zero.
 function mulDivUp(uint256 x, uint256 y, uint256 denominator) pure returns (uint256 z) {
+    /// @solidity memory-safe-assembly
     assembly {
         // Equivalent to require(denominator != 0 && (y == 0 || x <= type(uint256).max / y))
         if iszero(mul(denominator, iszero(mul(y, gt(x, div(MAX_UINT256, y)))))) {
