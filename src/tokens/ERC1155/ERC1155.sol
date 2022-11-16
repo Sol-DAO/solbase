@@ -72,7 +72,8 @@ abstract contract ERC1155 {
         uint256 amount,
         bytes calldata data
     ) public virtual {
-        if (msg.sender != from && !isApprovedForAll[from][msg.sender]) revert Unauthorized();
+        if (msg.sender != from)
+            if (!isApprovedForAll[from][msg.sender]) revert Unauthorized();
 
         balanceOf[from][id] -= amount;
         balanceOf[to][id] += amount;
@@ -96,7 +97,8 @@ abstract contract ERC1155 {
     ) public virtual {
         if (ids.length != amounts.length) revert LengthMismatch();
 
-        if (msg.sender != from && !isApprovedForAll[from][msg.sender]) revert Unauthorized();
+        if (msg.sender != from)
+            if (!isApprovedForAll[from][msg.sender]) revert Unauthorized();
 
         // Storing these outside the loop saves ~15 gas per iteration.
         uint256 id;
@@ -149,9 +151,9 @@ abstract contract ERC1155 {
 
     function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {
         return
-            interfaceId == 0x01ffc9a7 || // ERC165 Interface ID for ERC165
-            interfaceId == 0xd9b67a26 || // ERC165 Interface ID for ERC1155
-            interfaceId == 0x0e89341c; // ERC165 Interface ID for ERC1155MetadataURI
+            interfaceId == 0x01ffc9a7 || // ERC165 Interface ID for ERC165.
+            interfaceId == 0xd9b67a26 || // ERC165 Interface ID for ERC1155.
+            interfaceId == 0x0e89341c; // ERC165 Interface ID for ERC1155MetadataURI.
     }
 
     /// -----------------------------------------------------------------------
