@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @notice Modern, minimalist, and gas-optimized ERC1155 implementation.
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155.sol)
-/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155/ERC1155.sol)
-abstract contract ERC1155 {
+import {ERC1155TokenReceiver} from "./ERC1155.sol";
+
+/// @notice Modern, minimalist and gas-optimized ERC1155 implementation for single supply ids.
+/// @author Solbase (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155B.sol)
+/// @author Modified from Solmate (https://github.com/Rari-Capital/solmate/blob/main/src/tokens/ERC1155B.sol)
+abstract contract ERC1155B {
     /// -----------------------------------------------------------------------
     /// Events
     /// -----------------------------------------------------------------------
@@ -35,19 +37,43 @@ abstract contract ERC1155 {
 
     error Unauthorized();
 
+    error WrongFrom();
+
+    error InvalidAmount();
+
     error UnsafeRecipient();
 
     error InvalidRecipient();
 
     error LengthMismatch();
 
+    error AlreadyMinted();
+
+    error InvalidFrom();
+
+    error NotMinted();
+
     /// -----------------------------------------------------------------------
     /// ERC1155 Storage
     /// -----------------------------------------------------------------------
 
-    mapping(address => mapping(uint256 => uint256)) public balanceOf;
-
     mapping(address => mapping(address => bool)) public isApprovedForAll;
+
+    /// -----------------------------------------------------------------------
+    /// ERC1155B Storage
+    /// -----------------------------------------------------------------------
+
+    mapping(uint256 => address) public ownerOf;
+
+    function balanceOf(address owner, uint256 id) public view virtual returns (uint256 bal) {
+        address idOwner = ownerOf[id];
+
+        assembly {
+            // We avoid branching by using assembly to take
+            // the bool output of eq() and use it as a uint.
+            bal := eq(idOwner, owner)
+        }
+    }
 
     /// -----------------------------------------------------------------------
     /// Metadata Logic
@@ -75,14 +101,18 @@ abstract contract ERC1155 {
         if (msg.sender != from)
             if (!isApprovedForAll[from][msg.sender]) revert Unauthorized();
 
-        balanceOf[from][id] -= amount;
-        balanceOf[to][id] += amount;
+        if (from != ownerOf[id]) revert WrongFrom(); // Can only transfer from the owner.
+
+        // Can only transfer 1 with ERC1155B.
+        if (amount != 1) revert InvalidAmount();
+
+        ownerOf[id] = to;
 
         emit TransferSingle(msg.sender, from, to, id, amount);
 
         if (to.code.length != 0) {
             if (
-                ERC1155TokenReceiver(to).onERC1155Received(msg.sender, from, id, amount, data) !=
+                ERC1155TokenReceiver(to).onERC1155Received(msg.sender, from, id, 1, data) !=
                 ERC1155TokenReceiver.onERC1155Received.selector
             ) revert UnsafeRecipient();
         } else if (to == address(0)) revert InvalidRecipient();
@@ -104,17 +134,20 @@ abstract contract ERC1155 {
         uint256 id;
         uint256 amount;
 
-        for (uint256 i = 0; i < ids.length; ) {
-            id = ids[i];
-            amount = amounts[i];
+        // Unchecked because the only math done is incrementing
+        // the array index counter which cannot possibly overflow.
+        unchecked {
+            for (uint256 i = 0; i < ids.length; i++) {
+                id = ids[i];
+                amount = amounts[i];
 
-            balanceOf[from][id] -= amount;
-            balanceOf[to][id] += amount;
+                // Can only transfer from the owner.
+                if (from != ownerOf[id]) revert WrongFrom();
 
-            // An array can't have a total length
-            // larger than the max uint256 value.
-            unchecked {
-                ++i;
+                // Can only transfer 1 with ERC1155B.
+                if (amount != 1) revert InvalidAmount();
+
+                ownerOf[id] = to;
             }
         }
 
@@ -132,7 +165,7 @@ abstract contract ERC1155 {
         address[] calldata owners,
         uint256[] calldata ids
     ) public view virtual returns (uint256[] memory balances) {
-        if (ids.length != owners.length) revert LengthMismatch();
+        if (owners.length != ids.length) revert LengthMismatch();
 
         balances = new uint256[](owners.length);
 
@@ -140,7 +173,7 @@ abstract contract ERC1155 {
         // the array index counter which cannot possibly overflow.
         unchecked {
             for (uint256 i = 0; i < owners.length; ++i) {
-                balances[i] = balanceOf[owners[i]][ids[i]];
+                balances[i] = balanceOf(owners[i], ids[i]);
             }
         }
     }
@@ -160,36 +193,42 @@ abstract contract ERC1155 {
     /// Internal Mint/Burn Logic
     /// -----------------------------------------------------------------------
 
-    function _mint(address to, uint256 id, uint256 amount, bytes memory data) internal virtual {
-        balanceOf[to][id] += amount;
+    function _mint(address to, uint256 id, bytes memory data) internal virtual {
+        // Minting twice would effectively be a force transfer.
+        if (ownerOf[id] != address(0)) revert AlreadyMinted();
 
-        emit TransferSingle(msg.sender, address(0), to, id, amount);
+        ownerOf[id] = to;
+
+        emit TransferSingle(msg.sender, address(0), to, id, 1);
 
         if (to.code.length != 0) {
             if (
-                ERC1155TokenReceiver(to).onERC1155Received(msg.sender, address(0), id, amount, data) !=
+                ERC1155TokenReceiver(to).onERC1155Received(msg.sender, address(0), id, 1, data) !=
                 ERC1155TokenReceiver.onERC1155Received.selector
             ) revert UnsafeRecipient();
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function _batchMint(
-        address to,
-        uint256[] memory ids,
-        uint256[] memory amounts,
-        bytes memory data
-    ) internal virtual {
+    function _batchMint(address to, uint256[] memory ids, bytes memory data) internal virtual {
         uint256 idsLength = ids.length; // Saves MLOADs.
 
-        if (ids.length != amounts.length) revert LengthMismatch();
+        // Generate an amounts array locally to use in the event below.
+        uint256[] memory amounts = new uint256[](idsLength);
 
-        for (uint256 i = 0; i < idsLength; ) {
-            balanceOf[to][ids[i]] += amounts[i];
+        uint256 id; // Storing outside the loop saves ~7 gas per iteration.
 
-            // An array can't have a total length
-            // larger than the max uint256 value.
-            unchecked {
-                ++i;
+        // Unchecked because the only math done is incrementing
+        // the array index counter which cannot possibly overflow.
+        unchecked {
+            for (uint256 i = 0; i < idsLength; ++i) {
+                id = ids[i];
+
+                // Minting twice would effectively be a force transfer.
+                if (ownerOf[id] != address(0)) revert AlreadyMinted();
+
+                ownerOf[id] = to;
+
+                amounts[i] = 1;
             }
         }
 
@@ -203,45 +242,42 @@ abstract contract ERC1155 {
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function _batchBurn(address from, uint256[] memory ids, uint256[] memory amounts) internal virtual {
+    function _batchBurn(address from, uint256[] memory ids) internal virtual {
+        // Burning unminted tokens makes no sense.
+        if (from == address(0)) revert InvalidFrom();
+
         uint256 idsLength = ids.length; // Saves MLOADs.
 
-        if (ids.length != amounts.length) revert LengthMismatch();
+        // Generate an amounts array locally to use in the event below.
+        uint256[] memory amounts = new uint256[](idsLength);
 
-        for (uint256 i = 0; i < idsLength; ) {
-            balanceOf[from][ids[i]] -= amounts[i];
+        uint256 id; // Storing outside the loop saves ~7 gas per iteration.
 
-            // An array can't have a total length
-            // larger than the max uint256 value.
-            unchecked {
-                ++i;
+        // Unchecked because the only math done is incrementing
+        // the array index counter which cannot possibly overflow.
+        unchecked {
+            for (uint256 i = 0; i < idsLength; ++i) {
+                id = ids[i];
+
+                // Can only transfer from the owner.
+                if (from != ownerOf[id]) revert WrongFrom();
+
+                ownerOf[id] = address(0);
+
+                amounts[i] = 1;
             }
         }
 
         emit TransferBatch(msg.sender, from, address(0), ids, amounts);
     }
 
-    function _burn(address from, uint256 id, uint256 amount) internal virtual {
-        balanceOf[from][id] -= amount;
+    function _burn(uint256 id) internal virtual {
+        address owner = ownerOf[id];
 
-        emit TransferSingle(msg.sender, from, address(0), id, amount);
-    }
-}
+        if (owner == address(0)) revert NotMinted();
 
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC1155/ERC1155.sol)
-/// @author Modified from Solmate (https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155/ERC1155.sol)
-abstract contract ERC1155TokenReceiver {
-    function onERC1155Received(address, address, uint256, uint256, bytes calldata) external virtual returns (bytes4) {
-        return ERC1155TokenReceiver.onERC1155Received.selector;
-    }
+        ownerOf[id] = address(0);
 
-    function onERC1155BatchReceived(
-        address,
-        address,
-        uint256[] calldata,
-        uint256[] calldata,
-        bytes calldata
-    ) external virtual returns (bytes4) {
-        return ERC1155TokenReceiver.onERC1155BatchReceived.selector;
+        emit TransferSingle(msg.sender, owner, address(0), id, 1);
     }
 }
