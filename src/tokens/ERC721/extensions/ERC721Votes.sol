@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {ERC20Permit} from "./ERC20Permit.sol";
+import {ERC721Permit} from "./ERC721Permit.sol";
 import {SafeCastLib} from "../../../utils/SafeCastLib.sol";
 import {FixedPointMathLib} from "../../../utils/FixedPointMathLib.sol";
 
@@ -10,11 +10,11 @@ struct Checkpoint {
     uint224 votes;
 }
 
-/// @notice ERC20-compatible voting and delegation implementation.
-/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC20/extensions/ERC20Votes.sol)
-abstract contract ERC20Votes is ERC20Permit {
+/// @notice ERC721-compatible voting and delegation implementation.
+/// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/tokens/ERC721/extensions/ERC721Votes.sol)
+abstract contract ERC721Votes is ERC721Permit {
     /// -----------------------------------------------------------------------
-    /// ERC20Votes Events
+    /// ERC721Votes Events
     /// -----------------------------------------------------------------------
 
     event DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate);
@@ -32,17 +32,19 @@ abstract contract ERC20Votes is ERC20Permit {
     error SupplyMaxed();
 
     /// -----------------------------------------------------------------------
-    /// ERC20Votes Constants
+    /// ERC721Votes Constants
     /// -----------------------------------------------------------------------
 
     bytes32 public constant DELEGATION_TYPEHASH =
         keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
 
     /// -----------------------------------------------------------------------
-    /// ERC20Votes Storage
+    /// ERC721Votes Storage
     /// -----------------------------------------------------------------------
 
     mapping(address => address) public delegates;
+
+    mapping(address => uint256) public delegateNonces;
 
     mapping(address => Checkpoint[]) public checkpoints;
 
@@ -52,10 +54,10 @@ abstract contract ERC20Votes is ERC20Permit {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name, string memory _symbol, uint8 _decimals) ERC20Permit(_name, _symbol, _decimals) {}
+    constructor(string memory _name, string memory _symbol) ERC721Permit(_name, _symbol) {}
 
     /// -----------------------------------------------------------------------
-    /// ERC20Votes Logic
+    /// ERC721Votes Logic
     /// -----------------------------------------------------------------------
 
     /// @dev Gets the total number of checkpoints for `account`.
@@ -147,45 +149,58 @@ abstract contract ERC20Votes is ERC20Permit {
 
             if (recoveredAddress == address(0)) revert InvalidSigner();
 
-            if (nonce != nonces[recoveredAddress]++) revert InvalidSigner();
+            if (nonce != delegateNonces[recoveredAddress]++) revert InvalidSigner();
 
             _delegate(recoveredAddress, delegatee);
         }
     }
 
-    /// @dev Maximum token supply. Defaults to `type(uint224).max` (2^224^ - 1).
-    function _maxSupply() internal view virtual returns (uint224) {
-        return type(uint224).max;
-    }
-
     /// @dev Snapshots the totalSupply after it has been increased.
-    function _mint(address account, uint256 amount) internal virtual override {
-        super._mint(account, amount);
+    function _mint(address to, uint256 id) internal virtual override {
+        super._mint(to, id);
 
-        if (totalSupply > _maxSupply()) revert SupplyMaxed();
-
-        _writeCheckpoint(totalSupplyCheckpoints, _add, amount);
+        _writeCheckpoint(totalSupplyCheckpoints, _add, 1);
     }
 
     /// @dev Snapshots the totalSupply after it has been decreased.
-    function _burn(address account, uint256 amount) internal virtual override {
-        super._burn(account, amount);
+    function _burn(uint256 id) internal virtual override {
+        super._burn(id);
 
-        _writeCheckpoint(totalSupplyCheckpoints, _subtract, amount);
+        _writeCheckpoint(totalSupplyCheckpoints, _subtract, 1);
     }
 
-    /// @dev Performs ERC20 transfer with delegation tracking.
-    function transfer(address to, uint256 amount) public virtual override returns (bool) {
-        _moveVotingPower(delegates[msg.sender], delegates[to], amount);
+    /// @dev Performs ERC721 transferFrom with delegation tracking.
+    function transferFrom(
+        address from,
+        address to,
+        uint256 id
+    ) public virtual override {
+        _moveVotingPower(delegates[from], delegates[to], 1);
 
-        return super.transfer(to, amount);
+        super.transferFrom(from, to, id);
     }
 
-    /// @dev Performs ERC20 transferFrom with delegation tracking.
-    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
-        _moveVotingPower(delegates[from], delegates[to], amount);
+    /// @dev Performs ERC721 safeTransferFrom with delegation tracking.
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 id
+    ) public virtual override {
+        _moveVotingPower(delegates[from], delegates[to], 1);
 
-        return super.transferFrom(from, to, amount);
+        super.safeTransferFrom(from, to, id);
+    }
+
+    /// @dev Performs ERC721 safeTransferFrom (data) with delegation tracking.
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 id,
+        bytes calldata data
+    ) public virtual override {
+        _moveVotingPower(delegates[from], delegates[to], 1);
+
+        super.safeTransferFrom(from, to, id, data);
     }
 
     /// @dev Change delegation for `delegator` to `delegatee`.
@@ -196,18 +211,24 @@ abstract contract ERC20Votes is ERC20Permit {
 
         emit DelegateChanged(delegator, currentDelegate, delegatee);
 
-        _moveVotingPower(currentDelegate, delegatee, balanceOf[delegator]);
+        _moveVotingPower(currentDelegate, delegatee, balanceOf(delegator));
     }
 
-    function _moveVotingPower(address src, address dst, uint256 amount) internal virtual {
+    function _moveVotingPower(
+        address src,
+        address dst,
+        uint256 amount
+    ) internal virtual {
         if (src != dst && amount != 0) {
             if (src != address(0)) {
                 (uint256 oldWeight, uint256 newWeight) = _writeCheckpoint(checkpoints[src], _subtract, amount);
+
                 emit DelegateVotesChanged(src, oldWeight, newWeight);
             }
 
             if (dst != address(0)) {
                 (uint256 oldWeight, uint256 newWeight) = _writeCheckpoint(checkpoints[dst], _add, amount);
+
                 emit DelegateVotesChanged(dst, oldWeight, newWeight);
             }
         }
@@ -248,10 +269,12 @@ abstract contract ERC20Votes is ERC20Permit {
         return a - b;
     }
 
-    function _unsafeAccess(
-        Checkpoint[] storage ckpts,
-        uint256 pos
-    ) internal pure virtual returns (Checkpoint storage result) {
+    function _unsafeAccess(Checkpoint[] storage ckpts, uint256 pos)
+        internal
+        pure
+        virtual
+        returns (Checkpoint storage result)
+    {
         assembly {
             mstore(0, ckpts.slot)
             result.slot := add(keccak256(0, 0x20), pos)
