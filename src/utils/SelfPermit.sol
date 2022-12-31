@@ -3,7 +3,7 @@ pragma solidity ^0.8.4;
 
 import {Permit} from "./Permit.sol";
 
-/// @notice Self helper for any EIP-2612, EIP-4494 or Dai-style token permit.
+/// @notice Self helper for any ERC2612, EIP-4494 or Dai-style token permit.
 /// @author Solbase (https://github.com/Sol-DAO/solbase/blob/main/src/utils/SelfPermit.sol)
 /// @author Modified from Uniswap (https://github.com/Uniswap/v3-periphery/blob/main/contracts/base/SelfPermit.sol)
 /// @dev These functions are expected to be embedded in multicall to allow EOAs to approve a contract and call a function
@@ -11,7 +11,7 @@ import {Permit} from "./Permit.sol";
 abstract contract SelfPermit {
     /// @dev ERC20.
 
-    /// @notice Permits this contract to spend a given EIP-2612 `token` from `owner`.
+    /// @notice Permits this contract to spend a given ERC2612 `token` from `owner`.
     /// @param token The address of the asset spent.
     /// @param owner The address of the asset holder.
     /// @param value The amount permitted to spend.
@@ -53,7 +53,7 @@ abstract contract SelfPermit {
 
     /// @dev ERC721.
 
-    /// @notice Permits this contract to spend a given EIP-2612-style NFT `tokenID`.
+    /// @notice Permits this contract to spend a given ERC2612-style NFT `tokenID`.
     /// @param token The address of the asset spent.
     /// @param tokenId The ID of the token that is being approved for permit.
     /// @param deadline The unix timestamp before which permit must be spent.
@@ -82,7 +82,7 @@ abstract contract SelfPermit {
 
     /// @dev ERC1155.
 
-    /// @notice Permits this contract to spend a given EIP-2612-style multitoken.
+    /// @notice Permits this contract to spend a given ERC2612-style multitoken.
     /// @param token The address of the asset spent.
     /// @param owner The address of the asset holder.
     /// @param deadline The unix timestamp before which permit must be spent.

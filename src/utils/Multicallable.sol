@@ -29,8 +29,11 @@ abstract contract Multicallable {
                 let memPtr := add(results, end)
                 end := add(results, end)
 
-                // prettier-ignore
-                for {} 1 {} {
+                for {
+
+                } 1 {
+
+                } {
                     // The offset of the current bytes in the calldata.
                     let o := add(data.offset, mload(results))
                     // Copy the current bytes from calldata to the memory.
@@ -53,8 +56,9 @@ abstract contract Multicallable {
                     // Advance the `memPtr` by `returndatasize() + 0x20`,
                     // rounded up to the next multiple of 32.
                     memPtr := and(add(add(memPtr, returndatasize()), 0x3f), 0xffffffffffffffe0)
-                    // prettier-ignore
-                    if iszero(lt(results, end)) { break }
+                    if iszero(lt(results, end)) {
+                        break
+                    }
                 }
                 // Restore `results` and allocate memory for it.
                 results := mload(0x40)

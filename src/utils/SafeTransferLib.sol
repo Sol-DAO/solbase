@@ -10,18 +10,24 @@ library SafeTransferLib {
     /// Custom Errors
     /// -----------------------------------------------------------------------
 
+    /// @dev The ETH transfer has failed.
     error ETHTransferFailed();
 
+    /// @dev The ERC20 `approve` has failed.
     error ApproveFailed();
 
+    /// @dev The ERC20 `transfer` has failed.
     error TransferFailed();
 
+    /// @dev The ERC20 `transferFrom` has failed.
     error TransferFromFailed();
 
     /// -----------------------------------------------------------------------
     /// ETH Operations
     /// -----------------------------------------------------------------------
 
+    /// @dev Sends `amount` (in wei) ETH to `to`.
+    /// Reverts upon failure.
     function safeTransferETH(address to, uint256 amount) internal {
         /// @solidity memory-safe-assembly
         assembly {
@@ -39,6 +45,8 @@ library SafeTransferLib {
     /// ERC20 Operations
     /// -----------------------------------------------------------------------
 
+    /// @dev Sets `amount` of ERC20 `token` for `to` to manage on behalf of the current contract.
+    /// Reverts upon failure.
     function safeApprove(address token, address to, uint256 amount) internal {
         /// @solidity memory-safe-assembly
         assembly {
@@ -71,6 +79,8 @@ library SafeTransferLib {
         }
     }
 
+    /// @dev Sends `amount` of ERC20 `token` from the current contract to `to`.
+    /// Reverts upon failure.
     function safeTransfer(address token, address to, uint256 amount) internal {
         /// @solidity memory-safe-assembly
         assembly {
@@ -103,6 +113,11 @@ library SafeTransferLib {
         }
     }
 
+    /// @dev Sends `amount` of ERC20 `token` from `from` to `to`.
+    /// Reverts upon failure.
+    ///
+    /// The `from` account must have at least `amount` approved for
+    /// the current contract to manage.
     function safeTransferFrom(address token, address from, address to, uint256 amount) internal {
         /// @solidity memory-safe-assembly
         assembly {

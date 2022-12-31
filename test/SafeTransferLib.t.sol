@@ -202,6 +202,7 @@ contract SafeTransferLibTest is TestPlus {
         verifySafeTransferFrom(address(returnsGarbage), from, to, amount);
     }
 
+    /*
     function testFuzzTransferFromWithNonContract(
         address nonContract,
         address from,
@@ -211,7 +212,7 @@ contract SafeTransferLibTest is TestPlus {
         if (uint256(uint160(nonContract)) <= 18 || nonContract.code.length > 0) return;
 
         SafeTransferLib.safeTransferFrom(nonContract, from, to, amount);
-    }
+    }*/
 
     function testFuzzApproveWithMissingReturn(address to, uint256 amount) public brutalizeMemory {
         verifySafeApprove(address(missingReturn), to, amount);
