@@ -51,7 +51,11 @@ contract ReturnsTwoToken {
         return 2;
     }
 
-    function transferFrom(address, address, uint256) public virtual returns (uint256) {
+    function transferFrom(
+        address,
+        address,
+        uint256
+    ) public virtual returns (uint256) {
         return 2;
     }
 }

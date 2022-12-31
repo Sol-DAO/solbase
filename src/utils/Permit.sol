@@ -57,14 +57,26 @@ abstract contract Permit {
     /// @param s Must produce valid secp256k1 signature from the `owner` along with `r` and `v`.
     /// @dev Modified from Uniswap
     /// (https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/IERC721Permit.sol).
-    function permit(address spender, uint256 tokenId, uint256 deadline, uint8 v, bytes32 r, bytes32 s) public virtual;
+    function permit(
+        address spender,
+        uint256 tokenId,
+        uint256 deadline,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) public virtual;
 
     /// @notice Permit to spend specific NFT `tokenId` for EIP-4494 permit signatures.
     /// @param spender The address of the token permit holder.
     /// @param tokenId The ID of the token that is being approved for permit.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param sig A traditional or EIP-2098 signature.
-    function permit(address spender, uint256 tokenId, uint256 deadline, bytes calldata sig) public virtual;
+    function permit(
+        address spender,
+        uint256 tokenId,
+        uint256 deadline,
+        bytes calldata sig
+    ) public virtual;
 
     /// @dev ERC1155.
 

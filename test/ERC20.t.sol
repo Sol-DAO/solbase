@@ -111,7 +111,11 @@ contract ERC20Test is DSTestPlus {
         token.transferFrom(from, address(0xBEEF), 1e18);
     }
 
-    function testMetadata(string calldata name, string calldata symbol, uint8 decimals) public {
+    function testMetadata(
+        string calldata name,
+        string calldata symbol,
+        uint8 decimals
+    ) public {
         MockERC20 tkn = new MockERC20(name, symbol, decimals);
         assertEq(tkn.name(), name);
         assertEq(tkn.symbol(), symbol);
@@ -125,7 +129,11 @@ contract ERC20Test is DSTestPlus {
         assertEq(token.balanceOf(from), amount);
     }
 
-    function testBurn(address from, uint256 mintAmount, uint256 burnAmount) public {
+    function testBurn(
+        address from,
+        uint256 mintAmount,
+        uint256 burnAmount
+    ) public {
         burnAmount = bound(burnAmount, 0, mintAmount);
 
         token.mint(from, mintAmount);
@@ -155,7 +163,11 @@ contract ERC20Test is DSTestPlus {
         }
     }
 
-    function testTransferFrom(address to, uint256 approval, uint256 amount) public {
+    function testTransferFrom(
+        address to,
+        uint256 approval,
+        uint256 amount
+    ) public {
         amount = bound(amount, 0, approval);
 
         address from = address(0xABCD);
@@ -179,21 +191,33 @@ contract ERC20Test is DSTestPlus {
         }
     }
 
-    function testFailBurnInsufficientBalance(address to, uint256 mintAmount, uint256 burnAmount) public {
+    function testFailBurnInsufficientBalance(
+        address to,
+        uint256 mintAmount,
+        uint256 burnAmount
+    ) public {
         burnAmount = bound(burnAmount, mintAmount + 1, type(uint256).max);
 
         token.mint(to, mintAmount);
         token.burn(to, burnAmount);
     }
 
-    function testFailTransferInsufficientBalance(address to, uint256 mintAmount, uint256 sendAmount) public {
+    function testFailTransferInsufficientBalance(
+        address to,
+        uint256 mintAmount,
+        uint256 sendAmount
+    ) public {
         sendAmount = bound(sendAmount, mintAmount + 1, type(uint256).max);
 
         token.mint(address(this), mintAmount);
         token.transfer(to, sendAmount);
     }
 
-    function testFailTransferFromInsufficientAllowance(address to, uint256 approval, uint256 amount) public {
+    function testFailTransferFromInsufficientAllowance(
+        address to,
+        uint256 approval,
+        uint256 amount
+    ) public {
         amount = bound(amount, approval + 1, type(uint256).max);
 
         address from = address(0xABCD);
@@ -206,7 +230,11 @@ contract ERC20Test is DSTestPlus {
         token.transferFrom(from, to, amount);
     }
 
-    function testFailTransferFromInsufficientBalance(address to, uint256 mintAmount, uint256 sendAmount) public {
+    function testFailTransferFromInsufficientBalance(
+        address to,
+        uint256 mintAmount,
+        uint256 sendAmount
+    ) public {
         sendAmount = bound(sendAmount, mintAmount + 1, type(uint256).max);
 
         address from = address(0xABCD);
@@ -258,7 +286,11 @@ contract BalanceSum {
         token.approve(to, amount);
     }
 
-    function transferFrom(address from, address to, uint256 amount) public {
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) public {
         token.transferFrom(from, to, amount);
     }
 

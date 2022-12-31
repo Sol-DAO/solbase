@@ -161,10 +161,12 @@ abstract contract ERC1155B {
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function balanceOfBatch(
-        address[] calldata owners,
-        uint256[] calldata ids
-    ) public view virtual returns (uint256[] memory balances) {
+    function balanceOfBatch(address[] calldata owners, uint256[] calldata ids)
+        public
+        view
+        virtual
+        returns (uint256[] memory balances)
+    {
         if (owners.length != ids.length) revert LengthMismatch();
 
         balances = new uint256[](owners.length);
@@ -193,7 +195,11 @@ abstract contract ERC1155B {
     /// Internal Mint/Burn Logic
     /// -----------------------------------------------------------------------
 
-    function _mint(address to, uint256 id, bytes memory data) internal virtual {
+    function _mint(
+        address to,
+        uint256 id,
+        bytes memory data
+    ) internal virtual {
         // Minting twice would effectively be a force transfer.
         if (ownerOf[id] != address(0)) revert AlreadyMinted();
 
@@ -209,7 +215,11 @@ abstract contract ERC1155B {
         } else if (to == address(0)) revert InvalidRecipient();
     }
 
-    function _batchMint(address to, uint256[] memory ids, bytes memory data) internal virtual {
+    function _batchMint(
+        address to,
+        uint256[] memory ids,
+        bytes memory data
+    ) internal virtual {
         uint256 idsLength = ids.length; // Saves MLOADs.
 
         // Generate an amounts array locally to use in the event below.

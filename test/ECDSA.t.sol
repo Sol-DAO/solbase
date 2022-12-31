@@ -137,7 +137,11 @@ contract ECDSATest is DSTestPlus {
         return ECDSA.recover(hash, signature);
     }
 
-    function recover(bytes32 hash, bytes32 r, bytes32 vs) external view returns (address) {
+    function recover(
+        bytes32 hash,
+        bytes32 r,
+        bytes32 vs
+    ) external view returns (address) {
         return ECDSA.recover(hash, r, vs);
     }
 }

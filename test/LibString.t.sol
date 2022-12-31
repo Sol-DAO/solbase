@@ -769,10 +769,11 @@ contract LibStringTest is TestPlus {
         }
     }
 
-    function _generateString(
-        uint256 randomness,
-        string memory byteChoices
-    ) internal view returns (string memory result) {
+    function _generateString(uint256 randomness, string memory byteChoices)
+        internal
+        view
+        returns (string memory result)
+    {
         assembly {
             if mload(byteChoices) {
                 mstore(0x00, randomness)

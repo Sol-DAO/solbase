@@ -8,7 +8,11 @@ import {MockAuthority} from "./utils/mocks/MockAuthority.sol";
 import {Authority} from "../src/auth/Auth.sol";
 
 contract OutOfOrderAuthority is Authority {
-    function canCall(address, address, bytes4) public pure override returns (bool) {
+    function canCall(
+        address,
+        address,
+        bytes4
+    ) public pure override returns (bool) {
         revert("OUT_OF_ORDER");
     }
 }

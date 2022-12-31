@@ -34,7 +34,11 @@ contract MockERC721Supply is ERC721 {
         }
     }
 
-    function safeMint(address to, uint256 tokenId, bytes memory data) public virtual {
+    function safeMint(
+        address to,
+        uint256 tokenId,
+        bytes memory data
+    ) public virtual {
         _safeMint(to, tokenId, data);
 
         unchecked {

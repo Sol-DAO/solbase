@@ -52,7 +52,11 @@ abstract contract ERC20Votes is ERC20Permit {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(string memory _name, string memory _symbol, uint8 _decimals) ERC20Permit(_name, _symbol, _decimals) {}
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint8 _decimals
+    ) ERC20Permit(_name, _symbol, _decimals) {}
 
     /// -----------------------------------------------------------------------
     /// ERC20Votes Logic
@@ -182,7 +186,11 @@ abstract contract ERC20Votes is ERC20Permit {
     }
 
     /// @dev Performs ERC20 transferFrom with delegation tracking.
-    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) public virtual override returns (bool) {
         _moveVotingPower(delegates[from], delegates[to], amount);
 
         return super.transferFrom(from, to, amount);
@@ -199,7 +207,11 @@ abstract contract ERC20Votes is ERC20Permit {
         _moveVotingPower(currentDelegate, delegatee, balanceOf[delegator]);
     }
 
-    function _moveVotingPower(address src, address dst, uint256 amount) internal virtual {
+    function _moveVotingPower(
+        address src,
+        address dst,
+        uint256 amount
+    ) internal virtual {
         if (src != dst && amount != 0) {
             if (src != address(0)) {
                 (uint256 oldWeight, uint256 newWeight) = _writeCheckpoint(checkpoints[src], _subtract, amount);
@@ -248,10 +260,12 @@ abstract contract ERC20Votes is ERC20Permit {
         return a - b;
     }
 
-    function _unsafeAccess(
-        Checkpoint[] storage ckpts,
-        uint256 pos
-    ) internal pure virtual returns (Checkpoint storage result) {
+    function _unsafeAccess(Checkpoint[] storage ckpts, uint256 pos)
+        internal
+        pure
+        virtual
+        returns (Checkpoint storage result)
+    {
         assembly {
             mstore(0, ckpts.slot)
             result.slot := add(keccak256(0, 0x20), pos)

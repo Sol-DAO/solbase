@@ -53,7 +53,11 @@ contract MultiRolesAuthority is Auth, Authority {
     /// Authorization Logic
     /// -----------------------------------------------------------------------
 
-    function canCall(address user, address target, bytes4 functionSig) public view virtual override returns (bool) {
+    function canCall(
+        address user,
+        address target,
+        bytes4 functionSig
+    ) public view virtual override returns (bool) {
         Authority customAuthority = getTargetCustomAuthority[target];
 
         if (address(customAuthority) != address(0)) return customAuthority.canCall(user, target, functionSig);
@@ -86,7 +90,11 @@ contract MultiRolesAuthority is Auth, Authority {
     /// User Role Assignment Logic
     /// -----------------------------------------------------------------------
 
-    function setUserRole(address user, uint8 role, bool enabled) public virtual requiresAuth {
+    function setUserRole(
+        address user,
+        uint8 role,
+        bool enabled
+    ) public virtual requiresAuth {
         if (enabled) {
             getUserRoles[user] |= bytes32(1 << role);
         } else {
@@ -100,7 +108,11 @@ contract MultiRolesAuthority is Auth, Authority {
     /// Role Capability Configuration Logic
     /// -----------------------------------------------------------------------
 
-    function setRoleCapability(uint8 role, bytes4 functionSig, bool enabled) public virtual requiresAuth {
+    function setRoleCapability(
+        uint8 role,
+        bytes4 functionSig,
+        bool enabled
+    ) public virtual requiresAuth {
         if (enabled) {
             getRolesWithCapability[functionSig] |= bytes32(1 << role);
         } else {

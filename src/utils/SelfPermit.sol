@@ -76,7 +76,12 @@ abstract contract SelfPermit {
     /// @param tokenId The ID of the token that is being approved for permit.
     /// @param deadline The unix timestamp before which permit must be spent.
     /// @param sig A traditional or EIP-2098 signature.
-    function selfPermit721(Permit token, uint256 tokenId, uint256 deadline, bytes calldata sig) public virtual {
+    function selfPermit721(
+        Permit token,
+        uint256 tokenId,
+        uint256 deadline,
+        bytes calldata sig
+    ) public virtual {
         token.permit(address(this), tokenId, deadline, sig);
     }
 

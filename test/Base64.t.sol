@@ -111,7 +111,11 @@ contract Base64Test is TestPlus {
         }
     }
 
-    function testBase64EncodeFileSafeAndNoPadding(bytes memory input, bool fileSafe, bool noPadding) public {
+    function testBase64EncodeFileSafeAndNoPadding(
+        bytes memory input,
+        bool fileSafe,
+        bool noPadding
+    ) public {
         string memory expectedEncoded = Base64.encode(input);
 
         if (fileSafe) {

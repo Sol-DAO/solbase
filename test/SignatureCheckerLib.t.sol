@@ -74,7 +74,11 @@ contract SignatureCheckerLibTest is DSTestPlus {
         assertFalse(this.isValidSignatureNow(address(mockERC1271Malicious), WRONG_SIGNED_MESSAGE_HASH, SIGNATURE));
     }
 
-    function isValidSignatureNow(address signer, bytes32 hash, bytes calldata signature) external view returns (bool) {
+    function isValidSignatureNow(
+        address signer,
+        bytes32 hash,
+        bytes calldata signature
+    ) external view returns (bool) {
         assembly {
             // Contaminate the upper 96 bits.
             signer := or(shl(160, 1), signer)

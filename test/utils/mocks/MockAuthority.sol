@@ -10,7 +10,11 @@ contract MockAuthority is Authority {
         allowCalls = _allowCalls;
     }
 
-    function canCall(address, address, bytes4) public view override returns (bool) {
+    function canCall(
+        address,
+        address,
+        bytes4
+    ) public view override returns (bool) {
         return allowCalls;
     }
 }

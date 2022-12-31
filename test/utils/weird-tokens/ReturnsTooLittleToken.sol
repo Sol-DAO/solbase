@@ -57,7 +57,11 @@ contract ReturnsTooLittleToken {
         }
     }
 
-    function transferFrom(address, address, uint256) public virtual {
+    function transferFrom(
+        address,
+        address,
+        uint256
+    ) public virtual {
         assembly {
             mstore(0, 0x0100000000000000000000000000000000000000000000000000000000000000)
             return(0, 8)

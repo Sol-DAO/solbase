@@ -17,7 +17,11 @@ library LibBytemap {
         }
     }
 
-    function set(Bytemap storage bytemap, uint256 index, uint8 value) internal {
+    function set(
+        Bytemap storage bytemap,
+        uint256 index,
+        uint8 value
+    ) internal {
         assembly {
             mstore(0x20, bytemap.slot)
             mstore(0x00, shr(5, index))

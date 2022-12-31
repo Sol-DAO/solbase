@@ -51,7 +51,11 @@ contract RevertingToken {
         revert();
     }
 
-    function transferFrom(address, address, uint256) public virtual {
+    function transferFrom(
+        address,
+        address,
+        uint256
+    ) public virtual {
         revert();
     }
 }

@@ -99,7 +99,11 @@ contract ERC1155PermitTest is DSTestPlus {
     /// Fuzz Tests
     /// -----------------------------------------------------------------------
 
-    function testPermit(uint248 privateKey, uint256 id, address to) public {
+    function testPermit(
+        uint248 privateKey,
+        uint256 id,
+        address to
+    ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
 
@@ -114,7 +118,12 @@ contract ERC1155PermitTest is DSTestPlus {
         assertEq(token.nonces(owner, id), 1);
     }
 
-    function testFailPermitBadNonce(uint248 privateKey, uint256 id, address to, uint256 nonce) public {
+    function testFailPermitBadNonce(
+        uint248 privateKey,
+        uint256 id,
+        address to,
+        uint256 nonce
+    ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
         hevm.assume(nonce > 0);
@@ -127,7 +136,11 @@ contract ERC1155PermitTest is DSTestPlus {
         token.permit(owner, to, id, block.timestamp, v, r, s);
     }
 
-    function testFailPermitBadDeadline(uint248 privateKey, uint256 id, address to) public {
+    function testFailPermitBadDeadline(
+        uint248 privateKey,
+        uint256 id,
+        address to
+    ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
 
@@ -139,7 +152,11 @@ contract ERC1155PermitTest is DSTestPlus {
         token.permit(owner, to, id, block.timestamp + 1, v, r, s);
     }
 
-    function testFailPermitPastDeadline(uint248 privateKey, uint256 id, address to) public {
+    function testFailPermitPastDeadline(
+        uint248 privateKey,
+        uint256 id,
+        address to
+    ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
 
@@ -151,7 +168,11 @@ contract ERC1155PermitTest is DSTestPlus {
         token.permit(owner, to, id, block.timestamp - 1, v, r, s);
     }
 
-    function testFailPermitReplay(uint248 privateKey, uint256 id, address to) public {
+    function testFailPermitReplay(
+        uint248 privateKey,
+        uint256 id,
+        address to
+    ) public {
         hevm.assume(privateKey > 0);
         hevm.assume(to > address(0));
 

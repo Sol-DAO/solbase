@@ -28,7 +28,11 @@ error ApproveFailed();
 
 /// @dev Sets `amount` of ERC20 `token` for `to` to manage on behalf of the current contract.
 /// Reverts upon failure.
-function safeApprove(address token, address to, uint256 amount) {
+function safeApprove(
+    address token,
+    address to,
+    uint256 amount
+) {
     /// @solidity memory-safe-assembly
     assembly {
         // We'll write our calldata to this slot below, but restore it later.
@@ -65,7 +69,11 @@ error TransferFailed();
 
 /// @dev Sends `amount` of ERC20 `token` from the current contract to `to`.
 /// Reverts upon failure.
-function safeTransfer(address token, address to, uint256 amount) {
+function safeTransfer(
+    address token,
+    address to,
+    uint256 amount
+) {
     /// @solidity memory-safe-assembly
     assembly {
         // We'll write our calldata to this slot below, but restore it later.
@@ -105,7 +113,12 @@ error TransferFromFailed();
 ///
 /// The `from` account must have at least `amount` approved for
 /// the current contract to manage.
-function safeTransferFrom(address token, address from, address to, uint256 amount) {
+function safeTransferFrom(
+    address token,
+    address from,
+    address to,
+    uint256 amount
+) {
     /// @solidity memory-safe-assembly
     assembly {
         // We'll write our calldata to this slot below, but restore it later.

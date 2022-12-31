@@ -37,7 +37,11 @@ contract RolesAuthority is Auth, Authority {
         return (uint256(getUserRoles[user]) >> role) & 1 != 0;
     }
 
-    function doesRoleHaveCapability(uint8 role, address target, bytes4 functionSig) public view virtual returns (bool) {
+    function doesRoleHaveCapability(
+        uint8 role,
+        address target,
+        bytes4 functionSig
+    ) public view virtual returns (bool) {
         return (uint256(getRolesWithCapability[target][functionSig]) >> role) & 1 != 0;
     }
 
@@ -45,7 +49,11 @@ contract RolesAuthority is Auth, Authority {
     /// Authorization Logic
     /// -----------------------------------------------------------------------
 
-    function canCall(address user, address target, bytes4 functionSig) public view virtual override returns (bool) {
+    function canCall(
+        address user,
+        address target,
+        bytes4 functionSig
+    ) public view virtual override returns (bool) {
         return
             isCapabilityPublic[target][functionSig] ||
             bytes32(0) != getUserRoles[user] & getRolesWithCapability[target][functionSig];
@@ -55,7 +63,11 @@ contract RolesAuthority is Auth, Authority {
     /// Role Capability Configuration Logic
     /// -----------------------------------------------------------------------
 
-    function setPublicCapability(address target, bytes4 functionSig, bool enabled) public virtual requiresAuth {
+    function setPublicCapability(
+        address target,
+        bytes4 functionSig,
+        bool enabled
+    ) public virtual requiresAuth {
         isCapabilityPublic[target][functionSig] = enabled;
 
         emit PublicCapabilityUpdated(target, functionSig, enabled);
@@ -80,7 +92,11 @@ contract RolesAuthority is Auth, Authority {
     /// User Role Assignment Logic
     /// -----------------------------------------------------------------------
 
-    function setUserRole(address user, uint8 role, bool enabled) public virtual requiresAuth {
+    function setUserRole(
+        address user,
+        uint8 role,
+        bool enabled
+    ) public virtual requiresAuth {
         if (enabled) {
             getUserRoles[user] |= bytes32(1 << role);
         } else {

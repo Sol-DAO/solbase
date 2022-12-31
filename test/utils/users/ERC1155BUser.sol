@@ -35,7 +35,13 @@ contract ERC1155BUser is ERC1155TokenReceiver {
         token.setApprovalForAll(operator, approved);
     }
 
-    function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes memory data) public virtual {
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 id,
+        uint256 amount,
+        bytes memory data
+    ) public virtual {
         token.safeTransferFrom(from, to, id, amount, data);
     }
 

@@ -101,10 +101,10 @@ contract SSTORE2Test is TestPlus {
         SSTORE2.read(pointer);
     }
 
-    function testFuzzReadInvalidPointerCustomStartBoundReverts(
-        address pointer,
-        uint256 startIndex
-    ) public brutalizeMemory {
+    function testFuzzReadInvalidPointerCustomStartBoundReverts(address pointer, uint256 startIndex)
+        public
+        brutalizeMemory
+    {
         if (pointer.code.length > 0) return;
         vm.expectRevert(SSTORE2.InvalidPointer.selector);
         SSTORE2.read(pointer, startIndex);
@@ -120,10 +120,10 @@ contract SSTORE2Test is TestPlus {
         SSTORE2.read(pointer, startIndex, endIndex);
     }
 
-    function testFuzzWriteReadCustomStartBoundOutOfRangeReverts(
-        bytes calldata testBytes,
-        uint256 startIndex
-    ) public brutalizeMemory {
+    function testFuzzWriteReadCustomStartBoundOutOfRangeReverts(bytes calldata testBytes, uint256 startIndex)
+        public
+        brutalizeMemory
+    {
         startIndex = bound(startIndex, testBytes.length + 1, type(uint256).max);
         address pointer = SSTORE2.write(testBytes);
         vm.expectRevert(SSTORE2.ReadOutOfBounds.selector);

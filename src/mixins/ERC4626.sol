@@ -79,7 +79,11 @@ abstract contract ERC4626 is ERC20Permit {
         afterDeposit(assets, shares);
     }
 
-    function withdraw(uint256 assets, address receiver, address owner) public virtual returns (uint256 shares) {
+    function withdraw(
+        uint256 assets,
+        address receiver,
+        address owner
+    ) public virtual returns (uint256 shares) {
         shares = previewWithdraw(assets); // No need to check for rounding error, previewWithdraw rounds up.
 
         if (msg.sender != owner) {
@@ -97,7 +101,11 @@ abstract contract ERC4626 is ERC20Permit {
         asset.safeTransfer(receiver, assets);
     }
 
-    function redeem(uint256 shares, address receiver, address owner) public virtual returns (uint256 assets) {
+    function redeem(
+        uint256 shares,
+        address receiver,
+        address owner
+    ) public virtual returns (uint256 assets) {
         if (msg.sender != owner) {
             uint256 allowed = allowance[owner][msg.sender]; // Saves gas for limited approvals.
 
