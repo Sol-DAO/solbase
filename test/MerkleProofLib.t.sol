@@ -36,12 +36,7 @@ contract MerkleProofLibTest is Test {
         testVerifyProof(false, false, true, 0x00);
     }
 
-    function testVerifyProof(
-        bool damageProof,
-        bool damageRoot,
-        bool damageLeaf,
-        bytes32 randomness
-    ) public {
+    function testVerifyProof(bool damageProof, bool damageRoot, bool damageLeaf, bytes32 randomness) public {
         bool noDamage = true;
         uint256 ri; // Randomness index.
 
@@ -225,11 +220,7 @@ contract MerkleProofLibTest is Test {
         assertEq(this.verifyMultiProof(proof, root, leafs, flags), noDamage);
     }
 
-    function verify(
-        bytes32[] calldata proof,
-        bytes32 root,
-        bytes32 leaf
-    ) external pure returns (bool) {
+    function verify(bytes32[] calldata proof, bytes32 root, bytes32 leaf) external pure returns (bool) {
         return MerkleProofLib.verify(proof, root, leaf);
     }
 

@@ -9,11 +9,7 @@ library Base64 {
     /// See: https://datatracker.ietf.org/doc/html/rfc4648
     /// @param fileSafe  Whether to replace '+' with '-' and '/' with '_'.
     /// @param noPadding Whether to strip away the padding.
-    function encode(
-        bytes memory data,
-        bool fileSafe,
-        bool noPadding
-    ) internal pure returns (string memory result) {
+    function encode(bytes memory data, bool fileSafe, bool noPadding) internal pure returns (string memory result) {
         assembly {
             let dataLength := mload(data)
 

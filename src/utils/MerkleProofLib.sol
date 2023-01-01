@@ -5,11 +5,7 @@ pragma solidity ^0.8.4;
 /// @author SolDAO (https://github.com/Sol-DAO/solbase/blob/main/src/utils/MerkleProofLib.sol)
 /// @author Modified from Solady (https://github.com/vectorized/solady/blob/main/src/utils/MerkleProofLib.sol)
 library MerkleProofLib {
-    function verify(
-        bytes32[] calldata proof,
-        bytes32 root,
-        bytes32 leaf
-    ) internal pure returns (bool isValid) {
+    function verify(bytes32[] calldata proof, bytes32 root, bytes32 leaf) internal pure returns (bool isValid) {
         assembly {
             if proof.length {
                 // Left shift by 5 is equivalent to multiplying by 0x20.

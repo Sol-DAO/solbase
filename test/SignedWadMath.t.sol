@@ -6,12 +6,7 @@ import {DSTestPlus} from "./utils/DSTestPlus.sol";
 import {wadMul, wadDiv} from "../src/utils/SignedWadMath.sol";
 
 contract SignedWadMathTest is DSTestPlus {
-    function testWadMul(
-        uint256 x,
-        uint256 y,
-        bool negX,
-        bool negY
-    ) public {
+    function testWadMul(uint256 x, uint256 y, bool negX, bool negY) public {
         x = bound(x, 0, 99999999999999e18);
         y = bound(x, 0, 99999999999999e18);
 
@@ -30,12 +25,7 @@ contract SignedWadMathTest is DSTestPlus {
         wadMul(x, y);
     }
 
-    function testWadDiv(
-        uint256 x,
-        uint256 y,
-        bool negX,
-        bool negY
-    ) public {
+    function testWadDiv(uint256 x, uint256 y, bool negX, bool negY) public {
         x = bound(x, 0, 99999999e18);
         y = bound(x, 1, 99999999e18);
 

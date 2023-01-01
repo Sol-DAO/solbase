@@ -11,14 +11,17 @@
     "url": "git+https://github.com/Sol-DAO/solbase.git"
   },
   "devDependencies": {
-    "prettier": "^2.7.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.13",
-    "husky": "^8.0.0"
+    "husky": "^8.0.2",
+    "prettier": "^2.8.1",
+    "prettier-plugin-solidity": "^1.1.1"
   },
   "scripts": {
     "lint": "prettier --write **.sol",
     "prepare": "husky install",
     "test": "forge test",
     "snap": "forge snapshot"
+  },
+  "dependencies": {
+    "parser": "^0.1.4"
   }
 }

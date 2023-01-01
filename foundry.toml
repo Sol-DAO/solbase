@@ -5,3 +5,6 @@ optimizer_runs = 1000000
 
 [profile.intense.fuzz]
 runs = 10000
+
+[profile.via-ir]
+via_ir = true

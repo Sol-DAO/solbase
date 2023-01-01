@@ -88,11 +88,7 @@ contract LibBitmapTest is Test {
         testBitmapSetTo(555555, false, 0);
     }
 
-    function testBitmapSetTo(
-        uint256 index,
-        bool shouldSet,
-        uint256 randomness
-    ) public {
+    function testBitmapSetTo(uint256 index, bool shouldSet, uint256 randomness) public {
         bool shouldSetBrutalized;
         assembly {
             if shouldSet {

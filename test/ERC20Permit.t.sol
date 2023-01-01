@@ -110,12 +110,7 @@ contract ERC20Test is DSTestPlus {
         token.permit(owner, address(0xCAFE), 1e18, block.timestamp, v, r, s);
     }
 
-    function testPermit(
-        uint248 privKey,
-        address to,
-        uint256 amount,
-        uint256 deadline
-    ) public {
+    function testPermit(uint248 privKey, address to, uint256 amount, uint256 deadline) public {
         uint256 privateKey = privKey;
         if (deadline < block.timestamp) deadline = block.timestamp;
         if (privateKey == 0) privateKey = 1;
@@ -166,12 +161,7 @@ contract ERC20Test is DSTestPlus {
         token.permit(owner, to, amount, deadline, v, r, s);
     }
 
-    function testFailPermitBadDeadline(
-        uint256 privateKey,
-        address to,
-        uint256 amount,
-        uint256 deadline
-    ) public {
+    function testFailPermitBadDeadline(uint256 privateKey, address to, uint256 amount, uint256 deadline) public {
         if (deadline < block.timestamp) deadline = block.timestamp;
         if (privateKey == 0) privateKey = 1;
 
@@ -191,12 +181,7 @@ contract ERC20Test is DSTestPlus {
         token.permit(owner, to, amount, deadline + 1, v, r, s);
     }
 
-    function testFailPermitPastDeadline(
-        uint256 privateKey,
-        address to,
-        uint256 amount,
-        uint256 deadline
-    ) public {
+    function testFailPermitPastDeadline(uint256 privateKey, address to, uint256 amount, uint256 deadline) public {
         deadline = bound(deadline, 0, block.timestamp - 1);
         if (privateKey == 0) privateKey = 1;
 
@@ -216,12 +201,7 @@ contract ERC20Test is DSTestPlus {
         token.permit(owner, to, amount, deadline, v, r, s);
     }
 
-    function testFailPermitReplay(
-        uint256 privateKey,
-        address to,
-        uint256 amount,
-        uint256 deadline
-    ) public {
+    function testFailPermitReplay(uint256 privateKey, address to, uint256 amount, uint256 deadline) public {
         if (deadline < block.timestamp) deadline = block.timestamp;
         if (privateKey == 0) privateKey = 1;
 
@@ -281,11 +261,7 @@ contract BalanceSum {
         token.approve(to, amount);
     }
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public {
+    function transferFrom(address from, address to, uint256 amount) public {
         token.transferFrom(from, to, amount);
     }
 
